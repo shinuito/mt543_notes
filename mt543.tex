@@ -1,0 +1,245 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{physics}
+\usepackage{tikz-cd}
+\title{MT543 Topics in Algebra}
+\author{Notes taken by Stephen Nulty}
+\newcommand{\rR}{\ensuremath{\mathbb{R}\,}}
+\newcommand{\cC}{\ensuremath{\mathbb{C}\,}}
+\newcommand{\hH}{\ensuremath{\mathbb{H}\,}}
+\newcommand{\qQ}{\ensuremath{a+bi+cj+dk\,}}
+\newcommand{\nn}{\ensuremath{n \times n\,}}
+\newcommand{\mnr}{\ensuremath{M_n(\rR)\,}}
+\newcommand{\mnc}{\ensuremath{M_n(\cC)\,}}
+\newcommand{\mnh}{\ensuremath{M_n(\hH)\,}}
+\newcommand{\mr}[1]{\ensuremath{M_{#1}(\rR)\,}}
+\newcommand{\mc}[1]{\ensuremath{M_{#1}(\cC)\,}}
+\newcommand{\mh}[1]{\ensuremath{M_{#1}(\hH)\,}}
+\newcommand{\glnr}{\ensuremath{GL_n(\rR)\,}}
+\newcommand{\glnc}{\ensuremath{GL_n(\cC)\,}}
+\newcommand{\glnh}{\ensuremath{GL_n(\hH)\,}}
+\newtheorem{defn}{Definition}
+\newtheorem{lemma}{Lemma}
+\newtheorem{prop}{Proposition}
+\newtheorem{obs}{Observation}
+
+\newcommand{\rvline}{\hspace*{-\arraycolsep}\vline\hspace*{-\arraycolsep}}
+\newcommand{\bigzero}{\mbox{\normalfont\Large\bfseries 0}}
+\newcommand{\bigld}{\mbox{\normalfont\Large\bfseries \ldots}}
+\newcommand{\bigvd}{\mbox{\normalfont\Large\bfseries \vdots}}
+\begin{document}
+\maketitle
+Lectures by David Wraith. Lie Groups and Lie Algebras.
+\section{Lecture 1 25/09/23}
+missed this lecture - some intro to do with spheres, transformations and symmetries and other motivational stuff. Definition of an algebra (bilinear product) over a field.
+
+
+\section{Lecture 2 27/09/23}
+Sorting out tutorial times. Lectures: Monday 2pm MS2, Wednesday 2pm LGH, Thursday 12pm MS2.
+
+Lie Groups, dual nature, Groups but also a topological geometrical character. Can prove things with a mix of both methods - intersection of various areas.
+
+\subsection{Groups of matrices}
+\subsubsection{General Linear Groups}
+
+Quaternions will have a central role.
+
+Consider groups of $N\times N$ matrices over the fields \rR and \cC and also over the quaternions.
+
+\begin{defn}
+The quaternions \hH is a 4-dim real vector space with standard basis elements $1,i,j,k$, equipped with an associative linear multiplication operation defined by
+
+\[i^2=j^2=k^2=-1, \quad ij=k, jk=i, ki=j\]
+\end{defn}
+
+So a generic quaternion takes the form $a+bi+cj+dk$, $a,b,c,d \in \rR$.
+
+Observe, $ji=j(jk)=(jj)k$ (by associativity) $=j^2k=-k$. Similarly $kj=-i$ and $ik=-j$.
+
+e.g. $(2+i-3k)(5+2i-j+k)=10+4i-2j+2k+5i-2-k-j-15k-6j-61+3$ etc.
+
+Quaternions is not commutative, so is not a field. However it is a skew field (division algebra).
+
+Terminology - In $a+bi+cj+dk$, $a$ is called the real or scalar part, and the rest $bi+cj+dk$ imaginary or vector part.
+
+In analogy with complex numbers,
+
+\begin{defn} 
+1. The conjugate of  \qQ , is $\overline{\qQ}=a-bi-cj-dk$
+2. The norm of \qQ is  $|\qQ |=\sqrt{a^2+b^2+c^2+d^2}$
+\end{defn}
+
+Thus \hH is a normed vector space. Next observe that for each $q\in\hH$ $q\bar{q}=\bar{q}q = |q|^2$.
+
+therefore (symbol) $q^{-1}=\bar{q}/|q|^2$. So $qq^{-1}=q\bar{q}/|q|^2=|q|^2=1$, similarly for $q^{-1}q=1$.
+
+This allows division $q_1\cdot q_2^{-1}=q_1 \bar{q_2}/|q_2|^2$. Writing $q_1/q_2$ is ambiguous however. $q_1 q_2^{-1}\neq q_2^{-1} q_1$ generically.
+
+Clearly $\rR \subset \cC \subset \hH$. A classic theorem of Frobenius asserts that \rR, \cC, \hH are the only real associative division algebras. These objects similarly play a distinguished role in Lie group theory.
+
+Convention: Suppose V is a vector space over the quaternions \hH. We will adopt the convention that whenever we scale a vector $v\in V$ by a scalar $\lambda \in \hH$, we multiply on the left, i.e. $\lambda v$
+
+Let $M_n(\rR),  M_n(\cC),  M_n(\hH)$ denote the sets (vector spaces!) of all $n\times n$ matrices over $\rR, \cC,  \hH$.
+
+\begin{defn} 
+The General Linear Groups $GL_n(\rR)$, resp. $GL_n(\cC)$ is the group of  $n\times n$ invertible matrices with \rR resp \cC coefficients. (Group under multiplication). Equivalently $GL_n(\rR)=\{A\in M_n(\rR)| \det(A)\neq0\}$. Similarly $GL_n(\cC)=\{A\in M_n(\cC)| \det(A)\neq0\}$.
+\end{defn}
+
+(return to the idea of determinants of quaternions later).
+
+Recall that for any matrix $A\in\mnr$ we have two associated linear maps $L_A:\rR^n\to \rR^n, L_a(\vec{x})=A\vec{x},$  $R_A:\rR^n\to \rR^n, R_a(\vec{x})=\vec{x}A.$ 
+
+It is well know that $A$ is invertible (RC cases) iff $\det(A)\neq0$ iff $L_A, R_A$ are isomorphisms.
+
+\section{Lecture 3}
+Reminder: 
+\begin{itemize}
+\item Quaternions \hH, multiplication is associative not commutative. If $V$ is a \hH - vector space, we scale from the left only, i.e. $\lambda v$ for $\lambda \in \hH, v\in V$. 
+\item General linear groups \glnr, \glnc groups under $*$ of all invertible \rR resp. \cC \nn - matrices.
+\item $A\in \mnr, \mnc$ is invertible iff $\det A \neq 0$ iff $L_A, R_A$ are both invertible where $L_a(\vec{x})=A\vec{x},$, $R_a(\vec{x})=A\vec{x}.$ 
+\end{itemize}
+
+We now consider \mnh.
+
+\begin{defn}
+A function $f:\hH ^n \to \hH$ is \hH - linear if  $f ( \lambda _1 v_1+\lambda _2 v_2)=\lambda _1 f(v_1)+\lambda _2 f(v_2),\; \forall \lambda _1 \lambda _2 \in \hH , v_1,v_2 \in \hH ^n$.
+\end{defn}
+
+\begin{lemma}
+For $A \in \mnh$, $R_A:\hH^n\to \hH^n$ given by $R_a(\vec{x})=\vec{x}A$  for $v\in \hH^n$ a row vector, is \hH - linear, however $L_A$ is in general not \hH - linear.
+Proof: exercise
+\end{lemma}
+
+idea is that associativity makes $\lambda v A$ ok, but not with left multiplication which is interfered by commutativity.
+
+\begin{lemma}
+For $A \in \mnh$, $R_A:\hH^n\to \hH^n$, is an \hH - linear isomorphism iff $A$ is invertible, i.e. $\exists B\in \mnh$ such that $AB=BA=I_n$.
+\end{lemma}
+
+\begin{proof}
+($\rightarrow$) If $R_A$ is an iso. then there is a \hH -linear inverse $(R_A)^{-1}: \hH ^n \to \hH ^n $. There is a corresponding matrix $B\in \mnh$. Since $R_A \circ (R_A)^{-1}=R_A \circ (R_A)^{-1}=I_n$. we deduce $BA=AB=I_n$ (NB order of matrices here!). Therefore $B=A^{-1}$.
+
+($\leftarrow$) Similar.
+\end{proof}
+
+\begin{defn}
+The quaternionic general linear group $\glnh = \{A\in \mnh | A \text{ is invertible}\} = \{A\in \mnh| R_a \text{ is an iso.}\}$
+\end{defn}
+
+NB: There is a problem with the notion of \hH - determinant due to non-commutativity we'll return to this later (possible to define determinant and gl as ones with non-zero determinant, but defining it requires some thought.)
+
+It turns out that we can view \cC and \hH- matrices/linear maps in terms of \rR- matrices. 
+
+\begin{prop}
+There is a real linear map $\rho_n: \mnc \to \mr{2n}$ such that the following diagram commutes. 
+\begin{center}
+\begin{tikzcd}
+  \cC^n \arrow{d}{R_A} \arrow{r}{\theta_n}
+    & \rR^{2n} \arrow{d}{R_{\rho_n(A)}} \\
+  \cC^n \arrow{r}{\theta_n}
+&\rR^{2n} \end{tikzcd}
+\end{center}
+where $\theta _n : \cC ^n \to \rR ^{2n}$ is given by $\theta _n (a_1+ib_1, \ldots , a_n+ib_n )=(a_1,b_1,\ldots, a_n,b_n)$.
+\end{prop}
+
+(compactly every complex matrix can be viewed as a real matrix of twice the size)
+
+Remark: $\theta _n $ is  a real linear isomorphism. This forces $R_{\rho _n (A)}=\theta _n \circ R_A \circ \theta _n^{-1}$.
+
+This is linear and therefore there is a corresponding matrix $\in \mr{2n}$.
+
+\begin{proof}
+See moodle.
+\end{proof}
+
+\begin{obs}
+$\rho_n$ is injective. Proof: exercise.
+\end{obs}
+
+\begin{lemma}
+$\rho _n$ satisfies $\rho_n(AB)= \rho_n(A)\rho_n(B)$. So $\rho_n$ is  an injective real-algebra homomorphism.
+\end{lemma}
+\begin{proof}
+We compose commutative squares from 1.1.8 to get ... (insert diagram)
+
+\begin{center}
+\begin{tikzcd}
+  \cC^n \arrow{d}{R_A} \arrow{r}{\theta_n}
+    & \rR^{2n} \arrow{d}{R_{\rho_n(A)}} \\
+  \cC^n \arrow{r}{\theta_n}  \arrow{d}{R_B}
+&\rR^{2n} \arrow{d}{R_{\rho_n(B)}} \\
+  \cC^n \arrow{r}{\theta_n}
+&\rR^{2n} 
+
+\end{tikzcd}
+\end{center}
+
+On L.H.S. we have $R_B \circ R_A = R_{AB}$. (note order)
+
+On R.H.S we have $R_{\rho_n(B)} \circ R_{\rho_n(A)} =R_{\rho_n(A)\rho_n(B)}$.
+
+But since LHS is $R_{AB}$ this means $R_{\rho_n(AB)}= \text{composition on RHS}=R_{\rho_n(A)\rho_n(B)}$.
+\end{proof}
+
+It's not surjective however. Q: What exactly is $\rho_n(A)$? Consider $(a+ib)\in \mc{1}$. 
+
+\[R_{(a+ib)}(x+iy)=(x+iy)(a+ib)=(ax-by)+i(ay+bx)\]
+
+Now $\theta_1(x+iy)=(x,y) \in \rR^2$ etc.
+
+So $\theta_1((ax-by)+i(ay+bx))=(ax-by,ay+bx)$
+
+The corresponding map from $\rR ^2\to \rR^2$ is $(x,y)\mapsto (ax-by,ay+bx)$. Observe that 
+
+\[\begin{pmatrix} x & y\end{pmatrix}\begin{pmatrix} a & b \\ -b & a \end{pmatrix}=(ax-by,ay+bx)\]
+
+So $\begin{pmatrix} a & b \\ -b & a \end{pmatrix}\in \mr{2}$ corresponds under $\rho_1$ to $(a+ib)\in \mc{1}$.
+
+More generally 
+
+\[\begin{pmatrix}
+  a_{11}+ib_{11} & \ldots &   a_{1n}+ib_{1n}\\
+  \vdots & \vdots & \vdots \\
+   a_{n1}+ib_{n1} & \ldots &   a_{nn}+ib_{nn}\\
+\end{pmatrix} \in \mnc\]
+
+corresponds to
+
+\[
+\begin{pmatrix}
+  \begin{matrix}
+  a_{11} & b_{11}  \\
+  -b_{11} &   a_{11}
+  \end{matrix}
+  & \rvline & \bigld  & \rvline &
+  \begin{matrix}
+  a_{1n} & b_{1n}  \\
+  -b_{1n} &   a_{1n}
+  \end{matrix}  
+  \\
+\hline
+
+  \bigvd
+  & \rvline & \bigvd  & \rvline &
+  \bigvd
+  \\
+\hline
+    \begin{matrix}
+  a_{n1} & b_{n1}  \\
+  -b_{n1} &   a_{n1}
+  \end{matrix}
+  & \rvline & \bigld  & \rvline &
+  \begin{matrix}
+  a_{nn} & b_{nn}  \\
+  -b_{nn} &   a_{nn}
+  \end{matrix}  
+\end{pmatrix}
+\]
+
+ is obtained by replacing each \cC entry by its correspinding $2\times 2$ real block.
+
+\end{document}
