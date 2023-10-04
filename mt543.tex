@@ -17,6 +17,7 @@
 \newcommand{\hH}{\ensuremath{\mathbb{H}\,}}
 \newcommand{\qQ}{\ensuremath{a+bi+cj+dk\,}}
 \newcommand{\nn}{\ensuremath{n \times n\,}}
+
 \newcommand{\mnr}{\ensuremath{M_n(\rR)\,}}
 \newcommand{\mnc}{\ensuremath{M_n(\cC)\,}}
 \newcommand{\mnh}{\ensuremath{M_n(\hH)\,}}
@@ -26,14 +27,21 @@
 \newcommand{\glnr}{\ensuremath{GL_n(\rR)\,}}
 \newcommand{\glnc}{\ensuremath{GL_n(\cC)\,}}
 \newcommand{\glnh}{\ensuremath{GL_n(\hH)\,}}
+\newcommand{\glr}[1]{\ensuremath{GL_{#1}(\rR)\,}}
+\newcommand{\glc}[1]{\ensuremath{GL_{#1}(\cC)\,}}
+\newcommand{\glh}[1]{\ensuremath{GL_{#1}(\hH)\,}}
+
 \newcommand{\ra}{\Rightarrow}
 \newcommand{\la}{\Leftarrow}
+\newcommand{\cin}{\ensuremath{\mathcal{I}_n\,}}
+\newcommand{\ci}[1]{\ensuremath{\mathcal{I}_{#1}\,}}
 
 %proofs etc
 \newtheorem{defn}{Definition}
 \newtheorem{lemma}{Lemma}
 \newtheorem{prop}{Proposition}
 \newtheorem{obs}{Observation}
+\newtheorem{cor}{Corollary}
 
 %block matrices
 \newcommand{\rvline}{\hspace*{-\arraycolsep}\vline\hspace*{-\arraycolsep}}
@@ -107,7 +115,7 @@ The General Linear Groups $GL_n(\rR)$, resp. $GL_n(\cC)$ is the group of  $n\tim
 
 Recall that for any matrix $A\in\mnr$ we have two associated linear maps $L_A:\rR^n\to \rR^n, L_a(\vec{x})=A\vec{x},$  $R_A:\rR^n\to \rR^n, R_a(\vec{x})=\vec{x}A.$ 
 
-It is well know that $A$ is invertible (RC cases) iff $\det(A)\neq0$ iff $L_A, R_A$ are isomorphisms.
+It is well know that $A$ is invertible (RC cases) $\iff$ $\det(A)\neq0$ iff $L_A, R_A$ are isomorphisms.
 
 \section{Lecture 3 02/10/23}
 Thursday lecture moved to Friday at 10am in MS2.
@@ -256,8 +264,158 @@ corresponds to
 \end{pmatrix} \in \mr{2n}
 \]
 
- is obtained by replacing each \cC entry by its correspinding $2\times 2$ real block.
+ is obtained by replacing each \cC entry by its corresponding $2\times 2$ real block.
 
 \section{Lecture 4 04/10/23}
+Last time:
+
+\begin{itemize}
+\item $A\in \mnh$ then $R_A:\hH^n\to\hH^n$ given by $R_a(\vec{x})=\vec{x}A.$  is \hH - linear (assuming coefficients in \hH multiply on vectors from the left, c row vector). Left multiplication is not in general \hH linear.
+\item Under the real linea isomorphosm $\theta_n: \cC^n \to \rR^{2n},$ $\theta _n (a_1+ib_1, \ldots , a_n+ib_n )=(a_1,b_1,\ldots, a_n,b_n)$. Any complex-linear map $\cC^n\to \cC^n$ corresponds to a real-linear map $\rR^{2n}\to \rR^{2n}$ and in terms of matrices (an right multiplication) $A\in \mnc$ corresponds to some matrix $\rho_n(A)\in \mr{2n}$.
+\item \[\text{If } A=\begin{pmatrix}
+  a_{11}+ib_{11} & \ldots &   a_{1n}+ib_{1n}\\
+  \vdots & \vdots & \vdots \\
+   a_{n1}+ib_{n1} & \ldots &   a_{nn}+ib_{nn}\\
+\end{pmatrix}\]
+then 
+\[
+\rho_n(A)=\begin{pmatrix}
+  \begin{matrix}
+  a_{11} & b_{11}  \\
+  -b_{11} &   a_{11}
+  \end{matrix}
+  & \rvline & \bigld  & \rvline &
+  \begin{matrix}
+  a_{1n} & b_{1n}  \\
+  -b_{1n} &   a_{1n}
+  \end{matrix}  
+  \\
+\hline
+
+  \bigvd
+  & \rvline & \bigvd  & \rvline &
+  \bigvd
+  \\
+\hline
+    \begin{matrix}
+  a_{n1} & b_{n1}  \\
+  -b_{n1} &   a_{n1}
+  \end{matrix}
+  & \rvline & \bigld  & \rvline &
+  \begin{matrix}
+  a_{nn} & b_{nn}  \\
+  -b_{nn} &   a_{nn}
+  \end{matrix}  
+\end{pmatrix}
+\]
+\end{itemize}
+
+Consider the \cC linear map $\cC^n\to \cC^n$ given by $z\to zi$. This is $R_A$ where 
+
+\[A= \begin{pmatrix}
+  i & \ldots &   0\\
+  \vdots & \ddots & \vdots \\
+   0 & \ldots &   i\\
+\end{pmatrix} =iI\]
+
+For this matrix we have 
+\[\rho_n(A)=\begin{pmatrix}
+  \begin{matrix}
+  0 & 1  \\
+  -1 &   0
+  \end{matrix}
+  & \rvline & \bigld  & \rvline &
+  \bigzero
+  \\
+\hline
+
+  \bigvd
+  & \rvline & \bigvd  & \rvline &
+  \bigvd
+  \\
+\hline
+    \bigzero
+  & \rvline & \bigld  & \rvline &
+  \begin{matrix}
+  0 & 1  \\
+  -1 &   0
+  \end{matrix}  
+\end{pmatrix}=\cin
+\]
+
+A map $f:\cC^n\to \cC^n$ is \cC linear if it is real linear and $f(zi)=f(z)i$.
+
+Let $bar{f}:\rR^{2n}\to \rR^{2n}$ be the corresponding \rR linear map and suppose this has matrix $B\in \mr{2n}$. Then the complex linearity requirement is $R_B\circ R_{\cin}=R_{\cin}R_{B}$. 
+
+Since $R_X=R_Y \iff X=Y$ we see this is equivalent to asking $B\cin=\cin B$. i.e. $B\in \mr{2n}$ corresponds under $\theta_n$ to a complex linear map $\iff$  $B\cin=\cin B$.
+
+We'd proved
+
+\begin{cor}
+(1.1.11) The image of $\rho_n:\mnc \to \mr{2n}$ is the set of all of all matrices in \mr{2n} which commute with \cin .
+\end{cor}
+
+Remark: This shows that $\rho_n$ is not surjective.
+
+\begin{lemma}
+There is an injective group homomorphism $\rho_n : \glnc \to \glr{2n}$, given by restricting $\rho_n : \mnc \to \mr{2n}$.
+\end{lemma}
+
+\begin{proof}
+We just have to check that if $A\in \glnc$, then $\rho_n(A)$ is invertible. Clearly $\rho_n(AA^{-1})=\rho_n(A^{-1}A)=\rho_n(I_n)$ so by 1.1.10. $\rho_n(A)\rho_n(A^{-1})=\rho_n(A^{-1})\rho_n(A)=\rho_n(I_n)=I_{2n}$. 
+
+$\therefore \rho_n(A^{-1})=\rho_n(A)^{-1}$, hence $\rho_n(A)\in\glr{2n}$. So $\rho_n:\glnc\to\glr{2n}$, and by 1.1.10 this is a (multiplicative) group homomorphism 
+\end{proof}
+
+Now for quaternion matrices. 
+
+First observe that there is a \cC linear isomorphism $\phi_n: \hH^n \to \cC^{2n}$ given by $\phi_n(z_1+w_1 j, \ldots, z_n+w_n j)=(z_1,w_1,\ldots,z_n, w_n).$
+
+(exercise to figure out $a+bi+cj+dk$ as  $z+wj$, with $\rR\subset \cC \subset \hH$.
+
+\begin{prop}
+(1.1.13) There is an injective \cC linear map $\psi_n:\mnh \to \mc{2n}$ s.t. the following square commutes:
+
+\begin{center}
+\begin{tikzcd}
+  \hH^n \arrow{d}{R_A} \arrow{r}{\phi_n}
+    & \cC^{2n} \arrow{d}{R_{\psi_n(A)}} \\
+  \hH^n \arrow{r}{\phi_n}
+&\cC^{2n} \end{tikzcd}
+\end{center}
+
+i.e. $\phi_n\circ R_A = R_{\psi_n(A)}\circ \phi_n$. Moreover, $\psi_n$ satisfies $\psi_n(AB)=\psi_n(A)\psi_n(B)$.
+\end{prop}
+
+\begin{proof}
+Analogous to that of prop 1.1.8 and lemma 1.1.10. Exercise! 
+\end{proof}
+
+Remark: It is easily checked (exercise!) that $\psi_1(z+wj) = \begin{pmatrix} z &w \\ -\bar{w}& \bar{z}\end{pmatrix}$
+
+More generally, image of $\psi_n$ consists of block matrices with blocks of this form (analogous to $\rho_n$).
+
+By restricting to invertible matrices we obtain:
+
+\begin{cor}
+1.1.14 There is an injective group homomorphism $\psi_n:\glnh \to \glc{2n}$.
+\end{cor}
+\begin{proof}
+Analogous to 1.1.12 - exercise.
+\end{proof}
+
+( you can compose the maps then to get a real $4n$ matrix from a quaternionic one)
+
+Composing $\rho_{2n}$ and $\psi_n$ gives
+
+ \begin{cor}
+1.1.15 There is an injective \rR linear map resp. group homomorphism given by $\rho_{2n}\circ \psi_n:\mnh \to \mr{4n}$ resp. $\rho_{2n}\circ \psi_n:\glnh \to \glr{4n}$.
+\end{cor}
+
+Slogan: all groups of \hH or \cC matrices can be viewed as groups of real matrices!
+
+\begin{defn}
+1.1.16 For $A\in \mnh$, $\det(A):=\det \psi_n(A)$.
+\end{defn}
 
 \end{document}
