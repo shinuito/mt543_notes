@@ -65,7 +65,7 @@
 \newcommand\subsubsection@cntformat{\thesubsubsection.\space} % subsubsection level
 \makeatother
 
-\renewcommand{\thethm}{\arabic{subsection}.\arabic{subsection}.\arabic{thm}}
+\renewcommand{\thethm}{\arabic{subsection}.\arabic{subsubsection}.\arabic{thm}}
 
 %begin
 \begin{document}
@@ -134,7 +134,7 @@ The General Linear Groups $GL_n(\rR)$, resp. $GL_n(\cC)$ is the group of  $n\tim
 
 Recall that for any matrix $A\in\mnr$ we have two associated linear maps $L_A:\rR^n\to \rR^n, L_a(\vec{x})=A\vec{x},$  $R_A:\rR^n\to \rR^n, R_a(\vec{x})=\vec{x}A.$ 
 
-It is well know that $A$ is invertible (RC cases) $\iff$ $\det(A)\neq0$ iff $L_A, R_A$ are isomorphisms.
+It is well know that $A$ is invertible (RC cases) $\iff$ $\det(A)\neq0$ $\iff$ $L_A, R_A$ are isomorphisms.
 
 \section{Lecture 3 02/10/23}
 Thursday lecture moved to Friday at 10am in MS2.
@@ -207,7 +207,7 @@ $\rho_n$ is injective. Proof: exercise.
 $\rho _n$ satisfies $\rho_n(AB)= \rho_n(A)\rho_n(B)$. So $\rho_n$ is  an injective real-algebra homomorphism.
 \end{lemma}
 \begin{proof}
-We compose commutative squares from 1.1.8 to get ... (insert diagram)
+We compose commutative squares from 1.1.8 to get
 
 \begin{center}
 \begin{tikzcd}
@@ -289,8 +289,8 @@ corresponds to
 Last time:
 
 \begin{itemize}
-\item $A\in \mnh$ then $R_A:\hH^n\to\hH^n$ given by $R_a(\vec{x})=\vec{x}A.$  is \hH - linear (assuming coefficients in \hH multiply on vectors from the left, c row vector). Left multiplication is not in general \hH linear.
-\item Under the real linea isomorphosm $\theta_n: \cC^n \to \rR^{2n},$ $\theta _n (a_1+ib_1, \ldots , a_n+ib_n )=(a_1,b_1,\ldots, a_n,b_n)$. Any complex-linear map $\cC^n\to \cC^n$ corresponds to a real-linear map $\rR^{2n}\to \rR^{2n}$ and in terms of matrices (an right multiplication) $A\in \mnc$ corresponds to some matrix $\rho_n(A)\in \mr{2n}$.
+\item $A\in \mnh$ then $R_A:\hH^n\to\hH^n$ given by $R_a(\vec{x})=\vec{x}A.$  is \hH - linear (assuming coefficients in \hH multiply on vectors from the left, x row vector). Left multiplication is not in general \hH linear.
+\item Under the real linear isomorphism $\theta_n: \cC^n \to \rR^{2n},$ $\theta _n (a_1+ib_1, \ldots , a_n+ib_n )=(a_1,b_1,\ldots, a_n,b_n)$. Any complex-linear map $\cC^n\to \cC^n$ corresponds to a real-linear map $\rR^{2n}\to \rR^{2n}$ and in terms of matrices (an right multiplication) $A\in \mnc$ corresponds to some matrix $\rho_n(A)\in \mr{2n}$.
 \item \[\text{If } A=\begin{pmatrix}
   a_{11}+ib_{11} & \ldots &   a_{1n}+ib_{1n}\\
   \vdots & \vdots & \vdots \\
@@ -371,7 +371,7 @@ Since $R_X=R_Y \iff X=Y$ we see this is equivalent to asking $B\cin=\cin B$. i.e
 We'd proved
 
 \begin{cor}
-(1.1.11) The image of $\rho_n:\mnc \to \mr{2n}$ is the set of all of all matrices in \mr{2n} which commute with \cin .
+The image of $\rho_n:\mnc \to \mr{2n}$ is the set of all of all matrices in \mr{2n} which commute with \cin .
 \end{cor}
 
 Remark: This shows that $\rho_n$ is not surjective.
@@ -390,10 +390,10 @@ Now for quaternion matrices.
 
 First observe that there is a \cC linear isomorphism $\phi_n: \hH^n \to \cC^{2n}$ given by $\phi_n(z_1+w_1 j, \ldots, z_n+w_n j)=(z_1,w_1,\ldots,z_n, w_n).$
 
-(exercise to figure out $a+bi+cj+dk$ as  $z+wj$, with $\rR\subset \cC \subset \hH$.
+(exercise to figure out $a+bi+cj+dk$ as  $z+wj$, with $\rR\subset \cC \subset \hH$.)
 
 \begin{prop}
-(1.1.13) There is an injective \cC linear map $\psi_n:\mnh \to \mc{2n}$ s.t. the following square commutes:
+There is an injective \cC linear map $\psi_n:\mnh \to \mc{2n}$ s.t. the following square commutes:
 
 \begin{center}
 \begin{tikzcd}
@@ -417,7 +417,7 @@ More generally, image of $\psi_n$ consists of block matrices with blocks of this
 By restricting to invertible matrices we obtain:
 
 \begin{cor}
-1.1.14 There is an injective group homomorphism $\psi_n:\glnh \to \glc{2n}$.
+There is an injective group homomorphism $\psi_n:\glnh \to \glc{2n}$.
 \end{cor}
 \begin{proof}
 Analogous to 1.1.12 - exercise.
@@ -428,13 +428,13 @@ Analogous to 1.1.12 - exercise.
 Composing $\rho_{2n}$ and $\psi_n$ gives
 
  \begin{cor}
-1.1.15 There is an injective \rR linear map resp. group homomorphism given by $\rho_{2n}\circ \psi_n:\mnh \to \mr{4n}$ resp. $\rho_{2n}\circ \psi_n:\glnh \to \glr{4n}$.
+There is an injective \rR linear map resp. group homomorphism given by $\rho_{2n}\circ \psi_n:\mnh \to \mr{4n}$ resp. $\rho_{2n}\circ \psi_n:\glnh \to \glr{4n}$.
 \end{cor}
 
 Slogan: all groups of \hH or \cC matrices can be viewed as groups of real matrices!
 
 \begin{defn}
-1.1.16 For $A\in \mnh$, $\det(A):=\det \psi_n(A)$.
+For $A\in \mnh$, $\det(A):=\det \psi_n(A)$.
 \end{defn}
 
 \end{document}
