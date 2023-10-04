@@ -1,4 +1,5 @@
 \documentclass[12pt,a4paper]{article}
+%packages
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath}
 \usepackage{amsfonts}
@@ -8,6 +9,9 @@
 \usepackage{tikz-cd}
 \title{MT543 Topics in Algebra}
 \author{Notes taken by Stephen Nulty}
+\renewcommand{\abstractname}{Note:} 
+
+%new commands
 \newcommand{\rR}{\ensuremath{\mathbb{R}\,}}
 \newcommand{\cC}{\ensuremath{\mathbb{C}\,}}
 \newcommand{\hH}{\ensuremath{\mathbb{H}\,}}
@@ -22,17 +26,27 @@
 \newcommand{\glnr}{\ensuremath{GL_n(\rR)\,}}
 \newcommand{\glnc}{\ensuremath{GL_n(\cC)\,}}
 \newcommand{\glnh}{\ensuremath{GL_n(\hH)\,}}
+\newcommand{\ra}{\Rightarrow}
+\newcommand{\la}{\Leftarrow}
+
+%proofs etc
 \newtheorem{defn}{Definition}
 \newtheorem{lemma}{Lemma}
 \newtheorem{prop}{Proposition}
 \newtheorem{obs}{Observation}
 
+%block matrices
 \newcommand{\rvline}{\hspace*{-\arraycolsep}\vline\hspace*{-\arraycolsep}}
 \newcommand{\bigzero}{\mbox{\normalfont\Large\bfseries 0}}
 \newcommand{\bigld}{\mbox{\normalfont\Large\bfseries \ldots}}
 \newcommand{\bigvd}{\mbox{\normalfont\Large\bfseries \vdots}}
+
+%begin
 \begin{document}
 \maketitle
+\begin{abstract}
+    Any transcription mistakes and typos are my own.
+\end{abstract}
 Lectures by David Wraith. Lie Groups and Lie Algebras.
 \section{Lecture 1 25/09/23}
 missed this lecture - some intro to do with spheres, transformations and symmetries and other motivational stuff. Definition of an algebra (bilinear product) over a field.
@@ -95,18 +109,20 @@ Recall that for any matrix $A\in\mnr$ we have two associated linear maps $L_A:\r
 
 It is well know that $A$ is invertible (RC cases) iff $\det(A)\neq0$ iff $L_A, R_A$ are isomorphisms.
 
-\section{Lecture 3}
+\section{Lecture 3 02/10/23}
+Thursday lecture moved to Friday at 10am in MS2.
+
 Reminder: 
 \begin{itemize}
 \item Quaternions \hH, multiplication is associative not commutative. If $V$ is a \hH - vector space, we scale from the left only, i.e. $\lambda v$ for $\lambda \in \hH, v\in V$. 
 \item General linear groups \glnr, \glnc groups under $*$ of all invertible \rR resp. \cC \nn - matrices.
-\item $A\in \mnr, \mnc$ is invertible iff $\det A \neq 0$ iff $L_A, R_A$ are both invertible where $L_a(\vec{x})=A\vec{x},$, $R_a(\vec{x})=A\vec{x}.$ 
+\item $A\in \mnr, \mnc$ is invertible iff $\det A \neq 0$ iff $L_A, R_A$ are both invertible where $L_a(\vec{x})=A\vec{x}$, $R_a(\vec{x})=\vec{x}A.$ 
 \end{itemize}
 
 We now consider \mnh.
 
 \begin{defn}
-A function $f:\hH ^n \to \hH$ is \hH - linear if  $f ( \lambda _1 v_1+\lambda _2 v_2)=\lambda _1 f(v_1)+\lambda _2 f(v_2),\; \forall \lambda _1 \lambda _2 \in \hH , v_1,v_2 \in \hH ^n$.
+A function $f:\hH ^n \to \hH^n$ is \hH - linear if  $f ( \lambda _1 v_1+\lambda _2 v_2)=\lambda _1 f(v_1)+\lambda _2 f(v_2),\; \forall \lambda _1 \lambda _2 \in \hH , v_1,v_2 \in \hH ^n$.
 \end{defn}
 
 \begin{lemma}
@@ -121,9 +137,9 @@ For $A \in \mnh$, $R_A:\hH^n\to \hH^n$, is an \hH - linear isomorphism iff $A$ i
 \end{lemma}
 
 \begin{proof}
-($\rightarrow$) If $R_A$ is an iso. then there is a \hH -linear inverse $(R_A)^{-1}: \hH ^n \to \hH ^n $. There is a corresponding matrix $B\in \mnh$. Since $R_A \circ (R_A)^{-1}=R_A \circ (R_A)^{-1}=I_n$. we deduce $BA=AB=I_n$ (NB order of matrices here!). Therefore $B=A^{-1}$.
+($\ra$) If $R_A$ is an iso. then there is a \hH -linear inverse $(R_A)^{-1}: \hH ^n \to \hH ^n $. There is a corresponding matrix $B\in \mnh$. Since $R_A \circ (R_A)^{-1}=R_A \circ (R_A)^{-1}=I_n$. we deduce $BA=AB=I_n$ (NB order of matrices here!). Therefore $B=A^{-1}$.
 
-($\leftarrow$) Similar.
+($\la$) Similar.
 \end{proof}
 
 \begin{defn}
@@ -237,9 +253,11 @@ corresponds to
   a_{nn} & b_{nn}  \\
   -b_{nn} &   a_{nn}
   \end{matrix}  
-\end{pmatrix}
+\end{pmatrix} \in \mr{2n}
 \]
 
  is obtained by replacing each \cC entry by its correspinding $2\times 2$ real block.
+
+\section{Lecture 4 04/10/23}
 
 \end{document}
