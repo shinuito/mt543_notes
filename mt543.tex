@@ -7,6 +7,11 @@
 \usepackage{amsthm}
 \usepackage{physics}
 \usepackage{tikz-cd}
+
+\usepackage{chngcntr}
+\counterwithout{subsection}{section}
+\setcounter{subsection}{-1}
+
 \title{MT543 Topics in Algebra}
 \author{Notes taken by Stephen Nulty}
 \renewcommand{\abstractname}{Note:} 
@@ -37,17 +42,28 @@
 \newcommand{\ci}[1]{\ensuremath{\mathcal{I}_{#1}\,}}
 
 %proofs etc
-\newtheorem{defn}{Definition}
-\newtheorem{lemma}{Lemma}
-\newtheorem{prop}{Proposition}
-\newtheorem{obs}{Observation}
-\newtheorem{cor}{Corollary}
+\newtheorem{thm}{Theorem}
+\newtheorem{defn}[thm]{Definition}
+\newtheorem{lemma}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{obs}[thm]{Observation}
+\newtheorem{cor}[thm]{Corollary}
 
 %block matrices
 \newcommand{\rvline}{\hspace*{-\arraycolsep}\vline\hspace*{-\arraycolsep}}
 \newcommand{\bigzero}{\mbox{\normalfont\Large\bfseries 0}}
 \newcommand{\bigld}{\mbox{\normalfont\Large\bfseries \ldots}}
 \newcommand{\bigvd}{\mbox{\normalfont\Large\bfseries \vdots}}
+
+\renewcommand{\thesubsection}{\arabic{subsection}}
+\makeatletter
+\def\@seccntformat#1{\@ifundefined{#1@cntformat}%
+   {\csname the#1\endcsname\quad}%    default
+   {\csname #1@cntformat\endcsname}}% enable individual control
+\newcommand\section@cntformat{}     % section level 
+\newcommand\subsection@cntformat{\thesubsection.\space} % subsection level
+\newcommand\subsubsection@cntformat{\thesubsubsection.\space} % subsubsection level
+\makeatother
 
 %begin
 \begin{document}
@@ -59,6 +75,7 @@ Lectures by David Wraith. Lie Groups and Lie Algebras.
 \section{Lecture 1 25/09/23}
 missed this lecture - some intro to do with spheres, transformations and symmetries and other motivational stuff. Definition of an algebra (bilinear product) over a field.
 
+\subsection{Something}
 
 \section{Lecture 2 27/09/23}
 Sorting out tutorial times. Lectures: Monday 2pm MS2, Wednesday 2pm LGH, Thursday 12pm MS2.
