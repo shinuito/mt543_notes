@@ -77,7 +77,25 @@ Lectures by David Wraith. Lie Groups and Lie Algebras.
 \section{Lecture 1 25/09/23}
 missed this lecture - some intro to do with spheres, transformations and symmetries and other motivational stuff. Definition of an algebra (bilinear product) over a field.
 
-\subsection{Something}
+\subsection{Introduction}
+
+Lie groups have a dual nature: they are groups but also very special topological spaces. The algebraic and topological (spatial) properties are closely aligned. Lie groups and Lie algebras lie at the intersection of algebra, topology, geometery, analysis and more.
+
+\begin{defn}
+An algebra is a vector space $V$ equipped with a bilinear map $m:V\times V \to V$.
+\end{defn}
+
+Note, the ``multiplication" map $m$ does not have to be commutative or associative. In general, Lie algebras are neither commutative nor associative. Recall,
+\begin{align*}
+&\mbox{Commutativity: } m(u, v) = m(v, u), \\
+&\mbox{Associativity: } m(m(u, v), w) = m(u, m(v, w)).
+\end{align*}
+Every Lie group has an associated Lie algebra which encodes many properties of the group. Often this allows problems about Lie groups to be reduced to problems in (fancy!) linear algebra.
+
+\subsection*{Example of a Lie group}
+
+The set of rottions of a ball centres on $O$ in $\rR^3$ is a Lie group. It is a group under composition of rotations. To ``see" the topology here, notice that it makes sense to talk about two rotations being ``close", so there is a sense of space. It makes sense to consider a continuous family of rotations. Continuity implies the existence of topology. We can identify this group with the matrix group $SO(3)$. The map $\rR^3 \to \rR^3$ given by $x \mapsto Ax$ for $A \in SO(3)$ is a rotation and every rotation occurs in this way. $SO(3)$ is a subset (but not a subgroup) of the set/group of all $(3\times 3)$-real matrices $M_3(\rR)$. By listing the elements of any $3\times 3$ matrix we get a bijection $M_3(\rR) \to \rR^9$. As $\rR^9$ has a natural topology (metric), this gives a natural topology on $M_3(\rR)$ and by restriction on $SO(3)$.
+
 
 \section{Lecture 2 27/09/23}
 Sorting out tutorial times. Lectures: Monday 2pm MS2, Wednesday 2pm LGH, Thursday 12pm MS2.
