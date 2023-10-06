@@ -7,19 +7,21 @@
 \usepackage{amsthm}
 \usepackage{physics}
 \usepackage{tikz-cd}
+\usepackage{mathtools} % for text over and under iff etc
 
 \usepackage{chngcntr}
 \counterwithout{subsection}{section}
 \setcounter{subsection}{-1}
 
 \title{MT543 Topics in Algebra}
-\author{Notes taken by Stephen Nulty}
+\author{Notes taken by Stephen Nulty and John Brennan}
 \renewcommand{\abstractname}{Note:} 
 
 %new commands
 \newcommand{\rR}{\ensuremath{\mathbb{R}\,}}
 \newcommand{\cC}{\ensuremath{\mathbb{C}\,}}
 \newcommand{\hH}{\ensuremath{\mathbb{H}\,}}
+\newcommand{\fF}{\ensuremath{\mathbb{F}\,}}
 \newcommand{\qQ}{\ensuremath{a+bi+cj+dk\,}}
 \newcommand{\nn}{\ensuremath{n \times n\,}}
 
@@ -36,13 +38,16 @@
 \newcommand{\glc}[1]{\ensuremath{GL_{#1}(\cC)\,}}
 \newcommand{\glh}[1]{\ensuremath{GL_{#1}(\hH)\,}}
 
-\newcommand{\ra}{\Rightarrow}
-\newcommand{\la}{\Leftarrow}
+\newcommand{\ra}{\ensuremath{\Rightarrow}}
+\newcommand{\la}{\ensuremath{\Leftarrow}}
 \newcommand{\cin}{\ensuremath{\mathcal{I}_n\,}}
 \newcommand{\ci}[1]{\ensuremath{\mathcal{I}_{#1}\,}}
+\newcommand{\im}{\ensuremath{\operatorname{im}}}
+\newcommand{\ol}[1]{\overline{#1}}
+\newcommand{\ipm}[2]{\ensuremath{\left\langle #1, \, #2 \right\rangle}}
 
 %proofs etc
-\newtheorem{thm}{Theorem}
+\newtheorem{thm}{Theorem}[subsubsection]
 \newtheorem{defn}[thm]{Definition}
 \newtheorem{lemma}[thm]{Lemma}
 \newtheorem{prop}[thm]{Proposition}
@@ -79,7 +84,7 @@ missed this lecture - some intro to do with spheres, transformations and symmetr
 
 \subsection{Introduction}
 
-Lie groups have a dual nature: they are groups but also very special topological spaces. The algebraic and topological (spatial) properties are closely aligned. Lie groups and Lie algebras lie at the intersection of algebra, topology, geometery, analysis and more.
+Lie groups have a dual nature: they are groups but also very special topological spaces. The algebraic and topological (spatial) properties are closely aligned. Lie groups and Lie algebras lie at the intersection of algebra, topology, geometry, analysis and more.
 
 \begin{defn}
 An algebra is a vector space $V$ equipped with a bilinear map $m:V\times V \to V$.
@@ -452,7 +457,94 @@ There is an injective \rR linear map resp. group homomorphism given by $\rho_{2n
 Slogan: all groups of \hH or \cC matrices can be viewed as groups of real matrices!
 
 \begin{defn}
-For $A\in \mnh$, $\det(A):=\det \psi_n(A)$.
+(1.1.16) For $A\in \mnh$, $\det(A):=\det \psi_n(A)$.
 \end{defn}
 
+\section{Lecture 5 06/10/23}
+
+(Talking about matrices and linear maps, and in \rR , \cC and \hH, there's a standard basis given to go between linear maps and matrices.
+
+\begin{center}
+\begin{tikzcd}
+  \cC^n \arrow{d} \arrow{r}
+    & \cC^{n} \arrow{d} \\
+  \rR^{2n} \arrow{r} 
+&\rR^{2n} 
+\end{tikzcd}
+\end{center}
+and you can go between \rR and \cC with a canonical map, where you forget the complex structure going to \rR from \cC or by pairing up the pairs of reals going to \cC .)
+
+Last time:
+
+\begin{itemize}
+\item There is a canonical \cC linear isomorphism $\phi_n:\hH^n\to \cC^n$ given by $\phi_n(z_1+w_1 j, \ldots, z_n+w_n j)=(z_1,w_1,\ldots,z_n, w_n).$
+\item There is an injective homomorphism of complex algebras $\psi_n: \mnh \to \mc{2n}$ such that the following diagram commutes
+\begin{center}
+\begin{tikzcd}
+  \hH^n \arrow{d}{R_A} \arrow{r}{\phi_n}
+    & \cC^{2n} \arrow{d}{R_{\psi_n(A)}} \\
+  \hH^n \arrow{r}{\phi_n}
+&\cC^{2n} 
+\end{tikzcd}
+\end{center}
+\item If $A\in \mnh$ then $\det(A):=\det \psi_n(A)$.
+\end{itemize}
+
+\begin{prop}
+(1.1.17 - need to fix the numbering) For $A\in \mnh$, $A$ is invertible $\iff \det A \neq 0$, i.e. $\glnh=\{A\in \mnh | \det A \neq =0\}$.
+\end{prop}
+
+\begin{proof}
+We claim that $A$ is invertible $\iff$ $\psi_n(A)$ is invertible.
+
+(\ra) This is immediate from the multiplicative properties of $\psi_n$ in 1.1.13.
+
+(\la) In 1.1.14 we noted that the restricted map $\psi_n:\glnh\to\glc{2n}$ is a group homomorphism. $\therefore$ if $\psi_n(A)\in\glc{2n}$ (i.e. is invertible) for $A\in \mnh$, then since $\im \psi_n$ is a subgroup of $\glc{2n}$, $\exists B\in \glnh$ s.t.  $\psi_n(B)=[\psi_n(A)]^{-1}$. (Want to show now that $B$ is the inverse of $A$.)
+
+We have $\psi_n(AB)=\psi_n(A)\psi_n(B)=\psi_n(A)[\psi_n(A)]^{-1}=I_{2n}$. But $\psi_n$ is injective, so we must have $AB=I_n$. Similarly $BA=I$. $\therefore B=A^{-1}$ i.e. $A$ is invertible.
+
+So the claim is true. $\therefore A$ is invertible $\underset{\text{claim}}{\iff} \psi_n$ is invertible $\underset{\text{elementary linear algebra}}{\iff} \det \psi_n(A)\neq 0 \underset{\text{defn 1.1.16}}{\iff} \det A \neq 0$  
+\end{proof}
+
+\subsubsection{Orthogonal Groups}
+
+From now on we will only consider (skew) fields \rR, \cC, \hH (=\fF). 
+
+Recall that an inner product on a vector space $V$ over \fF is a map $<,>:V\times V \to\fF$ which is bilinear (i.e. linear in each entry) and is positive definite, i.e. $\ipm{v}{v} \geq 0 \forall v\in V$. If $v\neq 0, \ipm{v}{v}>0$. e.g. dot product in $\rR^n$.
+
+\begin{defn}
+\phantom{x}\\
+\begin{itemize}
+\item[a] The \underline{standard inner product} in $\fF^n$ is given by $\ipm{(x_1,\ldots,x_n)}{(y_1,\ldots,y_n)}$ $= x_1\bar{y_1}+\ldots + x_n\bar{y_n}$, where $\bar{y_i}$ is the conjugate of $y_i$. (If $y_i\in\rR$ then $\bar{y_i}=y_i$). This is the dot product if $\fF=\rR$, and is called a \underline{Hermitian} inner product if $\fF=\cC$ or \hH.
+\item[b] The standard basis for $\fF^n$ is $(1,0,\ldots,0)$, $(0,1,\ldots,0)$, $\ldots $, $(0,0,\ldots,1)$.
+\end{itemize}
+\end{defn}
+
+Remarks: As $x\bar{x}=\abs{x}^2$ for all $x\in \fF^n$ we see that $\ipm{x,x}\geq 0  \forall x in \fF^n$ for the standard inner products.
+
+For $\lambda \in \fF$,
+
+\begin{itemize}
+\item $\ipm{\lambda x}{ y}=\lambda \ipm{x}{y}$
+\item $\ipm{ x}{ \lambda y}=\ipm{x}{y}\bar{\lambda}$ (NB for $q_1,q_2\in \hH$ $\bar{q_1q_2}=\bar{q_2}\bar{q_1}$.)
+\item $\ol{\ipm{ x}{y}}=\ipm{ x}{y}$.
+\end{itemize}
+
+In the real case, vectors $x,y$ are orthogonal if $\ipm{ x}{y}=0$. A basis $\{v_1,\ldots,v_n\}$ for $\rR^n$ is orthonormal if $\abs{v_i}=1 \forall i$ and $\ipm{ v_i}{v_j}=0$ for $i\neq j$.
+
+Exactly the same language is used if $\fF = \cC, \hH$.
+
+\begin{lemma}
+$\{v_1,\ldots,v_n\} \in \cC^n$ is a (Hermitian) orthonormal basis $\iff \{\theta_n(v_1), \theta_n(iv_1), \ldots , \theta_n(v_n), \theta_n(iv_n)\}$ is an orthonormal basis for $\rR^n$. 
+
+($\theta_n:\cC^n \cong \rR^{2n}$).
+\end{lemma}
+
+\begin{proof}
+An easy computation sows that 
+
+$\ipm{x}{y}_\cC = \ipm{\theta_n(x)}{\theta_n(y)}_\rR+i\ipm{\theta_n(x)}{\theta_n(iy)}_\rR$.
+
+Thus $\ipm{x}{y}=0 \iff  \ipm{\theta_n(x)}{\theta_n(y)}_\rR $ and $\ipm{\theta_n(x)}{\theta_n(iy)}_\rR $. The result now follows easily. (Exercise: complete the argument)
+\end{proof}
 \end{document}
