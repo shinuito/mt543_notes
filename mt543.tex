@@ -7,7 +7,7 @@
 \usepackage{amsthm}
 \usepackage{physics}
 \usepackage{tikz-cd}
-\usepackage{mathtools} % for text over and under iff etc
+\usepackage{mathtools} % for text over and under iff etc, underset, underbrace etc
 
 \usepackage{chngcntr}
 \counterwithout{subsection}{section}
@@ -491,7 +491,7 @@ Last time:
 \end{itemize}
 
 \begin{prop}
-(1.1.17 - need to fix the numbering) For $A\in \mnh$, $A$ is invertible $\iff \det A \neq 0$, i.e. $\glnh=\{A\in \mnh | \det A \neq =0\}$.
+(1.1.17 - need to fix the numbering) For $A\in \mnh$, $A$ is invertible $\iff \det A \neq 0$, i.e. $\glnh=\{A\in \mnh | \det A \neq 0\}$.
 \end{prop}
 
 \begin{proof}
@@ -510,7 +510,7 @@ So the claim is true. $\therefore A$ is invertible $\underset{\text{claim}}{\iff
 
 From now on we will only consider (skew) fields \rR, \cC, \hH (=\fF). 
 
-Recall that an inner product on a vector space $V$ over \fF is a map $<,>:V\times V \to\fF$ which is bilinear (i.e. linear in each entry) and is positive definite, i.e. $\ipm{v}{v} \geq 0 \forall v\in V$. If $v\neq 0, \ipm{v}{v}>0$. e.g. dot product in $\rR^n$.
+Recall that an inner product on a vector space $V$ over \fF is a map $\ipm{\,\,}{}:V\times V \to\fF$ which is bilinear (i.e. linear in each entry) and is positive definite, i.e. $\ipm{v}{v} \geq 0\; \forall v\in V$. If $v\neq 0, \ipm{v}{v}>0$. e.g. dot product in $\rR^n$.
 
 \begin{defn}
 \phantom{x}\\
@@ -520,7 +520,7 @@ Recall that an inner product on a vector space $V$ over \fF is a map $<,>:V\time
 \end{itemize}
 \end{defn}
 
-Remarks: As $x\bar{x}=\abs{x}^2$ for all $x\in \fF^n$ we see that $\ipm{x,x}\geq 0  \forall x in \fF^n$ for the standard inner products.
+Remarks: As $x\bar{x}=\abs{x}^2$ for all $x\in \fF^n$ we see that $\ipm{x}{x}\geq 0  \forall x \in \fF^n$ for the standard inner products.
 
 For $\lambda \in \fF$,
 
@@ -543,7 +543,7 @@ $\{v_1,\ldots,v_n\} \in \cC^n$ is a (Hermitian) orthonormal basis $\iff \{\theta
 \begin{proof}
 An easy computation sows that 
 
-$\ipm{x}{y}_\cC = \ipm{\theta_n(x)}{\theta_n(y)}_\rR+i\ipm{\theta_n(x)}{\theta_n(iy)}_\rR$.
+\[\underbrace{\ipm{x}{y}_\cC}_{\text{Hermitian I.P. on } \cC^n} = \underbrace{\ipm{\theta_n(x)}{\theta_n(y)}_\rR}_{\text{dot product on } \rR^n}+i\ipm{\theta_n(x)}{\theta_n(iy)}_\rR\].
 
 Thus $\ipm{x}{y}=0 \iff  \ipm{\theta_n(x)}{\theta_n(y)}_\rR $ and $\ipm{\theta_n(x)}{\theta_n(iy)}_\rR $. The result now follows easily. (Exercise: complete the argument)
 \end{proof}
