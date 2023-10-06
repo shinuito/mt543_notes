@@ -477,7 +477,7 @@ and you can go between \rR and \cC with a canonical map, where you forget the co
 Last time:
 
 \begin{itemize}
-\item There is a canonical \cC linear isomorphism $\phi_n:\hH^n\to \cC^n$ given by $\phi_n(z_1+w_1 j, \ldots, z_n+w_n j)=(z_1,w_1,\ldots,z_n, w_n).$
+\item There is a canonical \cC linear isomorphism $\phi_n:\hH^n\to \cC^{2n}$ given by $\phi_n(z_1+w_1 j, \ldots, z_n+w_n j)=(z_1,w_1,\ldots,z_n, w_n).$
 \item There is an injective homomorphism of complex algebras $\psi_n: \mnh \to \mc{2n}$ such that the following diagram commutes
 \begin{center}
 \begin{tikzcd}
@@ -503,7 +503,11 @@ We claim that $A$ is invertible $\iff$ $\psi_n(A)$ is invertible.
 
 We have $\psi_n(AB)=\psi_n(A)\psi_n(B)=\psi_n(A)[\psi_n(A)]^{-1}=I_{2n}$. But $\psi_n$ is injective, so we must have $AB=I_n$. Similarly $BA=I$. $\therefore B=A^{-1}$ i.e. $A$ is invertible.
 
-So the claim is true. $\therefore A$ is invertible $\underset{\text{claim}}{\iff} \psi_n$ is invertible $\underset{\text{elementary linear algebra}}{\iff} \det \psi_n(A)\neq 0 \underset{\text{defn 1.1.16}}{\iff} \det A \neq 0$  
+So the claim is true. 
+\begin{gather*}
+\therefore A \text{ is invertible } \underset{\text{claim}}{\iff} \psi_n \text{ is invertible } \\ 
+\underset{\text{elementary linear algebra}}{\iff} \det \psi_n(A)\neq 0 \underset{\text{defn 1.1.16}}{\iff} \det A \neq 0 
+\end{gather*}
 \end{proof}
 
 \subsubsection{Orthogonal Groups}
