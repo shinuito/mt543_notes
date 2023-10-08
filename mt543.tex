@@ -99,7 +99,7 @@ Every Lie group has an associated Lie algebra which encodes many properties of t
 
 \subsection*{Example of a Lie group}
 
-The set of rottions of a ball centres on $O$ in $\rR^3$ is a Lie group. It is a group under composition of rotations. To ``see" the topology here, notice that it makes sense to talk about two rotations being ``close", so there is a sense of space. It makes sense to consider a continuous family of rotations. Continuity implies the existence of topology. We can identify this group with the matrix group $SO(3)$. The map $\rR^3 \to \rR^3$ given by $x \mapsto Ax$ for $A \in SO(3)$ is a rotation and every rotation occurs in this way. $SO(3)$ is a subset (but not a subgroup) of the set/group of all $(3\times 3)$-real matrices $M_3(\rR)$. By listing the elements of any $3\times 3$ matrix we get a bijection $M_3(\rR) \to \rR^9$. As $\rR^9$ has a natural topology (metric), this gives a natural topology on $M_3(\rR)$ and by restriction on $SO(3)$.
+The set of rotations of a ball centred on $O$ in $\rR^3$ is a Lie group. It is a group under composition of rotations. To ``see" the topology here, notice that it makes sense to talk about two rotations being ``close", so there is a sense of space. It makes sense to consider a continuous family of rotations. Continuity implies the existence of topology. We can identify this group with the matrix group $SO(3)$. The map $\rR^3 \to \rR^3$ given by $x \mapsto Ax$ for $A \in SO(3)$ is a rotation and every rotation occurs in this way. $SO(3)$ is a subset (but not a subgroup) of the set/group of all $(3\times 3)$-real matrices $M_3(\rR)$. By listing the elements of any $3\times 3$ matrix we get a bijection $M_3(\rR) \to \rR^9$. As $\rR^9$ has a natural topology (metric), this gives a natural topology on $M_3(\rR)$ and by restriction on $SO(3)$.
 
 
 \section{Lecture 2 27/09/23}
@@ -196,7 +196,7 @@ For $A \in \mnh$, $R_A:\hH^n\to \hH^n$, is an \hH - linear isomorphism iff $A$ i
 The quaternionic general linear group $\glnh = \{A\in \mnh | A \text{ is invertible}\} = \{A\in \mnh| R_a \text{ is an iso.}\}$
 \end{defn}
 
-NB: There is a problem with the notion of \hH - determinant due to non-commutativity we'll return to this later (possible to define determinant and gl as ones with non-zero determinant, but defining it requires some thought.)
+NB: There is a problem with the notion of \hH - determinant due to non-commutativity we'll return to this later (possible to define determinant and \glnh as ones with non-zero determinant, but defining it requires some thought.)
 
 It turns out that we can view \cC and \hH- matrices/linear maps in terms of \rR- matrices. 
 
@@ -531,7 +531,7 @@ For $\lambda \in \fF$,
 \begin{itemize}
 \item $\ipm{\lambda x}{ y}=\lambda \ipm{x}{y}$
 \item $\ipm{ x}{ \lambda y}=\ipm{x}{y}\bar{\lambda}$ (NB for $q_1,q_2\in \hH$ $\bar{q_1q_2}=\bar{q_2}\bar{q_1}$.)
-\item $\ol{\ipm{ x}{y}}=\ipm{ x}{y}$.
+\item $\ol{\ipm{ x}{y}}=\ipm{ y}{x}$.
 \end{itemize}
 
 In the real case, vectors $x,y$ are orthogonal if $\ipm{ x}{y}=0$. A basis $\{v_1,\ldots,v_n\}$ for $\rR^n$ is orthonormal if $\abs{v_i}=1 \forall i$ and $\ipm{ v_i}{v_j}=0$ for $i\neq j$.
