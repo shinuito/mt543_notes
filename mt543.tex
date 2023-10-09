@@ -34,9 +34,13 @@
 \newcommand{\glnr}{\ensuremath{GL_n(\rR)\,}}
 \newcommand{\glnc}{\ensuremath{GL_n(\cC)\,}}
 \newcommand{\glnh}{\ensuremath{GL_n(\hH)\,}}
+\newcommand{\glnf}{\ensuremath{GL_n(\fF^n)\,}}
 \newcommand{\glr}[1]{\ensuremath{GL_{#1}(\rR)\,}}
 \newcommand{\glc}[1]{\ensuremath{GL_{#1}(\cC)\,}}
 \newcommand{\glh}[1]{\ensuremath{GL_{#1}(\hH)\,}}
+\newcommand{\gon}{\ensuremath{O(n)\,}}
+\newcommand{\gun}{\ensuremath{U(n)\,}}
+\newcommand{\gspn}{\ensuremath{Sp(n)\,}}
 
 \newcommand{\ra}{\ensuremath{\Rightarrow}}
 \newcommand{\la}{\ensuremath{\Leftarrow}}
@@ -45,6 +49,7 @@
 \newcommand{\im}{\ensuremath{\operatorname{im}}}
 \newcommand{\ol}[1]{\overline{#1}}
 \newcommand{\ipm}[2]{\ensuremath{\left\langle #1, \, #2 \right\rangle}}
+\newcommand{\ul}[1]{\underline{#1}}
 
 %proofs etc
 \newtheorem{thm}{Theorem}[subsubsection]
@@ -551,4 +556,110 @@ An easy computation sows that
 
 Thus $\ipm{x}{y}=0 \iff  \ipm{\theta_n(x)}{\theta_n(y)}_\rR $ and $\ipm{\theta_n(x)}{\theta_n(iy)}_\rR $. The result now follows easily. (Exercise: complete the argument)
 \end{proof}
+
+\section{Lecture 6 09/10/23}
+$v\cdot v =\abs{v}^2$
+%
+$v\cdot w = \abs{v}\abs{w}\cos\theta$
+%
+Dot product tells you about lengths and angles.
+%
+Last time:
+
+\begin{itemize}
+\item standard inner product in $\rR^n, \cC^n, \hH^n$ is given by $\ipm{x}{y}=\sum\limits_{i=1}^n x_i\bar{y}_i$.
+($\bar{y}_i=y_i$ if $y_i\in \rR$)
+\item $\ipm{x}{y}_{\cC^n}= \ipm{\theta_n(x)}{\theta_n(y)}_{\rR^{2n}}+i\ipm{\theta_n(x)}{\theta_n(iy)}_{\rR^{2n}}$
+\item (1.2.2) If $\{z_1,\ldots, z_n\}$ is an orthonormal basis for $\cC^n$, then 
+\[\{\theta_n(z_1), \theta_n(iz_1), \ldots , \theta_n(z_n), \theta_n(iz_n)\}\]
+is orthonormal for $\rR^n$
+\end{itemize}
+
+\begin{lemma}
+$\{q_1, \ldots , q_n)\}$ is an orthonormal basis for $\hH^n \iff$
+\begin{gather*}
+\{\theta_{2n}\circ\phi_{n}(q_1), \theta_{2n}\circ\phi_{n}(iq_1), \theta_{2n}\circ\phi_{n}(jq_1), \theta_{2n}\circ\phi_{n}(k q_1), \ldots, 
+\\ \theta_{2n}\circ\phi_{n}(q_n), \theta_{2n}\circ\phi_{n}(iq_n), \theta_{2n}\circ\phi_{n}(jq_n), \theta_{2n}\circ\phi_{n}(k q_n)\}
+\end{gather*}
+is orthonormal for $\rR^{4n}$.
+
+($\phi_n: \hH^n \to \cC^{2n},$  $\theta_{2n}: \cC^{2n} \to \rR^{4n}$) 
+\end{lemma}
+\begin{proof}
+This follows in the manner of 1.2.2 from the easily established formula
+
+\begin{gather*}
+\ipm{x}{y}_{\hH^n}= 
+\ipm{\theta_{2n}\circ\phi_{n}(x)}{\theta_{2n}\circ\phi_{n}(y)}_{\rR^{4n}}
++i\ipm{\theta_{2n}\circ\phi_{n}(x)}{\theta_{2n}\circ\phi_{n}(iy)}_{\rR^{4n}}\\
++j\ipm{\theta_{2n}\circ\phi_{n}(x)}{\theta_{2n}\circ\phi_{n}(jy)}_{\rR^{4n}}
++k\ipm{\theta_{2n}\circ\phi_{n}(x)}{\theta_{2n}\circ\phi_{n}(ky)}_{\rR^{4n}}
+\end{gather*}
+\end{proof}
+
+\begin{defn}
+\begin{itemize}
+\item[1)] The \ul{orthogonal group} $O(n)$ is 
+
+\[O(n)=\{A\in \glnr | \ipm{xA}{yA}_{\rR^{n}}=\ipm{x}{y}_{\rR^{n}}, \forall x,y \in \rR^n\}\]
+
+\item[2)] The \ul{unitary group} $U(n)$ is 
+
+\[U(n)=\{A\in \glnc | \ipm{xA}{yA}_{\rR^{n}}=\ipm{x}{y}_{\cC^{n}}, \forall x,y \in \cC^n\}\]
+
+\item[3)] The \ul{symplectic group} $Sp(n)$ is 
+
+\[Sp(n)=\{A\in \glnh | \ipm{xA}{yA}_{\hH^{n}}=\ipm{x}{y}_{\hH^{n}}, \forall x,y \in \hH^n\}\]
+\end{itemize}
+\end{defn}
+
+\ul{Exercise}: Show $\gon , \gun ,\gspn$ are groups under multiplication.
+
+\ul{Remark}: We could also define 
+
+\[O(n)=\{A\in \glnr | \ipm{Ax}{Ay}_{\rR^{n}}=\ipm{x}{y}_{\rR^{n}}, \forall x,y \in \rR^n\}\]
+\[U(n)=\{A\in \glnc | \ipm{Ax}{Ay}_{\rR^{n}}=\ipm{x}{y}_{\cC^{n}}, \forall x,y \in \cC^n\}\]
+
+Exercise: show this agrees with 1.2.4
+
+\begin{lemma}
+For $\fF=\rR, \cC,\hH$ and $A\in \glnf$. The following are equivalent (tfae),
+
+\begin{itemize}
+\item[a)] $A \in \gon, \gun, \gspn$ (as appropriate),
+\item[b)] $R_A$ maps $\fF^n$- orthonormal bases to $\fF^n$-orthonormal bases,
+\item[c)] The rows of $A$ from an orthonormal for $\fF^n$,
+\item[d)] $AA^*=I_n$ where $A^*=\bar{A}^T$.
+\end{itemize}
+\end{lemma}
+
+\begin{proof}
+(a)$\ra$(b) This is clear since by definition, multiplication by $A$ preserves the inner product and in particular preserves orthogonality and lengths.
+
+(b)$\ra$(c) The standard basis for $\fF^n$ is orthonormal with respect to the standard inner product $\ipm{\,\,}{}_{\fF^n}$. By part (b) $R_A$ maps this orthonormal basis to another orthonormal basis. But $R_A(e_i)=i^{\text{th}}$ row of $A$. Hence rows of $A$ form an o.n. basis. (o.n. stands for orthonormal).
+
+(c)$\iff$(d) Observe that $(AA^*)_{ij}=\sum\limits_k a_{ik}a^*_{kj}=\sum\limits_k a_{ik}\bar{a}_{jk}$. The rows of $A$ being o.n. means 
+
+\[\ipm{i^{\text{th}}\text{ row of } A }{j^{\text{th}}\text{ row of } A }=\delta_{ij}\]
+
+($\delta_{ii}=1$, $\delta_{ij}=0$ if $i\neq j$)
+
+i.e. $\sum\limits_k^n a_{ik}\bar{a}_{jk}=\delta_{ij}$ (maybe color this to show it matches previous?)
+
+i.e. $(AA^*)_{ij}=\delta_{ij} \iff AA^*=I_n$
+
+(c)$\ra$(a) The rows of $A$ are o.n., i.e. $\sum\limits_k^n a_{ik}\bar{a}_{jk}=\delta_{ij}$.
+
+\begin{align*}
+\ipm{xA}{yA}_{\fF^n}&=\ipm{\left(\sum_l x_l a_{l1},\ldots, \sum_l x_l a_{ln}\right) }{\left(\sum_m y_m a_{m1},\ldots,\sum_m y_m a_{mn}\right)}\\
+&=\sum_{k,l,m} x_l a_{lk} \overline{y_m a_{mk}}\\
+&=\sum_{k,l,m} x_l a_{lk} \overline{a_{mk}}\overline{y_m }\\
+&=\sum_{l,m} x_l\delta_{lm}\overline{y_m }\\
+&= \sum_l x_l \bar{y}_l\\
+&= \ipm{x}{y}_{\fF^n}
+\end{align*}
+
+\end{proof}
+
 \end{document}
+
