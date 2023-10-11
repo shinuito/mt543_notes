@@ -28,6 +28,7 @@
 \newcommand{\mnr}{\ensuremath{M_n(\rR)\,}}
 \newcommand{\mnc}{\ensuremath{M_n(\cC)\,}}
 \newcommand{\mnh}{\ensuremath{M_n(\hH)\,}}
+\newcommand{\mnf}{\ensuremath{M_n(\fF)\,}}
 \newcommand{\mr}[1]{\ensuremath{M_{#1}(\rR)\,}}
 \newcommand{\mc}[1]{\ensuremath{M_{#1}(\cC)\,}}
 \newcommand{\mh}[1]{\ensuremath{M_{#1}(\hH)\,}}
@@ -41,6 +42,9 @@
 \newcommand{\gon}{\ensuremath{O(n)\,}}
 \newcommand{\gun}{\ensuremath{U(n)\,}}
 \newcommand{\gspn}{\ensuremath{Sp(n)\,}}
+\newcommand{\gok}[1]{\ensuremath{O(#1)\,}}
+\newcommand{\guk}[1]{\ensuremath{U(#1)\,}}
+\newcommand{\gspk}[1]{\ensuremath{Sp(#1)\,}}
 
 \newcommand{\ra}{\ensuremath{\Rightarrow}}
 \newcommand{\la}{\ensuremath{\Leftarrow}}
@@ -535,7 +539,7 @@ For $\lambda \in \fF$,
 
 \begin{itemize}
 \item $\ipm{\lambda x}{ y}=\lambda \ipm{x}{y}$
-\item $\ipm{ x}{ \lambda y}=\ipm{x}{y}\bar{\lambda}$ (NB for $q_1,q_2\in \hH$ $\bar{q_1q_2}=\bar{q_2}\bar{q_1}$.)
+\item $\ipm{ x}{ \lambda y}=\ipm{x}{y}\bar{\lambda}$ (NB for $q_1,q_2\in \hH$ $\ol{q_1q_2}=\bar{q_2}\bar{q_1}$.)
 \item $\ol{\ipm{ x}{y}}=\ipm{ y}{x}$.
 \end{itemize}
 
@@ -605,7 +609,7 @@ This follows in the manner of 1.2.2 from the easily established formula
 
 \item[2)] The \ul{unitary group} $U(n)$ is 
 
-\[U(n)=\{A\in \glnc | \ipm{xA}{yA}_{\rR^{n}}=\ipm{x}{y}_{\cC^{n}}, \forall x,y \in \cC^n\}\]
+\[U(n)=\{A\in \glnc | \ipm{xA}{yA}_{\cC^{n}}=\ipm{x}{y}_{\cC^{n}}, \forall x,y \in \cC^n\}\]
 
 \item[3)] The \ul{symplectic group} $Sp(n)$ is 
 
@@ -658,6 +662,99 @@ i.e. $(AA^*)_{ij}=\delta_{ij} \iff AA^*=I_n$
 &= \sum_l x_l \bar{y}_l\\
 &= \ipm{x}{y}_{\fF^n}
 \end{align*}
+
+\end{proof}
+
+\section{Lecture 7 11/10/23}
+
+\ul{Previously}:
+
+\[O(n)=\{A\in \mnr | \ipm{xA}{yA}_{\rR^{n}}=\ipm{x}{y}_{\rR^{n}}, \forall x,y \in \rR^n\}\]
+\[U(n)=\{A\in \mnc | \ipm{xA}{yA}_{\cC^{n}}=\ipm{x}{y}_{\cC^{n}}, \forall x,y \in \cC^n\}\]
+\[Sp(n)=\{A\in \mnh | \ipm{xA}{yA}_{\hH^{n}}=\ipm{x}{y}_{\hH^{n}}, \forall x,y \in \hH^n\}\]
+
+Note: other people might use $Sp$ and symplectic group for something related but not exactly the same (something like $Sp(n,\fF)$).
+
+1.2.5 For $A \in \glnf$ t.f.a.e.
+
+\begin{itemize}
+\item[a)] $A\in \gon, \gun, \gspn$
+\item[b)] $R_A$ maps \fF orthonormal bases to \fF orthonormal bases.
+\item[c)] Rows of $A$ are an o.n. basis for $\fF^n$.
+\item[d)] $AA^*=I$ where $A^*=\bar{A}^T$.
+\end{itemize}
+
+\ul{Remark}: It follows from this that
+
+\begin{align*}
+A\in \gon \iff A^{-1}&=A^T\\
+A\in \gun \iff A^{-1}&=\bar{A}^T\\
+A\in \gspn \iff A^{-1}&=\bar{A}^T\\
+\end{align*}
+
+i.e. we could define $\gon =\{A\in \mnr | A^{-1}=A^T\}$. 
+
+(This follows from 1.2.5 (d), provided we can also show $A^*A=I$. The latter follows from the fact that if $AB=1$, $(A,B\in \mnf)$ then \ra $BA=I$. Why is this?)
+
+By definition a matrix $\in \gon$ if the corresponding linear map preserves the dot product, i.e. preserves lengths and angles. What about $\gun$ and $\gspn$?
+
+\begin{prop}
+\phantom{a}\\
+\begin{itemize}
+\item[1)] $\rho_n(\gun)=\gok{2n}\cap \rho_n(\glnc)$.
+\item[2)] $\psi_n(\gspn)=\guk{2n}\cap \psi_n(\glnh)$.
+\item[3)] $\rho_{2n}\circ \psi_n(\gspn)=\gok{4n}\cap \rho_{2n}\circ\psi_n(\glnh)$.
+\end{itemize}
+\end{prop}
+
+\begin{proof}
+See Moodle
+\end{proof}
+
+This says that the real matrices corresponding to matrices in $\gun$ and $\gspn$ are precisely the dot-product (i.e. length and angle) preserving transformation which have the form of the real version a complex/quaterionic matrix.
+
+We now give an alternative description of \gon , \gun , \gspn .
+
+\ul{Starting point}: In $\rR^n$, the norm and dot product determine each other via a ``polarization'' formula.
+
+\[\ipm{x+y}{x+y}=\ipm{x}{x}+2\ipm{x}{y}+\ipm{y}{y}\]
+
+i.e. $\norm{x+y}^2=\norm{x}^2+\norm{y}^2+2\ipm{x}{y}$.
+
+$\therefore \ipm{x}{y}=\frac{1}{2}\left(\norm{x+y}^2 -\norm{x}^2-\norm{y}^2 \right) $.
+
+This shows that we could define orthogonal transformation to be those preserving all norms.
+
+For $\gun, \gspn$, we have the following fact:
+
+\begin{lemma}
+$\norm{x}_{\cC^n}=\ipm{x}{x}_{\cC^n}$ is equal to $\norm{\theta_n(x)}_{\rR^{2n}}$. Similarly $\norm{x}_{\hH^n}=\norm{\theta_{2n}\circ \phi_n(x)}_{\rR^{4n}}$.
+\end{lemma}
+
+\begin{proof}
+Exercise. (Hint: $\ipm{x}{y}_{\cC^n}=\ipm{\theta_n(x)}{\theta_n(y)}_{\rR^{2n}}+i\ipm{\theta_n(x)}{\theta_n(iy)}_{\rR^{2n}}$ etc.)
+\end{proof}
+
+\begin{prop}
+\phantom{a}\\
+\begin{itemize}
+\item[1)] $\gon=\{A\in\glnr | \norm{xA}_{\rR^{n}}=\norm{x}_{\rR^{n}}, \forall x\in\rR^n\}$.
+\item[2)] $\gun=\{A\in\glnc | \norm{xA}_{\cC^{n}}=\norm{x}_{\cC^{n}}, \forall x\in\cC^n\}$.
+\item[3)] $\gspn=\{A\in\glnh | \norm{xA}_{\hH^{n}}=\norm{x}_{\hH^{n}}, \forall x\in\hH^n\}$.
+\end{itemize}
+\end{prop}
+
+\begin{proof}
+(1) is established by the polarization formula.
+
+(2) We need to show that $A\in \glnc$ preserves all norms then $A\in \gun$. (if it preserves inner products it automatically preserves norms). But if $\norm{xA}_{\cC^{n}}=\norm{x}_{\cC^{n}} \forall x\in \cC^n$ we have
+
+\begin{align*}
+&\norm{\theta_n(xA)}_{\rR^{2n}}=\norm{\theta_n(x)}_{\rR^{2n}}\\
+&\implies \norm{\theta_n(x)\rho_n(A)}_{\rR^{2n}}=\norm{\theta_n(x)}_{\rR^{2n}}\\
+\end{align*}
+
+$\therefore \rho_n (A)\in \gok{2n}$ by (1). By 1.2.6(1), $\rho_n(\gun)=\gok{2n}\cap \rho_n(\glnc)$ and since $\rho_n$ is injective, we conclude that $A\in \gun$ as required. 
 
 \end{proof}
 
