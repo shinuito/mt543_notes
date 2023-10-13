@@ -1,4 +1,5 @@
 /moodle_notes/*
+/Assignments/*
 .DS_store
 *.aux
 *.lof

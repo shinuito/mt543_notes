@@ -18,6 +18,7 @@
 \renewcommand{\abstractname}{Note:} 
 
 %new commands
+\newcommand{\zZ}{\ensuremath{\mathbb{Z}\,}}
 \newcommand{\rR}{\ensuremath{\mathbb{R}\,}}
 \newcommand{\cC}{\ensuremath{\mathbb{C}\,}}
 \newcommand{\hH}{\ensuremath{\mathbb{H}\,}}
@@ -39,12 +40,20 @@
 \newcommand{\glr}[1]{\ensuremath{GL_{#1}(\rR)\,}}
 \newcommand{\glc}[1]{\ensuremath{GL_{#1}(\cC)\,}}
 \newcommand{\glh}[1]{\ensuremath{GL_{#1}(\hH)\,}}
+
 \newcommand{\gon}{\ensuremath{O(n)\,}}
 \newcommand{\gun}{\ensuremath{U(n)\,}}
 \newcommand{\gspn}{\ensuremath{Sp(n)\,}}
 \newcommand{\gok}[1]{\ensuremath{O(#1)\,}}
 \newcommand{\guk}[1]{\ensuremath{U(#1)\,}}
 \newcommand{\gspk}[1]{\ensuremath{Sp(#1)\,}}
+
+\newcommand{\gson}{\ensuremath{SO(n)\,}}
+\newcommand{\gsun}{\ensuremath{SU(n)\,}}
+\newcommand{\gsln}{\ensuremath{SL(n)\,}}
+\newcommand{\gsok}[1]{\ensuremath{SO(#1)\,}}
+\newcommand{\gsuk}[1]{\ensuremath{SU(#1)\,}}
+\newcommand{\gslk}[1]{\ensuremath{SL(#1)\,}}
 
 \newcommand{\ra}{\ensuremath{\Rightarrow}}
 \newcommand{\la}{\ensuremath{\Leftarrow}}
@@ -54,6 +63,9 @@
 \newcommand{\ol}[1]{\overline{#1}}
 \newcommand{\ipm}[2]{\ensuremath{\left\langle #1, \, #2 \right\rangle}}
 \newcommand{\ul}[1]{\underline{#1}}
+
+\newcommand{\bij}[1]{\ensuremath{\operatorname{Bij}(#1)}}
+\newcommand{\homeo}[1]{\ensuremath{\operatorname{Homeo}(#1)}}
 
 %proofs etc
 \newtheorem{thm}{Theorem}[subsubsection]
@@ -622,7 +634,7 @@ This follows in the manner of 1.2.2 from the easily established formula
 \ul{Remark}: We could also define 
 
 \[O(n)=\{A\in \glnr | \ipm{Ax}{Ay}_{\rR^{n}}=\ipm{x}{y}_{\rR^{n}}, \forall x,y \in \rR^n\}\]
-\[U(n)=\{A\in \glnc | \ipm{Ax}{Ay}_{\rR^{n}}=\ipm{x}{y}_{\cC^{n}}, \forall x,y \in \cC^n\}\]
+\[U(n)=\{A\in \glnc | \ipm{Ax}{Ay}_{\cC^{n}}=\ipm{x}{y}_{\cC^{n}}, \forall x,y \in \cC^n\}\]
 
 Exercise: show this agrees with 1.2.4
 
@@ -757,6 +769,194 @@ Exercise. (Hint: $\ipm{x}{y}_{\cC^n}=\ipm{\theta_n(x)}{\theta_n(y)}_{\rR^{2n}}+i
 $\therefore \rho_n (A)\in \gok{2n}$ by (1). By 1.2.6(1), $\rho_n(\gun)=\gok{2n}\cap \rho_n(\glnc)$ and since $\rho_n$ is injective, we conclude that $A\in \gun$ as required. 
 
 \end{proof}
+
+\section{Lecture 8 13/10/23}
+
+coming up: semi-direct products of groups, group actions (on sets), basic topology.
+
+%$\rtimes$ and $\ltimes$ for semi direct product, and $\lhd$ for normal subgroup for some reason.
+
+\begin{prop}
+For $A\in \gon, \gun, \gspn$ we have $\abs{\det A}=1$.
+\end{prop}
+
+\begin{proof}
+For $A\in \gon$, $AA^T=I$ by 1.2.5(d). So $\det(AA^T)=\det(A)\det(A^T)=\det(A)^2=\det I =1$.
+
+For $A\in \gun$, $A\bar{A}^T=I$ by 1.2.5(d). So $\det(A\bar{A}^T)=\det(A)\det(\bar{A}^T)=\det(A)\det(\bar{A})$. But $\det(\bar{A})=\ol{\det(A)}$. To see this, note that $\det(A)$ is a sum of products of entries of $A$, and for complex conjugation, $\ol{a+b}=\bar{a}+\bar{b}$ and $\ol{ab}=\bar{a}\bar{b}$. So then  $\det(A\bar{A}^T)\det(A)\ol{\det(A)}=\abs{\det(A)}^2=\det I =1$. As $\abs{z}\geq 0$, we see $\abs{\det(A)}=1$ implies $\abs{\det(A)}=1$.
+
+For $A\in \gspn$, $\det A:=\det_{\cC} \psi_n(A)$. By 1.2.6(2) we know that $\psi_{n}(A)\in \guk{2n}$. $\therefore \det \psi_n(A)\ol{\det \psi_n(A)}=\det (\psi_n(A)\ol{ \psi_n(A^T)})=\det I=1$. $\therefore \abs{\det(\psi_n(A))}^2=1$, so $\abs{\det(\psi_n(A))}=1$ and $\therefore \abs{\det(A)}=1$
+\end{proof}
+
+\ul{Remark} For $A\in gon$, $\det A =\pm 1$. 
+
+For $A\in gun$, $\det A \in \{e^{i\theta}\mid \theta \in [0,2\pi]\}.$ (circle in complex plane).
+
+For $A\in gspn$, it turns out that $\det A=1$. This is not obvious!
+
+\begin{defn}
+``Special Groups".\\
+
+\begin{itemize}
+\item[1)] The special orthogonal group $\gson = \{A\in \gon\mid \det A=1\}$,
+\item[2)] The special unitary group $\gsun = \{A\in \gun\mid \det A=1\}$,
+\item[3)] The special linear group $\gson = \{A\in \mnr (\text{ or } \glnr)\mid \det A=1\}$
+\end{itemize}
+\end{defn}
+
+\ul{Remark}
+\begin{itemize}
+\item[1.] \gsln could be also written $SL(n,\rR)$ or $SL_n(\rR)$. Also have complex version $SL(n,\cC)$ with the obvious definition.
+\item[2.] The significance of $\gsln$ is that this is the group of corresponding linear maps are precisely the volume preserving linear transformations. This follows from:
+\item[3.] FACT: $A\in \mnr$. Then the volume of the parallelepiped determined by the vectors $R_A(e_1),\ldots,R_A(e_n)$ is $\abs{\det A}$. Exercise: prove this fact! ($\mathrm{vol}=\abs{\det A}$.
+
+(insert vector picture).
+\item[4.] \gspn is already special!
+\end{itemize}
+
+\ul{Question} What is the relationship between \gson and \gon, \gsun and \gun ?
+
+\begin{thm}
+$\gun = \gsun \rtimes \guk{1}$.
+\end{thm}
+
+$\rtimes$ is a semidirect product. Quick definition: $G$ is a semidirect product of subgroups $N,H$ if 
+\begin{itemize}
+\item[1)] $N\lhd G$,
+\item[2)] $G=NH$ i.e. $G=\{nh\mid n\in N, h\in H\}$,
+\item[1)] $N\cap H =\{e\}$.
+\end{itemize}
+
+\ul{Remark} $\guk{1}=\{(e^{i\theta})\mid \theta \in [0,2\pi]\}$ which we identify with $\{e^{i\theta} \mid \theta \in [0,2\pi] \}$. For the purposes of the theorem, we will identify $\guk{1}$ with $\pmqty{\dmat{e^{i\theta},1,\ddots,1}}$.
+
+\begin{proof}
+We observe that $\gsun \lhd \gun$ since $\gsun$ is the kernel of $\det : \gun \to \{e^{i\theta} \mid \theta \in [0,2\pi] \}$. ($\det$ is a homomorphism and kernel of any homomorphism is normal.)
+
+Next observe that any $A=\pmqty{a_{11} & \ldots & a_{1n} \\ \vdots & \vdots & \vdots \\ a_{n1} & \ldots & a_{nn}} \in \gun$ can be expressed as a product
+
+(insert matrices)
+
+As $A$ and (matrix 3) both $\in \gun$, so is left hand matrix above.
+
+Moreover, $\det$ of L.H. matrix is $\frac{1}{\det A}$ is $\frac{1}{\det A}\det A = 1$. $\therefore $ L.H. matrix $\in \gsun$. It remains to show $\gsun \cap \guk{1}=\{e\}$.
+\end{proof}
+
+This is clear since any matrix of the form (matrix 4) with $\det =1$ must be $I_n$. Analogous arguments show 
+
+\begin{thm}
+$\gon =\gson \rtimes \zZ_2$.
+\end{thm}
+
+\begin{proof}
+exercise.
+\end{proof}
+
+\section{Bonus Lecture 1: Semidirect products of groups}
+
+Direct product: $G,H$ can form $G\times H=\{(g,h)\mid g\in G, h\in H\}$ with multiplication given by $(g,h)\cdot (g',h')=(gg',hh')$. (External direct product).
+
+Now suppose that $G$ has subgroups $H,K$ such that $G=HK$, i.e. $G=\{hk \mid h\in H, k\in K\}$. What about multiplication in $G$?
+
+$(hk)(h'k')=$? In the nicest case we might have $kh'=h'k$, so $(hk)(h'k')=hh'kk' \in HK$. This will work precisely when $H$ and $K$ commute with each other. In that case $G$ is an (internal) direct product of $H$ and $K$.
+
+\ul{Definition} If $H,K\subset G$, then G is a direct product of $H$ and $K$ if
+\begin{itemize}
+\item[1)] $G=HK$
+\item[2)] $H\cap K =\{e\}$ ( this means any expression $g=hk$ is unique)
+\item[3)] $H,K$ commute with each other, i.e. $hk=kh$, $\forall h\in H, k\in K$,
+
+(3) is often replaced by
+\item[3')] $H \lhd G$, $K\lhd G$. (not equivalent by itself with 1 and 2 it is)
+\end{itemize}
+
+\ul{Definition} $G$ is a semidirect product of $K\subset G$ and $N\lhd G$ if (1) and (2) hold.
+
+What's going on?
+
+(Aside) $N\lhd G$ means $N$ is "normal" in $G$ i.e. $N\subset G$ with the following property $gNg^{-1}\subset N \forall g\in G$.
+
+$\therefore$ for any $n\in N$ and any $g\in G$, $gng^{-1}=n'$ for some $n'\in N$, i.e. $gn=n'g$ (*).
+
+If $G=NH$ then consider the product 
+\begin{align*}
+& (n_1h_1)(n_2h_2)\\
+=& n_1(h_1n_2)h_2 \quad \text{associativity}\\
+\underset{=}{*}& n_1n_2' h_1 h_2 \quad \in NH.
+\end{align*}
+
+\ul{Remark}
+\begin{itemize}
+\item[(1)] As a \ul{set} $N\rtimes H$ is just $N\times H$. But as a group it is in general a "twisted" product.
+\item[(2)] Example dihedral groups $D_n$, where $D_n$ is the group of symmetries of a regular $n$-gon. $\abs{D_n}=2n$. There are two types of symmetries here:
+\begin{itemize}
+\item[i)] rotations about centre: subgroup isomorphic to $\cong \zZ_n$
+\item[ii)] flips : subgroup $\cong \zZ_2$.
+\end{itemize}
+$D_n\cong Z_n \rtimes Z_2$ not a product since rotations and flips do not commute.
+\item[(3)] There are several different looking ways to define a semidirect product. (e.g. short exact sequences, group extensions)
+\end{itemize}
+
+\section{Bonus Lecture 1: Group Actions}
+Let $X$ be a set, and let $\bij{X}$ be the set of bijections $X\to X$. This a group under composition.
+
+\ul{Definition} An action of a group G on the set $X$ is a homomorphism $\alpha:G\to \bij{X}$.
+
+If X has some extra structure e.g. $X$ is a topological space, then we often replace \bij{X} with a group of bijections which preserve the extra structure.
+
+For a topological space $X$ we consider $\alpha:G\to \underbrace{\homeo{X}}{\text{group of "homeomorphisms"}}$.
+
+\ul{Examples} 
+\begin{itemize}
+\item[i)]\glnr acts on $\rR^n$ by right or left multiplication. $\underbrace{R}{\text{right multiplication}}:\glnr \to \underbrace{\operatorname{Isom}(\rR^n)}{\text{group of linear isomorphisms of } \rR^n}$
+\item[ii)] $\underbrace{\zZ_2}{=\{\pm 1\}}$ acts on $\rR$ by flips about $0$. (picture of real line arrows indicating flips)
+\item[iii)] \gsok{2} acts on the circle $S^1$, $\alpha:\gsok{2}\to \homeo{S^1}$. If $S^1=\{\pmqty{x \\ y} \in \rR^2\mid x^2+y^2=1\}$ then action is by matrix multiplication
+\[\underbrace{\pmqty{\cos \theta & \sin \theta \\ -\sin \theta & \cos \theta}}{generic element of \gsok{2}}\pmqty{x \\ y} = \underbrace{\pmqty{\cdot \\ \cdot}}{again element of S^1}\]
+\item[iv)] $guk{1}=\{e^{i\theta}\}=$(circle) acts on $2$-sphere $S^2$ by rotation (picture of sphere rotation through line connection poles say).
+\end{itemize}
+
+\section{Bonus Lecture 1: Topology}
+Everything topological in module can be interpreted in terms of metric spaces (but doing so might be needlessly cumbersome).
+
+Recall a metric space consists of a set $X$ and a "metric" $d:X\times X\to [0,\infty)$ such that
+\begin{itemize}
+\item $d(x,y)=d(y,x)$
+\item $d(x,y)=0 \iff x=y$
+\item $d(x,z)\leq d(x,y)+d(y,z)$ (triangle).
+\end{itemize}
+$d$ is a \ul{distance function}.
+
+An open ball in $(X,d)$: $B(p,r)=\{x\in X\mid d(p,x)<r\}$, $p\in X$, $r>0$.
+
+Unions of open balls are called open sets. Metric allows us to define continuity and convergence.
+
+It turns out that these notions can be describe using only open sets, e.g. $f:(X,d)\to (Y,d')$ is continuous $\iff$ for every open set $U\subset Y$, preimage $f^{-1}(U)$ is open in $X$. (*)
+
+Open sets satisfy the following properties.
+\begin{enumerate}
+\item $X,\emptyset$ are open
+\item unions of open sets are open
+\item intersections of finitely many open sets are open.
+\end{enumerate}
+
+\ul{Definition} A topological space $(X,T)$ is a set $X$ together with a collection of subsets $T$ ("topology") satisfying (1), (2), (3).
+
+\ul{Remark} Every metric space is a topological space. Many different metrics on $X$ will generate the same topology (collection of open sets). Not every topology $T$ will arise from a metric (more general in a sense).
+
+\ul{Definition} A homeomorphism $f:(X,T)\to (Y,T')$ such that
+\begin{enumerate}
+\item $f$ is a bijection \&
+\item $f,f^{-1}$ are both continuous as in (*) 
+\end{enumerate}
+
+\ul{Other terms}
+\begin{enumerate}
+\item A subset $C$ of $(X,T)$ is \ul{closed} if $X\setminus C \in T$, i.e. $X\setminus C$ is open.
+\item A subset $S\subset (X,T)$ is \ul{compact} if every collection of $S$ by open sets in $X$ has a finite subcovering (i.e. still covering $S$). \ul{idea} Compact is small and neat (highly non technical)
+\item A topological space is path-connected if you can join any two points by a continuous path ($p:\underset{[0,1]}{\text{standard metric topology}}\to (X,T)$)
+\item A space is simply connected if any continuous loop in space can be contracted through the space to a point. Write this as $\pi_1(\underset{X}{\text{space}})=0$.
+
+For any space $\pi_1(X)$ is the "fundamental group" of  $X$ and measures the failure of loops to be contractible. (e.g. Circle has fundamental group isomorphic to \zZ).
+\end{enumerate}
 
 \end{document}
 
