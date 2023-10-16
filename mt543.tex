@@ -36,6 +36,7 @@
 \newcommand{\glnr}{\ensuremath{GL_n(\rR)\,}}
 \newcommand{\glnc}{\ensuremath{GL_n(\cC)\,}}
 \newcommand{\glnh}{\ensuremath{GL_n(\hH)\,}}
+\newcommand{\glnff}{\ensuremath{GL_n(\fF)\,}}
 \newcommand{\glnf}{\ensuremath{GL_n(\fF^n)\,}}
 \newcommand{\glr}[1]{\ensuremath{GL_{#1}(\rR)\,}}
 \newcommand{\glc}[1]{\ensuremath{GL_{#1}(\cC)\,}}
@@ -66,6 +67,9 @@
 
 \newcommand{\bij}[1]{\ensuremath{\operatorname{Bij}(#1)}}
 \newcommand{\homeo}[1]{\ensuremath{\operatorname{Homeo}(#1)}}
+\newcommand{\isom}[1]{\ensuremath{\operatorname{Isom}(#1)}}
+
+\newcommand{\genericA}{\ensuremath{\pmqty{a_{11} & \ldots & a_{1n} \\ \vdots & \vdots & \vdots \\ a_{n1} & \ldots & a_{nn}}}}
 
 %proofs etc
 \newtheorem{thm}{Theorem}[subsubsection]
@@ -834,14 +838,14 @@ We observe that $\gsun \lhd \gun$ since $\gsun$ is the kernel of $\det : \gun \t
 
 Next observe that any $A=\pmqty{a_{11} & \ldots & a_{1n} \\ \vdots & \vdots & \vdots \\ a_{n1} & \ldots & a_{nn}} \in \gun$ can be expressed as a product
 
-(insert matrices)
+\[A=\pmqty{ \frac{1}{\det A} a_{11} & a_{12} & \ldots & a_{1n} \\ \frac{1}{\det A} a_{21} & a_{22} & \ldots & a_{2n} \\ \vdots & \vdots & \ldots & \vdots \\ \frac{1}{\det A} a_{n1} & a_{n2} & \ldots & a_{nn}}\pmqty{\dmat{\det A, 1, \ddots, 1}}\]
 
-As $A$ and (matrix 3) both $\in \gun$, so is left hand matrix above.
+As $A$ and $\pmqty{\dmat{\det A, 1, \ddots, 1}}$ are both $\in \gun$, so is left hand matrix above.
 
 Moreover, $\det$ of L.H. matrix is $\frac{1}{\det A}$ is $\frac{1}{\det A}\det A = 1$. $\therefore $ L.H. matrix $\in \gsun$. It remains to show $\gsun \cap \guk{1}=\{e\}$.
 \end{proof}
 
-This is clear since any matrix of the form (matrix 4) with $\det =1$ must be $I_n$. Analogous arguments show 
+This is clear since any matrix of the form $\pmqty{\dmat{e^{i\theta},1,\ddots,1}}$ with $\det =1$ must be $I_n$. Analogous arguments show 
 
 \begin{thm}
 $\gon =\gson \rtimes \zZ_2$.
@@ -881,7 +885,7 @@ If $G=NH$ then consider the product
 \begin{align*}
 & (n_1h_1)(n_2h_2)\\
 =& n_1(h_1n_2)h_2 \quad \text{associativity}\\
-\underset{=}{*}& n_1n_2' h_1 h_2 \quad \in NH.
+\underset{(*)}{=}& n_1n_2' h_1 h_2 \quad \in NH.
 \end{align*}
 
 \ul{Remark}
@@ -903,15 +907,15 @@ Let $X$ be a set, and let $\bij{X}$ be the set of bijections $X\to X$. This a gr
 
 If X has some extra structure e.g. $X$ is a topological space, then we often replace \bij{X} with a group of bijections which preserve the extra structure.
 
-For a topological space $X$ we consider $\alpha:G\to \underbrace{\homeo{X}}{\text{group of "homeomorphisms"}}$.
+For a topological space $X$ we consider $\alpha:G\to \underbrace{\homeo{X}}_{\text{group of "homeomorphisms"}}$.
 
 \ul{Examples} 
 \begin{itemize}
-\item[i)]\glnr acts on $\rR^n$ by right or left multiplication. $\underbrace{R}{\text{right multiplication}}:\glnr \to \underbrace{\operatorname{Isom}(\rR^n)}{\text{group of linear isomorphisms of } \rR^n}$
-\item[ii)] $\underbrace{\zZ_2}{=\{\pm 1\}}$ acts on $\rR$ by flips about $0$. (picture of real line arrows indicating flips)
+\item[i)]\glnr acts on $\rR^n$ by right or left multiplication. $\underbrace{R}_{\text{right multiplication}}:\glnr \to \underbrace{\operatorname{Isom}(\rR^n)}_{\text{group of linear isomorphisms of } \rR^n}$
+\item[ii)] $\underbrace{\zZ_2}_{=\{\pm 1\}}$ acts on $\rR$ by flips about $0$. (picture of real line arrows indicating flips)
 \item[iii)] \gsok{2} acts on the circle $S^1$, $\alpha:\gsok{2}\to \homeo{S^1}$. If $S^1=\{\pmqty{x \\ y} \in \rR^2\mid x^2+y^2=1\}$ then action is by matrix multiplication
-\[\underbrace{\pmqty{\cos \theta & \sin \theta \\ -\sin \theta & \cos \theta}}{generic element of \gsok{2}}\pmqty{x \\ y} = \underbrace{\pmqty{\cdot \\ \cdot}}{again element of S^1}\]
-\item[iv)] $guk{1}=\{e^{i\theta}\}=$(circle) acts on $2$-sphere $S^2$ by rotation (picture of sphere rotation through line connection poles say).
+\[\underbrace{\pmqty{\cos \theta & \sin \theta \\ -\sin \theta & \cos \theta}}_{\text{generic element of }\gsok{2}}\pmqty{x \\ y} = \underbrace{\pmqty{\cdot \\ \cdot}}_{\text{again element of }S^1}\]
+\item[iv)] $\guk{1}=\{e^{i\theta}\}=$(circle) acts on $2$-sphere $S^2$ by rotation (picture of sphere rotation through line connection poles say).
 \end{itemize}
 
 \section{Bonus Lecture 1: Topology}
@@ -952,11 +956,87 @@ Open sets satisfy the following properties.
 \begin{enumerate}
 \item A subset $C$ of $(X,T)$ is \ul{closed} if $X\setminus C \in T$, i.e. $X\setminus C$ is open.
 \item A subset $S\subset (X,T)$ is \ul{compact} if every collection of $S$ by open sets in $X$ has a finite subcovering (i.e. still covering $S$). \ul{idea} Compact is small and neat (highly non technical)
-\item A topological space is path-connected if you can join any two points by a continuous path ($p:\underset{[0,1]}{\text{standard metric topology}}\to (X,T)$)
+\item A topological space is path-connected if you can join any two points by a continuous path ($p:\underset{\text{standard metric topology}}{[0,1]}\to (X,T)$)
 \item A space is simply connected if any continuous loop in space can be contracted through the space to a point. Write this as $\pi_1(\underset{X}{\text{space}})=0$.
 
 For any space $\pi_1(X)$ is the "fundamental group" of  $X$ and measures the failure of loops to be contractible. (e.g. Circle has fundamental group isomorphic to \zZ).
 \end{enumerate}
 
-\end{document}
+\section{Lecture 9 16/10/23}
+\ul{Last time}
+\begin{itemize}
+\item $\gun \cong \gsun \rtimes \guk{1}$, here \guk{1} is identified with $\{\pmqty{\dmat{e^{i\theta},1,\vdots,1}}\}\cong \guk{1}$.
+\item $\gon \cong \gson \rtimes \zZ_2$, where $\zZ_2 = \{I,\pmqty{\dmat{-1,1,\vdots,1}} \}$
+\end{itemize}
 
+\begin{defn}
+Metric spaces $(X,d)$ and $(Y,d')$ are \ul{isometric} if $\exists$ bijection $f:X\to Y$ s.t. $d'(f(x_1),f(x_2))=d(x_1,x_2), \, x_1, x_2 \in X$. $f$ is an \ul{isometry}. (distance preserving maps) 
+\end{defn}
+
+In $\rR^n$ we have a standard distance $d_{st}$ and a norm related by $d_{st}=\norm{x_1-x_2}(=\ipm{x_1-x_2}{x_1-x_2}^{1/2})$.
+
+By 1.2.8 ($\gon=\{A\in \mnr \mid \underset{=\norm{R_A(x)}}{\norm{xA}}=\norm{x}, \forall x \in \rR^n\}$), we see that if $A\in \gon$ then $R_A:\rR^n\to\rR^n$ is an isometry.
+
+Sort of conversely:
+
+\begin{prop}
+Suppose $f:\rR^n\to \rR^n$ is an isometry (for $d_{st}$) which fixes $0\in \rR^n$, (i.e. $f(0)=0$) then $f=R_A$ for some $A\in \gon$. In particular $f$ is linear.
+\end{prop}
+
+\begin{proof}
+see moodle. (reasonably straightforward but takes time to write out).
+\end{proof}
+
+\ul{Remark} The above establishes the fact that \gon is precisely the group of origin fixing isometries of $\rR^n$. (\gon is a group of matrices, but every matrix corresponds to a linear transformation in the standard basis)
+
+What about isometries of $\rR^n$ that do not fix the origin?
+
+Observe that for any $v\in \rR^n$, the translation map $T_v:\rR^n\to\rR^n$, $x\mapsto x+v$ is an isometry.
+
+\begin{thm}
+$\isom{\rR^n}$, the group of isometries of $\rR^n$ (under composition) is $\isom{\rR^n}\cong \rR^n \rtimes \gon$, where $\rR^n \cong \{T_v \mid v\in \rR^n\}$. In particular, any isometry is a composition of an orthogonal transformation and a translation.
+\end{thm}
+
+\begin{proof}
+Exercise. (think about what happens to the origin - say to a point $v$, translate by $-v$ and then a origin fixing transformation is orthogonal.)
+\end{proof}
+
+\subsubsection{Basic topology of groups of matrices}
+All groups of matrices seen so far are sub\ul{sets} of \mnf for $\fF=\rR,\cC,\hH$, and $\therefore$ bijective with subsets of $\mnr, \mr{2n}, \mr{4n}$ respectively.
+
+Observe that there is a bijection $b:\mnr \to \rR^{n^2}$, given by 
+
+\[b\left(\genericA \right)=(a_{11},a_{12},\ldots,a_{1n},a_{21},\ldots,a_{nn}).\]
+
+The standard topology on $\rR^{n^2}$ can be "pulled-back" to give a natural topology on $\mnr$ which makes $b$ a homeomorphism (continuous bijection with continuous inverse). 
+
+$\therefore$ all matrix groups seen so far inherit a (subspace) topology from some $\mnr \cong \rR^{n^2}$.
+
+\begin{obs}
+With respect to these natural topologies, the functions $\det$ and $\tr$ (trace) are continuous.
+\end{obs}
+
+\begin{defn}
+\phantom{a}
+\begin{itemize}
+\item[1)] A \ul{matrix group} (as opposed to a group of matrices!) is a subgroup of $\glnff$ which is closed.
+\item[2)] A \ul{topological group} is a group $G$ which is equipped with a topology with respect to which the operations of multiplication and inverse are continuous.
+\end{itemize}
+\end{defn}
+
+\ul{Remark} The point of the closed condition in (1) is that it keeps the topology `nice'.
+
+\begin{prop}
+All groups seen so far are matrix groups
+\end{prop}
+\begin{proof}
+View $\det$ as a map $\det:\glnr \to \rR$. This is continuous. $\gsln := \underset{\text{pre-image}}{\det ^{-1}\{1\}}$. As $\{1\}\subset \rR$ is closed, so is its pre-image $\therefore \gsln$ is a matrix group. Ditto $\gslk{n,\cC}$ etc.
+
+($\rR \setminus \{1\}=(-\inf,1)\cup(1,\infty)$ is open).
+
+For $\gon, \gun, \gspn$ consider the map $f:\glnff\to\glnff$ given by $f(A)=AA^*$. $f^{-1}(I)=\gon, \gun, \gspn$ depending on $\fF$. As $f$ is continuous and $\{I\}$ is closed in $\glnff$, we see $\gon, \gun, \gspn$ are closed in $\glnff$.
+
+Finally $\gsun=\gun \cap \gslk{n,\cC}$. $\gson=\gon \cap \gsln$, and intersection of closed sets is closed. Hence these are matrix groups. 
+\end{proof}
+
+\end{document}
