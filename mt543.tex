@@ -56,6 +56,8 @@
 \newcommand{\gsuk}[1]{\ensuremath{SU(#1)\,}}
 \newcommand{\gslk}[1]{\ensuremath{SL(#1)\,}}
 
+\newcommand{\sph}[1]{\ensuremath{S^{#1}}\,}
+
 \newcommand{\ra}{\ensuremath{\Rightarrow}}
 \newcommand{\la}{\ensuremath{\Leftarrow}}
 \newcommand{\cin}{\ensuremath{\mathcal{I}_n\,}}
@@ -1030,13 +1032,106 @@ With respect to these natural topologies, the functions $\det$ and $\tr$ (trace)
 All groups seen so far are matrix groups
 \end{prop}
 \begin{proof}
-View $\det$ as a map $\det:\glnr \to \rR$. This is continuous. $\gsln := \underset{\text{pre-image}}{\det ^{-1}\{1\}}$. As $\{1\}\subset \rR$ is closed, so is its pre-image $\therefore \gsln$ is a matrix group. Ditto $\gslk{n,\cC}$ etc.
+View $\det$ as a map $\det:\glnr \to \rR$. This is continuous. $\gsln := \underset{\text{(pre-image)}}{\det ^{-1}\{1\}}$. As $\{1\}\subset \rR$ is closed, so is its pre-image $\therefore \gsln$ is a matrix group. Ditto $\gslk{n,\cC}$ etc.
 
-($\rR \setminus \{1\}=(-\inf,1)\cup(1,\infty)$ is open).
+($\rR \setminus \{1\}=(-\infty,1)\cup(1,\infty)$ is open).
 
 For $\gon, \gun, \gspn$ consider the map $f:\glnff\to\glnff$ given by $f(A)=AA^*$. $f^{-1}(I)=\gon, \gun, \gspn$ depending on $\fF$. As $f$ is continuous and $\{I\}$ is closed in $\glnff$, we see $\gon, \gun, \gspn$ are closed in $\glnff$.
 
 Finally $\gsun=\gun \cap \gslk{n,\cC}$. $\gson=\gon \cap \gsln$, and intersection of closed sets is closed. Hence these are matrix groups. 
 \end{proof}
 
+\section{Lecture 10 18/10/23}
+\ul{Previously} 
+\begin{itemize}
+\item $\rR^n $ has a standard (metric) topology. 
+
+Bijection $b:\mnr \to \rR^{n^2}$. 
+
+"Pull-back" metric/topology to \mnr.
+
+\mnf bijective to a subset of \mnr, \mr{2n}, \mr{4n} 
+
+$\to$ \mnf has a natural topology. By restriction, so do all groups seen.
+
+\item Matrix group $:=$ closed subgroup of \glnff
+\end{itemize}
+
+(Aside: compactness $[0,1]$ is compact, but $(0,1)$ isn't as $(0,1)\cong \rR$, $\sim$ compact is like small but has to make sense topologically, small caveat to intuitiveness)
+
+\begin{prop}
+\gon, \gson, \gun, \gsun, \gspn are compact
+\end{prop}
+
+\begin{proof}
+We prove \gon is compact. Arguments for other groups analogous.
+
+Consider a map $f:\mnr\to\mnr$ given by $f(A)=AA^T$. $\gon=f^{-1}(\{I\})$. As $\{I\}$ is a closed subset of \mnr and $f$ is continuous, we see \gon is a closed subset of \mnr.
+
+We have a homeomorphism $b:\mnr \to \rR^{n^2}$. $\therefore b(\gon)$ is closed in $\rR^{n^2}$.
+
+Recall the Heine-Borel Thm: a subset of Euclidean space is compact $\iff$ it is closed and bounded.
+
+It remains to show that $b(\gon)$ is bounded. (so then $b(\gon)$ is compact in $\rR^{n^2}$, and since $b$ is a homeomorphism preserving topologies, so \gon is compact in \mnr.)
+
+Recall 1.2.5 the rows of any $A\in \gon$ form an orthonormal set. So each row is a unit vector in $\rR^n$. 
+\[\norm{b(A)}=(\underbrace{a_{11}^2+a_{12}^2+\ldots +a_{1n}^2}_{=1}+\underbrace{a_{21}^2+\ldots +a_{2n}^2}_{=1}+\ldots+\underbrace{a_{n1}^2+\ldots+a_{nn}^2}_{=1})^{1/2}\]
+
+$\therefore \norm{b(A)}=\sqrt{n}$.
+
+$\therefore b(\gon)\subset$ sphere in $\rR^{n^2}$ of radius $\sqrt{n}$.
+
+$\therefore b(\gon)$ is bounded as required.
+
+\end{proof}
+
+\begin{prop}
+\glnff, \gspk{n,\fF} are non-compact.
+\end{prop}
+
+\begin{proof}
+exercise
+\end{proof}
+
+\underline{Low dimensional examples}
+
+$\gok{1}=\{(1),(-1)\}\cong \zZ_2$, $\gsok{1}=\{(1)\}$ trivial.
+
+$\gsok{2}=\{\pmqty{\cos\theta & \sin\theta \\ -\sin\theta & \cos\theta} \mid \theta \in [0,2\pi )\}\underset{\text{isomorphic \& homeomorphic}}{\cong} \{e^{i\theta}\mid \theta \in [0,2\pi )\}\underset{\text{homeo}}{\cong} S^1$.
+
+$\guk{1}=\{(e^{i\theta})\mid \theta \in [0,2\pi )\}$, $\therefore \gsok{2}\underset{\text{ homeo \& isomorphic }}{\cong}\guk{1}$.
+
+$\gsuk{1}$ is trivial.
+
+$\gsuk{2}=\{\pmqty{z & w \\ -\bar{w} & \bar{z}} \mid z,w \in \cC, \, \abs{z}^2+\abs{w}^2=1\}$. Now $\{(z,w) \in \cC^2 \mid \abs{z}^2+\abs{w}^2=1\}\underset{\text{homeo}}{\cong}  \{(x_1,x_2,x_3,x_4) \in \rR^4 \mid \sum\limits_{i=1}^4\abs{x_i}^2=1\}=S^3$, 3-sphere $\subset \rR^4$.
+
+$\therefore$ as a topological space $\gsuk{2}\cong S^3$.
+
+$\gspk{1}=\{(q)\mid q\bar{q}=1\}$, group of unit length quaternions.
+
+As $\hH\cong \cC^2\cong \rR^4$ topologically/as real vector spaces, we see that $\gspk{1}\cong S^3$.
+
+In fact \gspk{1} and \gsuk{2} are isomorphic as groups, with isomorphism given by $\psi_1$.
+
+\ul{Observe} that all the above groups except \gok{1} are path-connected.
+
+Recall that an action of a group $G$ on a set $X$ is a map $\alpha:X\times G\to X$ (this is a right action!) such that $\alpha(x,1)=x, \forall x\in X$ and $\alpha(\alpha(x,g),h)=\alpha(x,gh)$. 
+
+For fixed $g\in G$ we obtain a map $\alpha_g :X\to X$ given by $\alpha(\cdot,g)$. This is a bijection with inverse $\alpha_{g^{-1}}$. 
+
+$\therefore$ an action can be viewed as a homomorphism $\alpha: G\to \bij{X}$.  
+
+e.g. a group can act on itself from left or right. i.e. $R_g:G\to G$, $R_g(g')=g'g$ etc.
+
+If $X$ is a topological space then we replace $\bij{X}$ by $\homeo{X}$, so actions respect topology. 
+
+Moreover, if $G$ has a topology we will assume action depends continuously on $g\in G$.
+
+An action of $G$ on $X$ is transitive if for any points $x,y\in X$ $\exists g\in G$ s.t. $\alpha_g(x)=y$.
+
+\begin{thm}
+\gson acts transitively by right (or left) multiplication on $\sph{n-1}\subset \rR^n$, and given any point $x\in \sph{n-1}$ there is a continuous path $p:[0,1]\to\gson$ s.t. $p(0)=I_n$ and $R_{p(1)}(e_1)=x$ ($n\geq 2$).
+\end{thm}
+
+\ul{Remarks} $\gson$ acts by right/left mult. on $\rR^n$. As this action preserves distances it restricts to given an action on any sphere (say unit radius sphere) about $0$, $\sph{n-1}$, i.e. $R:\sph{n-1}\times \gson \to \sph{n-1}$.
 \end{document}
