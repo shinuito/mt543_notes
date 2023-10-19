@@ -246,7 +246,20 @@ Remark: $\theta _n $ is  a real linear isomorphism. This forces $R_{\rho _n (A)}
 This is linear and therefore there is a corresponding matrix $\in \mr{2n}$.
 
 \begin{proof}
-See moodle.
+Given that $\theta _n$ is a real-linear isomorphism, consider the map $\theta_n \circ R_A \circ \theta_n^{-1} : \rR^{2n} \to \rR^{2n}$. This is clearly real-linear, and hence corresponds to some $(2n\times 2n)$-real matrix which depends on $A$. Call this matrix $\rho_n(A)$. Thus we obtain a map $\rho_n (A) : \mnc \to \mr{2n}$, and the requirement that $\theta_n \circ R_A = R_{\rho_n (A)} \circ \theta_n$ is automatrically satisfied by construction. 
+
+It remains to show that $\rho_n$ is a real-linear map. To this end we compute for $A_1, A_2 \in \mnc$ and $\lambda, \mu \in \rR$:
+
+\begin{align*}
+R_{\rho_n (\lambda A_1 + \mu A_2)} 
+&= \theta_n \circ R_{\lambda A_1 + \mu A_2} \circ \theta_n^{-1} \\
+&= \theta_n \circ (\lambda R_{A_1} + \mu R_{A_2}) \circ \theta_n^{-1} \\
+&= \lambda \theta_n \circ R_{A_1} \circ \theta_n^{-1} + 
+   \mu     \theta_n \circ R_{A_2} \circ \theta_n^{-1} \\
+&= \lambda R_{\rho_n(A_1)} + \mu R_{\rho_n(A_2)} \\
+&= R_{\lambda \rho_n(A_1) + \mu \rho_n(A_2)}.\\
+\end{align*}
+As for any $X, Y \in \mr{2n}$ we have $R_X = R_Y$ if and only if $X = Y$, we deduce that $\rho_n (\lambda A_1 + \mu A_2) = \lambda \rho_n(A_1) + \mu \rho_n(A_2)$ as required.
 \end{proof}
 
 \begin{obs}
@@ -254,8 +267,11 @@ $\rho_n$ is injective. Proof: exercise.
 \end{obs}
 
 \begin{lemma}
-$\rho _n$ satisfies $\rho_n(AB)= \rho_n(A)\rho_n(B)$. So $\rho_n$ is  an injective real-algebra homomorphism.
+$\rho _n$ satisfies $\rho_n(AB)= \rho_n(A)\rho_n(B)$.
 \end{lemma}
+
+Remark: When we take 1.1.10 together with 1.1.9 and 1.1.8, we see that $\rho_n$ is an injective real-algebra homomorphism.
+
 \begin{proof}
 We compose commutative squares from 1.1.8 to get
 
