@@ -73,6 +73,10 @@
 
 \newcommand{\genericA}{\ensuremath{\pmqty{a_{11} & \ldots & a_{1n} \\ \vdots & \vdots & \vdots \\ a_{n1} & \ldots & a_{nn}}}}
 
+% vertical and horizontal bars for matrix columns and rows.
+\newcommand*{\vertbar}{\rule[-1ex]{0.5pt}{2.5ex}}
+\newcommand*{\horzbar}{\rule[.5ex]{2.5ex}{0.5pt}}
+
 %proofs etc
 \newtheorem{thm}{Theorem}[subsubsection]
 \newtheorem{defn}[thm]{Definition}
@@ -1146,8 +1150,119 @@ Moreover, if $G$ has a topology we will assume action depends continuously on $g
 An action of $G$ on $X$ is transitive if for any points $x,y\in X$ $\exists g\in G$ s.t. $\alpha_g(x)=y$.
 
 \begin{thm}
-\gson acts transitively by right (or left) multiplication on $\sph{n-1}\subset \rR^n$, and given any point $x\in \sph{n-1}$ there is a continuous path $p:[0,1]\to\gson$ s.t. $p(0)=I_n$ and $R_{p(1)}(e_1)=x$ ($n\geq 2$).
+\hfill
+\begin{enumerate}
+\item \gson acts transitively by right (or left) multiplication on $\sph{n-1}\subset \rR^n$. \item Given any point $x\in \sph{n-1}$ there is a continuous path $p:[0,1]\to\gson$ s.t. $p(0)=I_n$ and $R_{p(1)}(e_1)=x$ ($n\geq 2$).
+\end{enumerate}
 \end{thm}
 
 \ul{Remarks} $\gson$ acts by right/left mult. on $\rR^n$. As this action preserves distances it restricts to given an action on any sphere (say unit radius sphere) about $0$, $\sph{n-1}$, i.e. $R:\sph{n-1}\times \gson \to \sph{n-1}$.
+
+\section{Lecture 11 20/10/23}
+
+\begin{proof}
+The first statement follows from the second (by composing paths) (TODO: insert figure of sphere and path here)
+
+For the second statement we proceed by induction. For $n = 2$ this is easy since
+\[
+\gsok{2} = \{\pmqty{\cos \theta & \sin \theta \\ -\sin \theta & \cos \theta}\mid \theta \in [0, 2\pi )\}.
+\]
+Clearly, for $x = (\cos\theta, \sin\theta) \in S^1$ we have a path
+\[
+p(t) = \pmqty{\cos (t\theta) & \sin (t\theta) \\ -\sin (t\theta) & \cos (t\theta)},
+\]
+such that $(1\ 0)p(t) = (\cos(t\theta)\ \sin(t\theta)$ which starts at $(1\ 0)$ and ends at $x$.
+(insert figure of circle here)
+
+Now assume the result is true for $n=k$ and consider \gsok{k+1} acting on $\rR^{k+1}$. We can write any $x \in S^k \subset \rR^{k+1}$ as $x = \cos\theta e_1 + \sin\theta y$ where $y \in \mbox{Span}\{e_2, \hdots, e_{k+1}\}$ is a unit vector. Choose a path $p_1(t)$ in \gsok{n} taking the form
+
+\[
+\begin{pmatrix}
+  \begin{matrix}
+  \cos(t\theta) & \sin(t\theta)  \\
+  -\sin(t\theta) &   \cos(t\theta)
+  \end{matrix}
+  & \rvline & \bigzero
+  \\
+\hline
+
+  \bigzero & \rvline &
+  \ci{k-1}
+\end{pmatrix}
+\]
+Observe that $R_{p_1(1)}(e_1) = \cos\theta e_1 + \sin\theta e_2$. Now, identify $\rR^k$ with $\mbox{Span}\{e_2, \hdots, e_{k+1}\}$. We know there exists a path $\bar{p}_2 : [0, 1] \to \gsok{k}$ such that $\bar{p}_2(0) = \mathcal{I}_k$ and $R_{\bar{p}_2(1)}(e_2) = y$ by the inductive hypothesis. By linearity $R_{\bar{p}_2(1)}(\sin(\theta) y) = \sin(\theta) y$. Now, we can define $p_2:[0, 1] \to \gsok{k+1}$ by
+\[
+p_2(t) =
+\begin{pmatrix}
+  1 & \rvline & 0
+  \\
+\hline
+
+  0 & \rvline & \bar{p}_2(t)
+\end{pmatrix}.
+\]
+Finally, define $p:[0, 1] \to \gsok{k+1}$ by
+\[
+p(t) =
+\begin{cases}
+p_1(2t)   & t \in  [0, \frac{1}{2}) \\
+p_2(2t-1) & t \in  [\frac{1}{2}, 1].
+\end{cases}
+\]
+By construction, $p(0) = \ci{k+1}$ and $R_{p(1)}(e_1) = \cos(\theta)e_1 + \sin(\theta)y = x$.
+\end{proof}
+
+\ul{Remark} Similar arguments apply to \gsuk{n} and \gspk{n} with very little change.
+
+\begin{cor}
+\gsok{n} is path-connected.
+\end{cor}
+
+\begin{proof}
+For any $A \in \gsok{n}$ we construct a path from $A$ to \cin. By Lemma 1.2.5 the rows of $A$ form an orthonormal basis for $\rR^n$. Call these $r_1, \hdots , r_n$. By theorem 1.3.6 there exisits a path $p$ in \gsok{n} starting with \cin and ending with $p(1)$ which satisfies $R_{p_1(1)}(r_1) = e_1$. As matrices in \gsok{n} preserve orthonormality (by lemma 1.2.5) we see that $R_{p_1(1)}(r_i) \in \mbox{Span}\{e_2, \hdots , e_n\}$ for $i \geq 2$
+
+Now let $s_2 = R_{p_1(1)}(r_2)$. By theorem 1.3.6, there exists a path $\bar{p}_2$ in \gsok{n-1} such that the corresponding path,
+\[
+p_2(t) =
+\begin{pmatrix}
+  1 & \rvline & 0
+  \\
+\hline
+
+  0 & \rvline & \bar{p}_2(t)
+\end{pmatrix},
+\]
+moves $s_2$ to $e_2$, ie $R_{p_2(1)}(s_2) = e_2$ (and $p_2(0) = \cin$). We can continue in this way to construct paths $p_i$ moving $r_i$ to $e_i$ but fixing $e_1, \hdots , e_{i-1}$. We can also compose these paths to obtain a path $p(t)$ such that $p(0) = \cin$ and $R_{p(1)}(r_i) = e_i$ for all $i$.
+
+Finally, consider the $n\times n$ matrix obtained by stacking the images of $r_1, \hdots , r_n$ under $R_{p(t)}$:
+\[
+\begin{pmatrix}
+  \horzbar & R_{p(t)}(r_1) & \horzbar \\
+  \horzbar & R_{p(t)}(r_2) & \horzbar \\
+  & \vdots &        \\
+  \horzbar & R_{p(t)}(r_n) & \horzbar
+\end{pmatrix}
+\]
+Notice that, for eact $t$, the rows are orthonormal, so this matrix is an element of \gsok{n} for all $t \in [0, 1]$. Moreover, at $t=0$ this matrix is
+\[
+\begin{pmatrix}
+  \horzbar & r_1 & \horzbar \\
+  \horzbar & r_2 & \horzbar \\
+  & \vdots &        \\
+  \horzbar & r_n & \horzbar
+\end{pmatrix}
+= A
+\]
+and at $t=1$
+\[
+\begin{pmatrix}
+  \horzbar & e_1 & \horzbar \\
+  \horzbar & e_2 & \horzbar \\
+  & \vdots & \\
+  \horzbar & e_n & \horzbar \\
+\end{pmatrix}
+= \cin
+\]
+Hence, we have constructe a path in \gsok{n} from $A$ to \cin.
+\end{proof}
 \end{document}
