@@ -26,6 +26,8 @@
 \newcommand{\qQ}{\ensuremath{a+bi+cj+dk\,}}
 \newcommand{\nn}{\ensuremath{n \times n\,}}
 
+\newcommand{\cinf}{\ensuremath{C^{\infty}\,}}
+
 \newcommand{\mnr}{\ensuremath{M_n(\rR)\,}}
 \newcommand{\mnc}{\ensuremath{M_n(\cC)\,}}
 \newcommand{\mnh}{\ensuremath{M_n(\hH)\,}}
@@ -57,6 +59,8 @@
 \newcommand{\gslk}[1]{\ensuremath{SL(#1)\,}}
 
 \newcommand{\sph}[1]{\ensuremath{S^{#1}}\,}
+\newcommand{\tor}[1]{\ensuremath{T^{#1}}\,}
+\newcommand{\rpk}[1]{\ensuremath{\mathbb{R}\mathrm{P}^{#1}}\,}
 
 \newcommand{\ra}{\ensuremath{\Rightarrow}}
 \newcommand{\la}{\ensuremath{\Leftarrow}}
@@ -71,6 +75,7 @@
 
 \newcommand{\bij}[1]{\ensuremath{\operatorname{Bij}(#1)}}
 \newcommand{\homeo}[1]{\ensuremath{\operatorname{Homeo}(#1)}}
+\newcommand{\diffeo}[1]{\ensuremath{\operatorname{Diffeo}(#1)}}
 \newcommand{\isom}[1]{\ensuremath{\operatorname{Isom}(#1)}}
 
 \newcommand{\genericA}{\ensuremath{\pmqty{a_{11} & \ldots & a_{1n} \\ \vdots & \vdots & \vdots \\ a_{n1} & \ldots & a_{nn}}}}
@@ -1332,6 +1337,57 @@ A topological $n$-manifold $M$ is a Hausdoff topological space with a countable 
 
 \section{Lecture 13 25/10/23}
 
+\ul{Previously} 2.1.1 A topological $n$-manifold $M$ is a Hausdoff topological space with a countable basis for its topology,which is locally euclidean, i.e. for each $x\in M  \exists U\subset M$ open with $x\in U$ and a homeomorphism $\phi:U \to V$, where $V\subset \rR^n$ is an open set. $\phi$ is a ``chart''. 
 
+\begin{defn}
+A family of charts $\{\phi_\alpha \mid \alpha \in \Lambda \}$ ($\Lambda$ an indexing set) on a manifold $M$ is called an \ul{atlas} if for each $x\in M$ $\exists \alpha \in \Lambda$ s.t. $x\in $ domain of $\phi_\alpha$.
+\end{defn}
 
+\ul{Remark} The inverse of any chart provides $M$ with a local coordinate system. (picture of manifold + charts + grid in euclidean space)
+ (today upgrade definition of topological manifold to a smooth one)
+ 
+ We next describe what it means for a manifold to be \ul{smooth}. We use charts to interpret smoothness.
+
+Given charts $\phi: U\to V$, $\theta: U' \to V'$ on $M$, assume $U\cap U' \neq \emptyset $. Then there $\exists h : \phi(U\cap U')\to \theta(U\cap U')$ such that the following diagram commutes
+
+\begin{center}
+\begin{tikzcd}[column sep=tiny]
+& U\cap U' \ar[dl,"\phi \large|_{U\cap U'}"'] \ar[dr,"\theta \large|_{U\cap U'}"] & \\
+\underset{\subset V \subset \rR^n}{\phi(U\cap U')}\ar[rr,"h"'] & & \underset{\subset V' \subset \rR^n}{\theta(U\cap U')}
+\end{tikzcd}
+\end{center}
+
+$h:=\theta \large|_{U\cap U'}\circ \phi \large|_{U\cap U'}^{-1}$. Observe that $h$ is a homeomorphism between open sets in $\rR^n$. As a map of Euclidean spaces, it makes sense to ask: is $h$ smooth, i.e. infinitely differentiable? $h$ is called a ``transition function''.
+
+\begin{defn}
+An atlas $\{\phi_\alpha\}$ is said to be a \ul{smooth atlas} if all transition functions are smooth $(\cinf)$ with smooth inverses.
+\end{defn}
+
+(note smooth functions like $x^3$ don't necessarily have smooth inverses everywhere).
+
+Two overlapping charts are said to be ``smoothly compatible'' if the corresponding transition function is smooth. 
+
+Given a smooth atlas, we could expand the atlas by including all possible charts which are smoothly compatible with each other. So any smooth atlas can be expanded to a ``maximal $\cinf$ atlas''.
+
+\begin{defn}
+A smooth manifold is a topological manifold equipped with a maximal smooth atlas. Such a maximal atlas is called a ``\cinf structure''
+\end{defn}
+
+(question about uniqueness of maximal atlases - 28 different ones for \sph{7}, Milnor came up with an example. Exotic differentiable structures)
+ 
+\ul{Remark} One of the benefits of a smooth structure is that it allows us to define an ambiguous  way whether `objects' defined on the manifold (e.g. functions) are smooth or not.
+
+\ul{Examples} 
+\begin{itemize}
+\item Dim 0: one-point spaces (or disjoint unions of one point spaces). $\sph{0}=\{1,-1\}$. 
+\item Dim 1: \rR or \sph{1}. (other manifolds with boundary but not defining that).
+\item \ul{Dim 2} (theorem) Two families
+\begin{itemize}
+\item the ``orientable'' family, \sph{2}, $\tor{2}=\sph{1}\times \sph{1}$, $\tor{2}\underset{\text{connected sum}}{\#}\tor{2}$,  $\tor{2}\#\tor{2}\# \tor{2}$, $\ldots$ (connected sum is removing a disk from each and joining with a cylinder).
+\item the ``non-orientable'' family: $\underbrace{\rpk{2} (\text{real projective space}), K (\text{Klein bottle})}_{\text{these don't live in }\rR^3}$, $\sph{2}$ with $n$ discs removed with $n$ mobius bands glued in.
+\end{itemize}
+\item In any dimension $\rR^n$ is a manifold with atlas consisting of a single chart $\{\mathrm{id}_{\rR^n}\}$. Ditto $\mnf (\cong \fF^{n^2})$. 
+\item We also have an $n$-sphere $\sph{n}\subset \rR^{n+1}$. $\sph{n}=\{(x_1,\ldots,x_{n+1})\mid \sum\limits_{i=1}^{n+1}x_i^2=1\}$.
+\end{itemize}
+ 
 \end{document}
