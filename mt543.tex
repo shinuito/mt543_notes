@@ -67,6 +67,8 @@
 \newcommand{\ipm}[2]{\ensuremath{\left\langle #1, \, #2 \right\rangle}}
 \newcommand{\ul}[1]{\underline{#1}}
 
+\newcommand{\quot}[2]{\ensuremath{\;^{#1} / _{#2}\;}}
+
 \newcommand{\bij}[1]{\ensuremath{\operatorname{Bij}(#1)}}
 \newcommand{\homeo}[1]{\ensuremath{\operatorname{Homeo}(#1)}}
 \newcommand{\isom}[1]{\ensuremath{\operatorname{Isom}(#1)}}
@@ -1265,4 +1267,71 @@ and at $t=1$
 \]
 Hence, we have constructe a path in \gsok{n} from $A$ to \cin.
 \end{proof}
+
+\section{Lecture 12 23/10/23}
+
+Previously: 
+\begin{itemize}
+\item 1.3.6 \gson acts transitively on \sph{n-1}
+\item 1.3.7 \gson is path-connected. 
+\end{itemize}
+
+\ul{Remark} Essentially the same arguments used in 1.3.6 \& 1.3.7 show
+
+\begin{itemize}
+\item \gsun, \gspn act transitively on \sph{2n-1} and \sph{4n-1} respectively.
+\item \gsun , \gspn are path-connected. \gsln is also path connected, but the argument is different.
+\end{itemize}
+
+\begin{cor}
+\gun is path connected by \gon has two path components (i.e. \ul{not} path connected).
+\end{cor}
+
+\begin{proof}
+By 1.2.11, $\gun=\gsun \rtimes \guk{1}$. Topologically, $\gun \cong \gsun \times \sph{1}$ (forgetting the group structure), and is $\therefore$ path connected as \gsun and \sph{1} both are.
+
+By 1.2.12, $\gon=\gson \rtimes \zZ_2$. Topologically this means $\gon \cong \gson \underset{\text{disjoint union}}{\amalg} \gson$. Hence $\gon$ has two path components, each $\cong \gson$. 
+\end{proof}
+
+\ul{Remark} $\zZ_2$ here corresponds to $\{I_n, \pmqty{\dmat{-1,1,\ddots,1}}\}$. The matrix $\pmqty{\dmat{-1,1,\ddots,1}}$ corresponds to a reflection in the hyperplane $\operatorname{span}\{e_2,\ldots,e_n\}$ (flipping the $e_1$ coordinate over). Notice that we can't have a continuous path from $I_n$ to $\pmqty{\dmat{-1,1,\ddots,1}}$ in $\gon$ as the determinant (which is continuous) would have to jump from $1$ to $-1$.
+
+If we define a rotation of $\rR^n$ to be an origin fixing distance preserving map which can be linked via a continuous path of such maps to $I_n$, then we can deduce
+\begin{itemize}
+\item \gson is precisely the group of rotations of $\rR^n$,
+\item \gon is precisely the group of rotations and reflections of $\rR^n$.
+\end{itemize}
+
+\ul{Final remark}:``Homogeneous spaces''.
+
+If $G$ is a topological group and $H\subset G$ a subgroup, then the set of cosets $\quot{G}{H}$ ( or $_{H}\backslash ^{G}$) is a topological space with the quotient topology. $\quot{G}{H}$ is called a ``Homogeneous space'', as, when equipped with an appropriate geometry \quot{G}{H} ``looks'' the same at all points.
+
+\ul{Examples} $\sph{n-1}\cong \quot{\gson}{\gsok{n-1}}\cong \quot{\gon}{\gok{n-1}}$, where \gsok{n-1} is identified with $\pmqty{\dmat{1,\gsok{n-1}}}\subset\gson$ etc.
+
+$\sph{2n-1}\cong \quot{\gsun}{\gsuk{n-1}}\cong \quot{\gun}{\guk{n-1}}$
+
+$\sph{4n-1}\cong \quot{\gspn}{\gspk{n-1}}$.
+
+\subsection{Lie groups \& Lie Algebras}
+
+\subsubsection{Manifolds}
+
+Roughly speaking a manifold is a ``nice'' topological space such that a neighbourhood of each point ``looks like'' euclidean space of a fixed dimension. We can use the local euclidean property to transfer calculus (differential and with a bit more work integral) from $\rR^n$ to manifolds.
+
+\begin{defn}
+A topological $n$-manifold $M$ is a Hausdoff topological space with a countable basis for its topology, satisfying the following locally euclidean property: For any $x\in M$ there is an open set $x\in U\subset M$, and an open set $V\subset \rR^n$, and a homeomorphism $\phi:U \to V$.
+
+(nice picture of torus, open sets, and arrow between it and $V$ in $\rR^n$).
+\end{defn}
+
+\ul{Remarks}
+\begin{itemize}
+\item[1)] $n$ is the ``dimension'' of the manifold.
+\item[2)] The map $\phi$ is called a ``chart''.
+\item[3)] A locally Euclidean space  which is a subset of some $\rR^m$ $m\geq n$ is automatically Hausdorff and has a countable basis for its topology.
+\end{itemize}
+
+\section{Lecture 13 25/10/23}
+
+
+
 \end{document}
