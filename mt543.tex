@@ -1389,5 +1389,55 @@ A smooth manifold is a topological manifold equipped with a maximal smooth atlas
 \item In any dimension $\rR^n$ is a manifold with atlas consisting of a single chart $\{\mathrm{id}_{\rR^n}\}$. Ditto $\mnf (\cong \fF^{n^2})$. 
 \item We also have an $n$-sphere $\sph{n}\subset \rR^{n+1}$. $\sph{n}=\{(x_1,\ldots,x_{n+1})\mid \sum\limits_{i=1}^{n+1}x_i^2=1\}$.
 \end{itemize}
+
+\section{Lecture 14}
+
+To see that \sph{n} is a manifold we describe an atlas involving $2n+2$ charts. Take open hemispheres about the points $\pm e_1, \pm e_2, \ldots,\pm e_{n+1}$. We define a chart for each of these half spheres to $\rR^n = $ space orthogonal to $\pm e_i$ by projection (picture of projection). This is a smooth atlas as the transition functions, which are compositions of projections are clearly smooth maps. (There's also an atlas with just two charts, using stereographic projection from the poles. Messy exercise).
+
+\ul{Exercise} If $M$ and $N$ are manifolds, show that $M\times N$ (with the product topology) is a also a manifold with dimension $\dim M +\dim N$.
+
+\ul{Example} 2-torus $\tor{2}=\sph{1}\times \sph{1}$. 3-torus $\tor{3}=\sph{1}\times \sph{1}\times \sph{1}$, $n$-torus $\tor{n}=\sph{1}\times \ldots \times \sph{1}$. Tori are extremely important in the theory of Lie groups.  (they're abelian groups).
+
+\begin{defn}
+If $M^m$ (notation for dimension of a manifold) is a $\cinf$- manifold and $N\subset M$ is a subset equipped with the subspace topology (intersect open sets with subset) then $N$ is a dimension $n(<=m)$ \ul{submanifold} if for every $x\in N$ there is a chart $\phi:U\to V$ \ul{of M} with $x\in U$, such that $\phi(U\cap N)=\phi(U)\cap \left(\underset{\subset \rR^m=\rR^n \times\rR^{m-n}}{\rR^n\times \{0\}}\right)$. The restriction of charts taking this form to $N$ gives an atlas for $N$.
+\end{defn}
+
+\ul{Examples} \begin{itemize}
+\item[i)] \sph{n} is a submanifold of $\rR^{n+1}$. 
+\item [ii)] The equator $\sph{n-1}\subset \sph{n}$ is a submanifold of $\sph{n}$.
+\item[iii)] $\sph{1}\times \{p\}\subset \sph{1}\times\sph{1}=\tor{2}$ is a circular submanifold of \tor{2}.
+\end{itemize}
+
+\ul{Remark} There are ways of detecting submanifolds which are easier than finding atlases.
+ 
+\begin{thm}
+(Whitney embedding theorem) Any smooth $n$-manifold can be $\underset{\text{(diffeomorphic)}}{\text{realised}}$ as a submanifold of $\rR^{2n}$. (No proof included)
+\end{thm} 
+
+\ul{Maps between manifolds}
+
+\begin{defn}
+A map of smooth manifolds $f:M\to N$ is \ul{smooth} if for every $x\in M$ and every chart $\theta:U'\to V'$ of $N$ with $f(x)\in U'$ and every chart $\phi:U\to V$ for $M$ with $x\in U$ and $f(U)\subset U'$, there is a \ul{smooth} map $\bar{f}$ making the following square commute:
+\end{defn}
+
+\begin{center}
+\begin{tikzcd}
+  U\subset M \arrow{d}{\phi} \arrow{r}{f\big|_U}
+    & f(U)\subset N \arrow{d}{\theta\big|_{f(U)}} \\
+  V \arrow{r}{\bar{f}}
+&\theta(f(U)) \end{tikzcd}
+\end{center}
+
+\ul{Idea} $\bar{f}$ is the 'same' as $f$ just viewed through charts. Need to use charts here as smooth only makes sense in Euclidean spaces. 
+
+\begin{defn}
+A bijection of smooth manifolds $f:M\to N$ is a \ul{diffeomorphism} if it is smooth with smooth inverse.
+\end{defn}
+
+\begin{defn}
+A \ul{Lie group} is a group $G$ which is also a smooth manifold for which the multiplication map $G\times G\to G$ and the inverse map $G\to G$ are both smooth.
+\end{defn}
+ 
+(Aside: Gromoll Meyer sphere $_{\gspk{1}}\slash ^{\gspk{2}} \backslash _{\gspk{1}}$ biquotient. Exotic sphere with non-negative curved)
  
 \end{document}
