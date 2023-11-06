@@ -77,6 +77,7 @@
 \newcommand{\homeo}[1]{\ensuremath{\operatorname{Homeo}(#1)}}
 \newcommand{\diffeo}[1]{\ensuremath{\operatorname{Diffeo}(#1)}}
 \newcommand{\isom}[1]{\ensuremath{\operatorname{Isom}(#1)}}
+\newcommand{\jac}[1]{\ensuremath{\operatorname{Jac}{#1}}}
 
 \newcommand{\genericA}{\ensuremath{\pmqty{a_{11} & \ldots & a_{1n} \\ \vdots & \vdots & \vdots \\ a_{n1} & \ldots & a_{nn}}}}
 
@@ -1440,4 +1441,62 @@ A \ul{Lie group} is a group $G$ which is also a smooth manifold for which the mu
  
 (Aside: Gromoll Meyer sphere $_{\gspk{1}}\slash ^{\gspk{2}} \backslash _{\gspk{1}}$ biquotient. Exotic sphere with non-negative curved)
  
+\section{Lecture 15 06/11/23}
+
+\ul{Previously}
+
+\begin{itemize}
+\item Manifold $M^n$ is a topological space locally $\cong \rR^n$. Charts give a way of doing calculus locally on a manifold. Transition functions from a smooth atlas give us a way of making the local calculus global: they guarantee that calculus in one chart agrees with that in any overlapping chart.
+\item Smooth functions $f:M \to N$ are those which are smooth when viewed through charts.
+
+\begin{center}
+\begin{tikzcd}
+  U\subset M \arrow{d}{\phi} \arrow{r}{f\big|_U}
+    & f(U)\subset N \arrow{d}{\theta\big|_{f(U)}} \\
+ V \arrow{r}{\bar{f}}
+&W \end{tikzcd}
+\end{center}
+i.e. want $\bar{f}$ to be smooth for any suitable choice of charts in $M,N$.
+\item Lie groups: this is a group $G$ which is also a $\cinf$ manifold s.t. multiplication $G\times G\to G$ \& inverse $G\to G$ are both \cinf.
+\end{itemize} 
+
+Consider a differentiable map $g:\rR^n\to \rR^m$. The derivative of $g$ is described by the Jacobian  matrix. Writing $g=(g_1,g_2,\ldots, g_m)$,
+
+\[\pmqty{\pdv{g_1}{x_1} & \ldots & \pdv{g_1}{x_n}\\ 
+\vdots & \ldots & \vdots \\ 
+\pdv{g_m}{x_1} & \ldots & \pdv{g_m}{x_n} }\]
+
+At some point $p\in \rR^n$ the Jacobian has "a rank" = max no of linearly independent rows/columns. (A result of linear algebra says that the row and column rank are the same.) For a differentiable map $f:M\to N$ the rank of $f$ at $p\in M$ is the rank of the Jacobian matrix $\bar{f}$ at the point corresponding to $p$ in $\rR^n$. 
+\ul{NB} This concept of rank for maps between manifolds is well defined, i.e. is independent of the charts used to define $\bar{f}$. This is a consequence of the smooth atlas definition (smooth transition functions).
+
+\begin{defn}
+$f:M^m\to N^n$ a \cinf map, $m\geq n$.
+\begin{itemize}
+\item[a)] A point $p\in M$ at which (less than maximal) $\rank_{p}{f}<n$ is called a \ul{critical value} of $f$, and $f(p)$ is a \ul{critical value}.
+\item[b)] A point $y\in N$ is a \ul{regular value} of $f$ if $\rank_{p}{f}=n$ (i.e. maximal) $\forall p \in f^{-1}(\{y\})$ (preimage of $y$).
+\end{itemize}
+\ul{Important convention}
+Every point of $N$ which is \ul{not} in image of $f$ is declared to be regular.
+\end{defn}
+
+\begin{thm}
+(The implicit Function Theorem - manifolds version).
+
+If $y\in N$ is a regular value of $f:M^m\to N^n$ ($m\geq n$) a smooth map, then the pre-image $f^{-1}(\{y\})$ is a smooth submanifold of $M$ with dimension $m-n$. 
+
+(No proof)
+\end{thm}
+ 
+This is particularly useful when $M=\rR^n$ or $M=\mnf (\cong \fF^{n^2})$.
+
+e.g.
+
+$f:\rR^n \to \rR$ defined by $f(x_1,x_2,\ldots, x_n)=\sum\limits_{i=1}^n x_i^2$. Then $f^{-1}(\{1\})=\sph{n-1}$. We conclude from IFT (2.1.11) that $\sph{n-1}$ is a manifold of dimension $n-1$ provided that $1$ is a regular value of $f$.  $\jac{f}=(\pdv{f}{x_1},\pdv{f}{x_2},\ldots,\pdv{f}{x_n})$ $=(2x_1,2x_2,\ldots,2x_n)$. This has rank $1$ unless $(2x_1,2x_2,\ldots,2x_n)=0$, but $0\not\in f^{-1}(\{1\})$, so this does not occur. So $1$ \ul{is} a regular value of $f$.
+
+\ul{Applications to groups of matrices}
+
+Firstly, since $\mnr\cong \rR^{n^2}$ and $\rR^{n^2}$ is trivially a manifold, $M_n(\rR^n)$ is a manifold. Next, observe that any open subset of a manifold is again a manifold under restriction of the topology and charts.
+
+$\glnr = \{A\in \mnr \mid \det A\neq 0\}$. This is an open subset of $\mnr$ ($\glnr = \det ^{-1}(\rR \setminus \{0\})$. (preimage of an open set under a continuous function is open, $\rR \setminus \{0\}$ is open). $\therefore \glnr$ is a manifold of dim $n^2$. (Similar comments for \glnc and \glnh).
+
 \end{document}
