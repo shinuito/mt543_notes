@@ -1499,4 +1499,33 @@ Firstly, since $\mnr\cong \rR^{n^2}$ and $\rR^{n^2}$ is trivially a manifold, $M
 
 $\glnr = \{A\in \mnr \mid \det A\neq 0\}$. This is an open subset of $\mnr$ ($\glnr = \det ^{-1}(\rR \setminus \{0\})$. (preimage of an open set under a continuous function is open, $\rR \setminus \{0\}$ is open). $\therefore \glnr$ is a manifold of dim $n^2$. (Similar comments for \glnc and \glnh).
 
+\section{Lecture 16 08/11/23}
+
+Last time:
+
+\begin{itemize}
+\item \glnr is a manifold of dimension $n^2$. (because it's an open subset of $\mnr\cong \rR^{n^2}$. Similar comments for \glnc, \glnh .
+\item Differentiable map $f:M^n\to N^n$, with $m\geq n$, then the rank of $f$ at $p\in M$ $\underset{\text{defn}}{=}$ rank of Jacobian map of $\bar{f}$ ($f$ viewed through chart, i.e. as a map between open subsets $\rR^m$, resp. $\rR^n$.
+\item $y\in N$ is a regular value of $\rank_p f = n$ (maximal!) $\forall p \in f^{-1}(\{y\})$.
+\item Implicit function theorem: if $y$ is a regular point, then pre-image $f^{-1}(\{y\})$ is a smooth submanifold of $M$ with dimension $m-n$.
+\end{itemize}
+
+\ul{Examples of Lie Groups}
+\begin{itemize}
+\item[(i)] $\gsln = \{A\in \mnr \mid \det A=1\}$. Consider $\det:\glnr\to \rR$. So $\gsln = \det^{-1}(\{1\})$.  By the IFT we will see that \gsln is a submanifold of \glnr with dimension $n^2-1$ and hence a Lie group since the multiplication and inversion in \gsln are the restrictions of the smooth multiplication and inversion in \glnr. We $\therefore$ need  to show that $1\in \rR$ is a regular value for $\det$, i.e. we need to show that the rank of $\det \neq 0$ at each $A\in \glnr$ with $\det A = 1$, i.e. the derivative at $A$ (in some direction through \glnr is non-zero). Consider the path $p(t)=(1-t)A$. $\det p(t) = (1-t)^n \det A = (1-t)^n$. $p(t)\in \glnr$ for $t$ small. Differentiating $\dv{t} \det \eval{p(t)}_{t=0}=\dv{t}\eval{(1-t)^n}_{t=0}=\eval{n(1-t)^{n-1}}_{t=0}=n\neq 0$.
+Thus the rank of the $\det$ is maximal (i.e.$=1$), at every $A\in\gsln$ as required.
+\item[(ii)] $\gson=\{A\in\mnr \mid AA^T=I_n\}$. Observe that $AA^T$ is symmetric, i.e. $(AA^T)^T=AA^T$. Let $S_n(\rR)=\{A\in \mnr \mid A \text{ is symmetric i.e. } A^T=A\}$. Notice that $S_n(\rR)\cong \rR^{\frac{1}{2}n(n+1)}$ as any element of $S_n(\rR)$ is determined by its upper/lower triangle of entries. So $S_n(\rR)$ is a manifold! 
+
+Define $f:\underset{\cong \rR^{n^2}}{\mnr} \to \underset{\cong \rR^{\frac{1}{2}n(n+1)}}{S_n(\rR)}$, by $f(A)=AA^T$. ($f ``=" \bar{f}$)) Apply IFT to $f$. 
+
+\ul{Claim} every element of $S_n(\rR)$ in $f^{-1}(\{I_n\})$ is a regular value of $f$. Choose $A,B \in \mnr$ and consider the path $A+tB\in \mnr$. Differentiating $f$ along this path at $t=0$: $df_A(B)$ (Deriv of $f$ at $A$ (i.e. $t=0$) in direction of $B$).
+\begin{align*}
+df_A(B)&=\dv{t}\eval{f(A+tB)}_{t=0}\\
+&=\lim_{t=0} \frac{f(A+tB)-f(A)}{t}\\
+&=BA^T+AB^T
+\end{align*}
+Calculation: exercise. Notice that $BA^T+AB^T$ is also symmetric! Thus $df_A:\mnr\to S_n(\rR)$. The claim follows if we can show $df_A$ is surjective (since $df_A$ is linear) for each $A\in f^{-1}(I_n)$. To see this: for any $C\in S_n(\rR) $ we can easily check that by setting $B=\frac{1}{2}CA$, we obtain $df_A(B)=C$. $\therefore$ by IFT $\gson =f^{-1}(\{I_n\})$ is a manifold of dimension $n^2-\frac{1}{2}n^2-\frac{1}{2}n=\frac{1}{2}n(n-1)$.
+
+\end{itemize}
+
 \end{document}
