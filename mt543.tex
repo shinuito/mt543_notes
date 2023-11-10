@@ -27,6 +27,10 @@
 \newcommand{\nn}{\ensuremath{n \times n\,}}
 
 \newcommand{\cinf}{\ensuremath{C^{\infty}\,}}
+\newcommand{\cinfm}{\ensuremath{C^{\infty}(M)\,}}
+\newcommand{\cinfn}[1]{\ensuremath{C^{\infty}(#1)\,}}
+\newcommand{\tpm}{\ensuremath{T_p M}}
+\newcommand{\tqn}[2]{\ensuremath{T_{#1} {#2}}}
 
 \newcommand{\mnr}{\ensuremath{M_n(\rR)\,}}
 \newcommand{\mnc}{\ensuremath{M_n(\cC)\,}}
@@ -1391,7 +1395,7 @@ A smooth manifold is a topological manifold equipped with a maximal smooth atlas
 \item We also have an $n$-sphere $\sph{n}\subset \rR^{n+1}$. $\sph{n}=\{(x_1,\ldots,x_{n+1})\mid \sum\limits_{i=1}^{n+1}x_i^2=1\}$.
 \end{itemize}
 
-\section{Lecture 14}
+\section{Lecture 14 27/10/23}
 
 To see that \sph{n} is a manifold we describe an atlas involving $2n+2$ charts. Take open hemispheres about the points $\pm e_1, \pm e_2, \ldots,\pm e_{n+1}$. We define a chart for each of these half spheres to $\rR^n = $ space orthogonal to $\pm e_i$ by projection (picture of projection). This is a smooth atlas as the transition functions, which are compositions of projections are clearly smooth maps. (There's also an atlas with just two charts, using stereographic projection from the poles. Messy exercise).
 
@@ -1527,5 +1531,68 @@ df_A(B)&=\dv{t}\eval{f(A+tB)}_{t=0}\\
 Calculation: exercise. Notice that $BA^T+AB^T$ is also symmetric! Thus $df_A:\mnr\to S_n(\rR)$. The claim follows if we can show $df_A$ is surjective (since $df_A$ is linear) for each $A\in f^{-1}(I_n)$. To see this: for any $C\in S_n(\rR) $ we can easily check that by setting $B=\frac{1}{2}CA$, we obtain $df_A(B)=C$. $\therefore$ by IFT $\gson =f^{-1}(\{I_n\})$ is a manifold of dimension $n^2-\frac{1}{2}n^2-\frac{1}{2}n=\frac{1}{2}n(n-1)$.
 
 \end{itemize}
+
+\section{Lecture 17 10/11/23}
+Last time:
+
+Showed \gson is a submanifold of \mnr of dimension $\frac{1}{2}n(n-1)$ using Implicit Function Theorem.
+
+To show that \gson is a Lie group we simply observe that the multiplication and inverse operations agree with those (where defined) in \mnr, and hence are smooth.
+
+\subsubsection{Tangent Spaces}
+
+Consider a submanifold $M^m\subset \rR^n$. Let $p\in M$ and consider a smooth path $\gamma:(-\epsilon,\epsilon)\to M\subset\rR^n$ with $\gamma(0)=p$. (small picture of gamma in manifold, with velocity vector).
+
+The velocity vector $\gamma'(0)$ is  a vector in $\rR^n$. Now consider the set of \ul{all} such paths $\gamma$. From this we get a set of velocity vectors $\subset \rR^n$. Intuitively it is clear that this set is an affine vector space, i.e. a vector space translated to the point $p$.
+
+\begin{defn}
+\begin{itemize}
+\item[(a)] The \ul{tangent space} to $M\subset\rR^n$ to $p$, \tpm , is the set of velocity vectors to $M$ at $p$.
+\end{itemize}
+\end{defn}
+
+\ul{Aim}: formulate an intrinsic notion of tangent space, i.e. not depending on a choice of embedding into some $\rR^n$.
+
+\ul{Observation}: Given a path $\gamma$ through $p$ in $M$ \ul{as before}, and a differentiable function $f:M\to \rR$, consider the composition $f\circ \gamma:(-\epsilon,\epsilon)\to \rR$. This is differentiable. We can think of this derivative as a directional derivative of $f$ in the direction of $\gamma'(0)$. We can therefore identify velocity vectors $\gamma'(0)$ at $p$ with directional derivative operations, i.e. with differential operators. The point is that this makes as much sense for abstract manifolds as for submanifolds of $\rR^n$.
+
+Denote the set of all \cinf real-valued functions on $M$ by  \cinfm. 
+
+\begin{defn}
+Given a smooth curve $\gamma(t)$ on $M$ with $\gamma(0)=p$, the \ul{tangent vector} to $\gamma$ at $p$ is a map $\gamma'(0):\cinfm \to \rR$ given by $\gamma'(0)(f)=\dv{t}\eval{f\circ \gamma(t)}_{t=0}$.
+\end{defn}
+
+Given a chart $\phi:\underset{\subset M}{U}\to \underset{\subset \rR^m}{V}$, we can use the standard coordinates $(x_1,x_2,\ldots, x_m)$ in $V$, $x_i :V\to \rR$, to obtain a local coordinate system in $M$, given by $(x_1\circ \phi, \ldots, x_m\circ \phi)$. For simplicity, we'll call these coordinates on $M$, $(x_1,\ldots, x_m)$.
+
+Assume that $p\in U$ and $\phi(p)=0\in V\subset \rR^m$. In these coordinates we have $\gamma(t)=(\gamma_1(t),\ldots,\gamma_m(t))$, ($\gamma_i :(-\epsilon,\epsilon)\to \rR$) and $\therefore$
+
+\begin{align*}
+\dv{t}\eval{f\circ \gamma(t)}_{t=0}&=\dv{t}\eval{f(\gamma_1(t),\ldots,\gamma_m(t))}_{t=0}\\
+&\underset{\text{chain rule}}{=}\sum_{i=1}^{m} \pdv{f}{x_i}(p)\gamma_i'(0)\\
+&=\left(\sum_{i=1}^{m} \gamma_i'(0)\pdv{x_i}(p)\right) (f)
+\end{align*}
+
+where $\pdv{x_i}(p)$ is the tangent vector to the $x_i$ coordinate line at $p$, i.e. $(0,\ldots,0,\underset{i^{th} \text{ place}}{t},0,\ldots,0)$ in coords of U.
+
+$\therefore \gamma'(0) = \sum_{i=1}^{m} \gamma_i'(0)\pdv{x_i}(p)$ $(*)$.
+
+Observe that this only depends on the derivative of $\gamma$ at $p$.
+
+\addtocounter{thm}{-2}
+\begin{defn}
+\begin{itemize}
+\item[(b)] The \ul{tangent space} \tpm for any manifold $M$ is the set of velocity vectors (as defined above) to $M$ at $p$. The following is evident from $(*)$.
+\end{itemize}
+\end{defn}
+
+\addtocounter{thm}{1}
+
+\begin{lemma}
+\tpm is a vector space of dimension $=\dim M$, and given local coordinates system $(x_1,x_2,\ldots, x_m)$ around $p$, a basis for \tpm is given by 
+\[\{\pdv{x_1}(p),\ldots, \pdv{x_m}(p) \}\]
+\end{lemma}
+
+Notice that \tpm is independent of local coord systems, since tangent vectors themselves are indep. of local coords.
+
+
 
 \end{document}
