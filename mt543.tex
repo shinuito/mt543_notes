@@ -25,12 +25,19 @@
 \newcommand{\fF}{\ensuremath{\mathbb{F}\,}}
 \newcommand{\qQ}{\ensuremath{a+bi+cj+dk\,}}
 \newcommand{\nn}{\ensuremath{n \times n\,}}
+\newcommand{\xonen}{\ensuremath{(x_1,x_2,\ldots, x_n)\,}}
+\newcommand{\xonem}{\ensuremath{(x_1,x_2,\ldots, x_m)\,}}
 
 \newcommand{\cinf}{\ensuremath{C^{\infty}\,}}
 \newcommand{\cinfm}{\ensuremath{C^{\infty}(M)\,}}
 \newcommand{\cinfn}[1]{\ensuremath{C^{\infty}(#1)\,}}
 \newcommand{\tpm}{\ensuremath{T_p M}}
+\newcommand{\tm}{\ensuremath{T M}}
+\newcommand{\tn}[1]{\ensuremath{T {#1}}}
 \newcommand{\tqn}[2]{\ensuremath{T_{#1} {#2}}}
+\newcommand{\dfp}{\ensuremath{df_p \,}}
+\newcommand{\dfq}[1]{\ensuremath{df_{#1}\,}}
+\newcommand{\df}{\ensuremath{df}}
 
 \newcommand{\mnr}{\ensuremath{M_n(\rR)\,}}
 \newcommand{\mnc}{\ensuremath{M_n(\cC)\,}}
@@ -1593,6 +1600,71 @@ Observe that this only depends on the derivative of $\gamma$ at $p$.
 
 Notice that \tpm is independent of local coord systems, since tangent vectors themselves are indep. of local coords.
 
+\section{Lecture 18 13/11/23}
 
+Last time:
+
+\begin{itemize}
+\item tangent vector to a manifold $M$ at $p\in M$ is a directional differentiation operator at $p$. (Acting on smooth functions $M\to \rR$).
+\item Tangent space \tpm is the set of all tangent vectors at $p$.
+\item $\tpm = \operatorname{span}\{\pdv{x_1}(p),\ldots, \pdv{x_n}(p) \}$, where $(x_1,x_2,\ldots, x_n)$ is any local coordinate system on $M$ about $p$, and $\pdv{x_i}$ are the usual partial differentiation operations.
+\end{itemize}
+
+The collection of all tangent spaces $\bigcup\limits_{p\in M} \tpm^n$ has the structure of a manifold (non-compact!) of dimension $2n$. This is denoted $\tm$ and is called the "tangent bundle".
+
+\ul{Examples}
+\begin{itemize}
+\item[(i)] $\tqn{p}{\rR^n}\cong \rR^n$. Consider a path $\gamma(t)=p+vt$ for some $v\in \rR^n$, $\gamma'(0)=v$. Thus the corresponding tangent (velocity) vector is $v$. 
+
+Alternatively natively consider $\dv{t}\eval{f(p+vt)}_{t=0}$. If $v=\sum \lambda_i e_i$ then this is 
+\begin{align*}
+&sum \pdv{f}{x_i}\lambda_i \quad \text{by the chain rule.}\\
+&=\left(\sum \lambda_i \pdv{x_i}\right)(f)
+\end{align*}
+So $\sum \lambda_i \pdv{x_i}$ is the tangent vector corresp to $v=\sum \lambda_i e_i$. The correspondence $\tqn{p}{\rR^n}\cong \rR^n$ is precisely $\sum \lambda_i \pdv{x_i} \leftrightarrow \sum \lambda_i e_i$.
+
+\item[(ii)] $\tqn{A}{\mnr} \cong \mnr$. (Essentially a special case of (i)). Consider a path $\gamma(t)=A+tB$ for some $B\in \mnr$. Clearly $\gamma'(0)=B$. Alternatively, consider $\dv{t}\eval{f(A+tB)}_{t=0}$. Let $v_{ij}:\mnr \to \rR$ be the function which picks out the $(i,j)^{th}$ entry. Standard coordinates on \mnr.
+\begin{align*}
+\dv{t}f(A+tB)&\underset{\text{chain rule}}{=}\sum_{i,j} \pdv{f}{v_{ij}}b_{ij}\\
+&=\left(\sum_{i,j}\pdv{f}{v_{ij}}b_{ij}\right)(f)
+\end{align*}
+So $\sum_{i,j}\pdv{f}{v_{ij}}b_{ij}$ is our tangent vector which we can identify with matrix $(b_{ij})=B$.
+
+\item[(iii)]  $S_n(\rR)=\{(\nn) \text{ symmetric matrices }\}\cong \rR^{\frac{1}{2}n(n+1)}$. Same argument as in (ii) shows that $\tqn{A}{S_n(\rR)}\cong \S_n(\rR)$
+\item[(iv)]  $\tqn{A}{\glnr}\cong \mnr$. We can see this two ways:
+\begin{itemize}
+\item[(a)] Since \glnr is an open subset of \mnr
+\item[(b)] using same argument as (ii) after noting that for $A\in \glnr, B\in \mnr$, the path $A+tB$ lies in \glnr for $t close to 0$.
+\end{itemize}
+\end{itemize}
+
+\begin{defn}
+Given a differentiable map $f:M^n\to N^n$, the derivative of $f$ at $p\in M$, $\dfp$ is a map $\dfp:\tpm\to\tqn{f(p)}{N}$ given by $\dfp(X)=X(g\circ f) \forall g\in \cinfn{N}, \forall X\in \tpm$.
+\end{defn}
+
+\ul{Idea} Given a differentiable path $\gamma(t)$ through $p\in M$, $f(\gamma(t))$ is a differentiable path through $f(p)$ in $N$. If $X\in\tpm$ is the tangent vector $\gamma'(0)$ then $\dfp(X)$ is the tangent vector corresp. to $f(\gamma(t))$ at $f(p)$. (picture of path and image of path, tangent vectors etc)
+
+\begin{lemma}
+\dfp is a linear map.
+\end{lemma} 
+\begin{proof}
+Trivial, from definition of \dfp.
+\end{proof}
+
+The individual derivatives \dfp can be assembled into a 'total' derivative $\df:\tm\to\tn{N}$ between tangent bundles.
+
+\ul{Remarks}
+\begin{enumerate}
+\item Given coordinate systems about $p$ and $f(p)$ we obtain bases for \tpm and \tqn{f(p)}{N} and with respect to these bases, \dfp is given by a matrix. This is just the usual Jacobian matrix.
+\item We can now re-interpret the notions of regular/critical points in terms of \dfp being surjective/ not surjective.
+\item Previously we saw a map $f:\mnr \to S_n(\rR)$, $f(A)=AA^T$ we decided that \dfq{A} is a map $\mnr \to S_n(\rR)$. In reality $\dfq{A}:\underset{\cong\mnr}{\tqn{A}{\mnr}}\to \underset{\cong S_n(\rR)}{\tqn{AA^T}{S_n(\rR)}}$
+\end{enumerate}
+
+\ul{Vector Fields}
+\begin{defn}
+A (tangent) vector field on a smooth manifold $M$ is a choice of tangent vector at each $p\in M$, i.e. a rule which assigns $X(p)\in\tpm$ to each $p\in M$.
+\end{defn}
+
+Given a coord system $\xonen$ locally on $U\subset M$. We can express (locally) a vector field on $U$ as $\sum \lambda_i(p)\pdv{x_i}(p)$. Here $\lambda_i:U\to \rR$. We say the vector field is \ul{smooth} if the $\lambda_i$ are all smooth. The vector field is globally smooth (which we will assume from now on) if it is smooth in every chart. This is a well-defined concept, as the notion of smoothness is the same viewed from any charts in a smooth atlas.
 
 \end{document}
