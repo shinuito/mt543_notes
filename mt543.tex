@@ -1169,6 +1169,7 @@ Moreover, if $G$ has a topology we will assume action depends continuously on $g
 An action of $G$ on $X$ is transitive if for any points $x,y\in X$ $\exists g\in G$ s.t. $\alpha_g(x)=y$.
 
 \begin{thm}
+\label{transitive_action_on_sphere}
 \hfill
 \begin{enumerate}
 \item \gson acts transitively by right (or left) multiplication on $\sph{n-1}\subset \rR^n$. \item Given any point $x\in \sph{n-1}$ there is a continuous path $p:[0,1]\to\gson$ s.t. $p(0)=I_n$ and $R_{p(1)}(e_1)=x$ ($n\geq 2$).
@@ -1180,7 +1181,15 @@ An action of $G$ on $X$ is transitive if for any points $x,y\in X$ $\exists g\in
 \section{Lecture 11 20/10/23}
 
 \begin{proof}
-The first statement follows from the second (by composing paths) (TODO: insert figure of sphere and path here)
+The first statement follows from the second (by composing paths as in Fig \ref{compose_paths}).
+
+\begin{figure}
+\center
+\includegraphics[scale=0.45]{figs/composing_paths/sphere_colour.png}
+\caption{Here we depict the trajectories of $e_1$ in \sph{2} as it is evolved under paths in \gsok{3}, as decribed in \ref{transitive_action_on_sphere}, corresponding to points $x, y \in S^2$. Clearly, we can map $x$ to $y$ via $R_{p_x(1)}^{-1}\circ R_{p_y(1)}$.}
+\label{compose_paths}
+\end{figure}
+
 
 For the second statement we proceed by induction. For $n = 2$ this is easy since
 \[
@@ -1355,10 +1364,18 @@ A topological $n$-manifold $M$ is a Hausdoff topological space with a countable 
 A family of charts $\{\phi_\alpha \mid \alpha \in \Lambda \}$ ($\Lambda$ an indexing set) on a manifold $M$ is called an \ul{atlas} if for each $x\in M$ $\exists \alpha \in \Lambda$ s.t. $x\in $ domain of $\phi_\alpha$.
 \end{defn}
 
-\ul{Remark} The inverse of any chart provides $M$ with a local coordinate system. (picture of manifold + charts + grid in euclidean space)
- (today upgrade definition of topological manifold to a smooth one)
- 
- We next describe what it means for a manifold to be \ul{smooth}. We use charts to interpret smoothness.
+\ul{Remark} The inverse of any chart provides $M$ with a local coordinate system. See figure \ref{coord_patch}.
+
+\begin{figure}
+\center
+\includegraphics[scale=0.5]{figs/coord_patch/manifold_phi_inv.png}
+\caption{The inverse of a chart $\phi$ provides $M$ with a local coordinate system. Coordinate lines in $V \subset \rR^n$ are mapped by $\phi^{-1}$ to continuous curves in $M$ which trace the local coordinate system on $M$.}
+\label{coord_patch}
+\end{figure}
+
+(today upgrade definition of topological manifold to a smooth one)
+
+We next describe what it means for a manifold to be \ul{smooth}. We use charts to interpret smoothness.
 
 Given charts $\phi: U\to V$, $\theta: U' \to V'$ on $M$, assume $U\cap U' \neq \emptyset $. Then there $\exists h : \phi(U\cap U')\to \theta(U\cap U')$ such that the following diagram commutes
 
@@ -1666,5 +1683,122 @@ A (tangent) vector field on a smooth manifold $M$ is a choice of tangent vector 
 \end{defn}
 
 Given a coord system $\xonen$ locally on $U\subset M$. We can express (locally) a vector field on $U$ as $\sum \lambda_i(p)\pdv{x_i}(p)$. Here $\lambda_i:U\to \rR$. We say the vector field is \ul{smooth} if the $\lambda_i$ are all smooth. The vector field is globally smooth (which we will assume from now on) if it is smooth in every chart. This is a well-defined concept, as the notion of smoothness is the same viewed from any charts in a smooth atlas.
+
+\section{Lecture 19 15/11/23}
+
+Last time:
+
+\begin{itemize}
+\item A tangent vector field on manifold $M$ is a choice of tangent vector in \tpm for each $p \in M$. This choice is assumed to be smoothly varying with $p$.
+\end{itemize}
+
+From now on we will use the term vector field to mean tangent vector field.
+
+\ul{Remark}: A flow on $M$ is a one-parameter, smoothly varying, family of diffeomorphisms $M \to M$. (for example, flow of air around the earth) (TODO: insert figure of flow here). Differentiating a flow gives a vector field. Conversely,  vector field can be integrated to give a flow.
+
+\subsubsection{Lie Algebras}
+
+Let $X, Y$ be vector fields on $M$.
+
+\begin{defn}
+The Lie bracket of $X$ and $Y$, denoted $[X, Y]$ is\footnote{multiplication on the R.H.S. makes sense if vector fields are interpreted as differential operators.}
+\[ [X, Y] = XY - YX. \]
+\end{defn}
+
+\begin{lemma}
+$[X, Y]$ is a vector field on $M$. (ie it is a first order differential operator, not second order)
+\end{lemma} 
+
+\begin{proof}
+Let $f \in \cinfn{M}$. So $XY(f) = X(Yf)$ etc. Note, $Yf \in \cinfn{M}$. With respect to a local coordinate system $(x_1,x_2,\ldots, x_n)$ we have
+\[ X = \sum_i \lambda_i \pdv{x_i}, \quad Y = \sum_i \mu_i \pdv{x_i}, \]
+for some $\lambda_i , \mu_i \in \cinfn{M}$.
+
+Computing, we have
+\begin{align*}
+XYf - YXf &=  \sum_{i,j} \left(\lambda_i \pdv{\mu_j}{x_i} \pdv{f}{x_j} 
+                       - \mu_j \pdv{\lambda_i}{x_j} \pdv{f}{x_i}\right) \\
+          &+ \sum_{i,j} \lambda_j\mu_j\left( \pdv{^2f}{x_i\partial x_j}
+           - \pdv{^2f}{x_j\partial x_i} \right).
+\end{align*}
+But the second partial derivatives commute.
+\[ \therefore [X, Y](f) = \sum_{i,j} \left(\lambda_i \pdv{\mu_j}{x_i} \pdv{f}{x_j} 
+                       - \mu_j \pdv{\lambda_i}{x_j} \pdv{f}{x_i}\right). \]
+\[ \therefore [X, Y] = \sum_{i,j} \left(\lambda_i \pdv{\mu_j}{x_i} \pdv{x_j} 
+                       - \mu_j \pdv{\lambda_i}{x_j} \pdv{x_i}\right). \]
+\end{proof}
+
+\ul{Remark}: This has a nice interpretation in terms of flows and is sometimes called a Lie derivative. One can define a way to push/pull $Y$ along the flow of $X$ and differentiate it, this gives a notion of differentiating $Y$ with respect to $X$. We won't explore this further here.
+
+\begin{lemma}
+The Lie bracket has the following properties:
+\begin{enumerate}
+\item It is bilinear.
+\item It is anti-symmetric (ie $[X, Y] = - [Y, X]$).
+\item It satisfies the "Jacobi identity":
+\[ [[X, Y], Z] + [[Z, X], Y] + [[Y, Z], X] = 0. \]
+\end{enumerate}
+\end{lemma}
+
+\begin{proof}
+Properties 1 and 2 are trivial. For 3 we can simple write out each term and add. ie
+$[[X, Y], Z] = [XY - YX, Z] = XYZ - YXZ - ZXY + ZYX$ etc. (exercise!)
+\end{proof}
+
+We now focus on vector fields on Lie groups.
+
+For $g \in G$ ($G$ a Lie group) we have diffeomorphisms $L_g:G\to G$ given by $L_g(h) = gh$ (ie by left multiplication) and $R_g:G\to G$ given by $R_g(h) = hg$. We will concentrate on $L_g$ but everything will hold true for $R_g$ also. We have $dL_g : T_hG \to T_{gh}G$ for any $h \in G$.
+
+\begin{defn}
+A vector field $X$ on $G$ is left-invariant if $dL_g(X) = X \,\, \forall g \in G$. ie $dL_g(X_h) = X_{gh} \,\, \forall g, h \in G.$
+\end{defn}
+A similar definition can be made for right-invariance.
+
+\begin{lemma}
+There is a bijection between the set of left invariant vector fields (LIVF) and $T_eG$.
+\end{lemma}
+
+\ul{Remark}: Since the set of LIVFs is a vector space (if $X, Y$ are LIVFs then trivally so is $\lambda X + \mu Y$) this bijection is actually a linear ismorphism.
+
+\begin{proof}
+For any $v\in T_eG$ we can construct a LIVF by "left propagation". ie let $X_g = dL_g(v) \,\, \forall g\in G$. The resulting fiel $X$ is left invariant:
+\begin{align*}
+dL_g(X_h) &= dL_g \circ dL_h(v) & \\
+&= d(L_g \circ L_h)(v) & \mbox{(by the chain rule)} \\
+&= dL_{gh}(v) &\\
+&= X_{gh}.
+\end{align*}
+This gives a map $T_eG \to \{LIVFs\}$. This map is trivally injective. Observe that there is an inverse map $X \mapsto X_e \in T_eG$. Therefore the map is a bijection.
+\end{proof}
+
+\begin{lemma}
+If $X, Y$ are LIVFs, then $[X, y]$ is a LIVF.
+\end{lemma}
+
+\begin{proof}
+We begin by making the following claim: Let $f\in \cinfn{G}$. $X$ is left invariant $\iff (Xf)\circ L_g = X(f\circ L_g).$
+
+\begin{center}
+\begin{tikzcd}
+G \ar[dr, "f \circ L_g"] \ar[r, "L_g"] & G \ar[d, "Xf"] \\
+& \rR
+\end{tikzcd}
+\end{center}
+To see this, suppose $p(t)$ is a $C^\infty$ path in $G$ with $p(0) = e, p'(0) = X_e.$ Then $X$ is left invariant $\iff X_h = \frac{d}{dt}hp(t)|_{t=0} \,\, \forall h \in G.$
+\begin{align*}
+\implies (Xf) \circ L_g(h) &= (Xf)(gh) & \\
+&= X_{gh}(f) & \mbox{(as $X$ is left invariant)} \\
+&= \dfrac{d}{dt}f(ghp(t))|_{t=0}. &
+\end{align*}
+
+Compare this with:
+\begin{align*}
+X(f\circ L_g)(h) &= (X_h)(f\circ L_g) & \\
+&= \dfrac{d}{dt} (f\circ L_g)(hp(t))|_{t=0} & \mbox{(as $X$ is left invariant)} \\
+&= \dfrac{d}{dt}f(ghp(t))|_{t=0}. &
+\end{align*}
+as before. So $(Xf)\circ L_g = X(f\circ L_g)$ (To be continued next lecture...)
+\end{proof}
+
 
 \end{document}
