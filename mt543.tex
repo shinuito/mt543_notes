@@ -69,6 +69,13 @@
 \newcommand{\gsuk}[1]{\ensuremath{SU(#1)\,}}
 \newcommand{\gslk}[1]{\ensuremath{SL(#1)\,}}
 
+%lie algebras
+\newcommand{\lglnr}{\ensuremath{\mathfrak{gl}_n(\rR)}}
+\newcommand{\lslnr}{\ensuremath{\mathfrak{sl}_n(\rR)}}
+\newcommand{\lgon}{\ensuremath{\mathfrak{o}_n}}
+\newcommand{\lgun}{\ensuremath{\mathfrak{u}_n}}
+\newcommand{\lgspn}{\ensuremath{\mathfrak{sp}_n}}
+
 \newcommand{\sph}[1]{\ensuremath{S^{#1}}\,}
 \newcommand{\tor}[1]{\ensuremath{T^{#1}}\,}
 \newcommand{\rpk}[1]{\ensuremath{\mathbb{R}\mathrm{P}^{#1}}\,}
@@ -83,6 +90,7 @@
 \newcommand{\ul}[1]{\underline{#1}}
 
 \newcommand{\quot}[2]{\ensuremath{\;^{#1} / _{#2}\;}}
+\newcommand{\ecomm}{\ensuremath{\comm{\cdot}{\cdot}}}
 
 \newcommand{\bij}[1]{\ensuremath{\operatorname{Bij}(#1)}}
 \newcommand{\homeo}[1]{\ensuremath{\operatorname{Homeo}(#1)}}
@@ -1878,13 +1886,130 @@ which is non-zero in general.
 We have seen that $T_eGL_n(\rR) \cong M_n(\rR)$. Therefore, as a vector space, $\mathfrak{gl}_n(\rR) \cong M_n(\rR)$. What is the Lie bracket in this case?
 
 \begin{thm}
-The Lie brackek operation on $\mathfrak{gl}_n(\rR)$ is just $[A, B] = AB - BA \in M_n(\rR)$.
+The Lie bracket operation on $\mathfrak{gl}_n(\rR)$ is just $[A, B] = AB - BA \in M_n(\rR)$.
 \end{thm}
 
 \begin{proof}
 See moodle! Here is the main idea:
 
 Corresponding to $A$ and $B$ we have paths through $\cin$ in $GL_n(\rR)$, parameterised by $s$ and $t$ respectively. By left translation $(L_g)$ by elements close to $\cin$, we can create a ``mesh" of paths surrounding "\cin" by translating one of these paths along the other. This gives us a local 2-dimensional ``slice" around $\cin$ parameterised by $(s, t)$. We can compute second derivatives of $f\in \cinfn{GL_n(\rR)}$ with respect to the parameters. This allows us to identify the Lie bracket operation. (TODO: insert figure of coordinate patch construction around identity)
+\end{proof}
+
+\section{Lecture 21 20/11/23}
+\ul{Last time}:
+\begin{itemize}
+\item Lie algebra is a vector space $V$ equipped with an operation $\comm{\cdot}{\cdot}$, $\comm{\cdot}{\cdot}:V\times V\to V$ s.t. $\comm{\cdot}{\cdot}$ is 
+\begin{enumerate}
+\item[i)] bilinear
+\item[ii)] antisymmetric
+\item[iii)] satisfies the Jacobi identity
+\end{enumerate}
+
+
+( In general $\comm{\cdot}{\cdot}$ is not associative) 
+
+e.g. $\{\cinf $ vector fields on a manifold $\}$ is a Lie algebra under standard Lie bracket operation. 
+
+e.g. $G$ a Lie group, then $\{LIVF\}$ is a Lie bracket under standard Lie bracket. This restricts to give a map $\comm{\cdot}{\cdot}:\tqn{e}{G}\times \tqn{e}{G}\to \tqn{e}{G}$, $(\tqn{e}{G}, \comm{\cdot}{\cdot})$ is the Lie algebra of $G$.
+
+\item The general linear group $\glnr$ has Lie algebra $(\underset{=\tqn{e}{\glnr}}{\mnr}, \ecomm)$ where $\comm{A}{B}=\underbrace{AB-BA}_{\text{difference of matrix products}}$ for any $A,B\in \mnr$.
+
+Same argument for \glnc or \glnh.
+
+(an aside - if we think of \glnh as an abstract object, not as linear maps, we don't have to worry about the left/right multiplication issue, we can do left or right multiplication of matrices)
+\end{itemize}
+
+\begin{cor}
+The Lie bracket operation for the other matrix groups (which are all Lie subgroups of \glnff) is just the restriction of that for $\glnr$ to the appropriate space of matrices, i.e. the Lie bracket of matrix groups is just the matrix commutator.
+\end{cor}
+
+\begin{thm}
+The Lie algebra of \gon is 
+
+\[\left(\underbrace{\{A\in \mnr \mid \underset{\text{skew-symmetric matrices}}{A^T=-A}\}}_{=\tqn{e}{\gon}}, \ecomm\}\right)\]
+\end{thm}
+\begin{proof}
+Consider a \cinf path $A(t)$ in \gon with $A(0)=I_n$. We have $A(t)A^T(t)=I_n$ (by orthogonality).
+
+$\therefore \dv{t}AA^T\underset{\text{product rule}}{=} A'A^T+AA'^T=0$.
+
+At $t=0$ we obtain $A' + A'^T=0$, i.e. $A'^T=-A'$. So $A'\in \underset{\text{skew-symmetric matrices}}{\operatorname{SSym}_n(\rR)}$, i.e. $\lgon=\tqn{e}{\gon}\subset \operatorname{SSym}_n(\rR)$.
+
+Conversely, $E_{ij}$ be the $(\nn)-$matrix with $1$ in position $(i,j)$ and $0$s elsewhere.
+
+Observe that $\{E_{ij}-E_{ji}\}_{i\neq j}$ is a basis for $\operatorname{SSym}_n(\rR)$.
+
+It suffices to find a path for each $(i,j)$, $i\neq j$ in \gon through $I_n$ with derivative $E_{ij}-E_{ji}$ at $I_n$.
+
+Set $\gamma_{ij}=I_n+\sin(t)(E_{ij}-E_{ji})+(-1+\cos(t))(E_{ii}-E_{jj})$. Notice that $\gamma'_{ij}(0)=E_{ij}-E_{ji}$.
+
+To see that $\gamma_{ij}(t)\in \gon$ (actually $\in \gson$ since \gon has two components, and we're in the identity component), we re-write in matrix form 
+
+% without any indices this is fine
+%\[\pmqty{\dmat{
+%\dmat{1,1,\ddots,1},
+%\mqty{\cos(t) & & & &\sin(t)\\
+% & 1 & & & \\
+%  &  &\ddots & & \\
+%   &  & & 1 & \\
+%   -\sin(t) & & & &\cos(t)
+%},
+%\dmat{1,1,\ddots,1}
+%}
+%}.\]
+
+% this is a bit of a hack job - there's probably a more sensible way to do this
+\[\mqty{
+\mqty{i\\ {}\\ {}  \\ {}  \\ j} &
+\pmqty{
+\mqty{\dmat{1,1,\ddots,1}} & &\\
+{}& \mqty{\cos(t) & & & &\sin(t)\\
+ & 1 & & & \\
+  &  &\ddots & & \\
+   &  & & 1 & \\
+   -\sin(t) & & & &\cos(t)
+} &{}\\
+{}&{} & \mqty{\dmat{1,1,\ddots,1}}
+} \\
+& \mqty{\quad i & \quad & \quad & \quad & \quad j}
+}.\]
+
+Since the rows of this matrix form an orthonormal set, we see by 1.2.5 that this matrix is orthogonal $\forall t$. (Actually this matrix represents a rotation in the plane $\mbox{Span}\{e_i,e_{j}\}$ through angle $t$.) 
+\end{proof}
+
+Similar arguments show:
+
+\begin{thm}
+The Lie algebra of \gun is 
+\[\lgun = \{A\in \mnc \mid \underset{"skew Hermitian"}{\bar{A}^T=-A}\},\] 
+and the Lie algebra of \gspn is 
+\[\lgspn = \{A\in \mnh \mid \bar{A}^T=-A\},\]
+both with matrix commutator as Lie bracket.
+\end{thm}
+
+\begin{cor}
+\begin{align*}
+& \dim \gon = \frac{1}{2}n(n-1)\\
+& \dim \gun = n^2\\
+& \dim \gspn = 2n^2+n
+\end{align*}
+\end{cor}
+
+\begin{proof}
+$\dim \gon = \dim \lgon = \dim \operatorname{SSym}_n(\rR)$.
+
+A skew symmetric matrix is determined by the entries above the diagonal. There are 
+\[\frac{1}{2}\left(\underset{\text{total no. of entries}}{n^2}- \underset{\text{no. of entries on diagonal}}{n^2}\right)\]
+(all diag entries $=0$)
+
+For \lgun, the diagonal entries must be pure imaginary. Off the diagonal, each entry determines two real nos. Overall we have 
+
+\[\frac{1}{2}\left(\underset{\text{if diagonal entries } = 0}{2n^2-2n}\right) + \underset{\text{add back } n \text{for imaginary entries on diagonal}}{n}\]
+
+$=n^2-n+n=n^2$.
+
+In symplectic case, we have four real numbers for each entry, but diagonal entries must be pure imaginary (determined by three real nos) 
+$\therefore \dim\lgspn= \frac{4n^2-4n}{2}+\underset{\text{diagonal entries}}{3n}=2n^2-2n+3n=2n^2+n $
 \end{proof}
 
 \end{document}
