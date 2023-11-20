@@ -1772,7 +1772,7 @@ This gives a map $T_eG \to \{LIVFs\}$. This map is trivally injective. Observe t
 \end{proof}
 
 \begin{lemma}
-If $X, Y$ are LIVFs, then $[X, y]$ is a LIVF.
+If $X, Y$ are LIVFs, then $[X, Y]$ is a LIVF.
 \end{lemma}
 
 \begin{proof}
@@ -1800,5 +1800,91 @@ X(f\circ L_g)(h) &= (X_h)(f\circ L_g) & \\
 as before. So $(Xf)\circ L_g = X(f\circ L_g)$ (To be continued next lecture...)
 \end{proof}
 
+
+\section{Lecture 20 17/11/23}
+
+Last time:
+
+\begin{itemize}
+\item A $X$ is a (tangent) vector field on Lie group $G$, then $X$ if left-invariant (LI) if, for all $g \in G$, $dL_g(X) = X$ where $L_g:G\to G$, $L_g(h) = gh$ for all $h\in G$ and $dL_g(X) = X$ means $dL_g(X_h) = X_{gh}$.
+
+\item (2.3.5) There exists a bijection $T_eG\to $\{{LIVFs on G}\} given by "left propagation", ie for $v\in T_eG$ $X_h := dL_h(v) \,\, \forall h \in G$.
+
+\item (2.3.6) If $X, Y$ are LI then so is $[X, Y]$.
+\end{itemize}
+
+\begin{proof} (2.3.6 continued)
+Previously, we had made the following claim: For $f\in \cinfn{G}$, $X$ is left invariant if and only iff the following holds:
+\[ (Xf)\circ L_g = X(f\circ L_g). \label{claim2.3.6} \tag{$\circledast$} \]
+
+($\Longrightarrow$) was prove lasted time.
+
+($\Longleftarrow$) Assume $(Xf)\circ L_g = X(f\circ L_g)$ holds. Then for any $h\in G$,
+\[ (Xf)\circ L_g(h) = (Xf)(gh) = X_{gh}f. \]
+Therefore, $X_{gh}f = X_h(f\circ L_g)$. By definition of the derivative map (2.2.4) we have
+\[ X_h(f\circ L_g) = dL_g(X_h)(f). \]
+Therefore,
+\[ X_{gh}f = dL_g(X_h)(f), \quad \forall f \in \cinfn{G}. \]
+Hence, $X_{gh} = dL_g(X_h)$, ie $X$ is LI. This proves the claim.
+
+Now to prove 2.3.6, consider the following:
+\begin{align*}
+([X, Y]f)\circ L_g &= (X(Yf) - Y(Xf))\circ L_g, & \\
+&= X(Yf)\circ L_g - Y(Xf)\circ L_g, & \mbox{(trivially)} \\
+&= X((Yf)\circ L_g) - Y((Xf)\circ L_g) & \mbox{(by \ref{claim2.3.6})} \\
+&= X(Y(f\circ L_g)) - Y(X(f\circ L_g)) & \mbox{(by \ref{claim2.3.6})} \\
+&= (XY)(f\circ L_g) - (YX)(f\circ L_g) \\
+&= [X, Y](f\circ L_g)
+\end{align*}
+Hence, $([X, Y]f)\circ L_g = [X, Y](f\circ L_g)$ and so, by the claim made at the start of the proof, we conclude that $[X, Y]$ is LI.
+\end{proof}
+
+Combining (2.3.5) nd (2.3.6) we immediately deduce:
+
+\begin{cor}
+Restricting the Lie bracket operation from \{LIVFs on $G$\} to $T_eG$ gives a map
+\[ [\cdot , \cdot]: T_eG \cross T_eG \to T_eG, \]
+which is bilinear, anti-symmetric and satisfies the Jacobi identity.
+\end{cor}
+
+\begin{defn}
+\begin{enumerate}
+\item A Lie algebra consists of a vector space $V$ over a field \fF, together with an operation $[\cdot , \cdot]:V\cross V \to V$ which is bilinear, anti-symmetric and satisfies the Jacobi identity.
+
+\item The Lie algebra $\mathfrak{g}$ of a Lie group $G$ is $T_eG$ equipped with the operation $[\cdot , \cdot]$ from 2.3.7.
+\end{enumerate}
+\end{defn}
+
+\ul{Remark:} The Lie bracket captures, in an infinitesimal and nonobvious way, the group structure of $G$.
+
+\begin{obs}
+In general, the ``multiplication" map $[\cdot ,\cdot]$ in a Lie algebra is not associative.
+\end{obs}
+
+If $[\cdot ,\cdot]$ was associative then $[[X, Y], Z] = [X, [Y, Z]]$. Then, by anti-symmetry we have $[[X, Y], Z] + [[Y, Z], X] = 0$. But the Jacobi identity tells us that
+\[ [[X, Y], Z] + [[Y, Z], X] = -[[Z, X], Y] \]
+which is non-zero in general.
+
+\subsection*{Examples of a Lie algebras}
+
+\begin{enumerate}
+\item Let $V$ be any vector space and set $[v, w] = 0$ for all $v, w \in V$. Then $(V, [\cdot, \cdot])$ is a Lie algebra. Note, in this special case $[\cdot, \cdot]$ is associative.
+
+\item On $M_n(\fF)$ define the commutator $[A, B] = AB - BA$. Then $(M_n(\fF), [\cdot, \cdot])$ is a Lie algebra.
+
+\item Let $M$ be a smooth manifold and let $\Gamma (M)$ be the (real) vector space of all (tangent) vector fields on $M$. The Lie bracket $[X, Y] = XY - YX$ makes $\Gamma (M)$ into a Lie algebra. Note that this object is infinite dimensional.
+\end{enumerate}
+
+We have seen that $T_eGL_n(\rR) \cong M_n(\rR)$. Therefore, as a vector space, $\mathfrak{gl}_n(\rR) \cong M_n(\rR)$. What is the Lie bracket in this case?
+
+\begin{thm}
+The Lie brackek operation on $\mathfrak{gl}_n(\rR)$ is just $[A, B] = AB - BA \in M_n(\rR)$.
+\end{thm}
+
+\begin{proof}
+See moodle! Here is the main idea:
+
+Corresponding to $A$ and $B$ we have paths through $\cin$ in $GL_n(\rR)$, parameterised by $s$ and $t$ respectively. By left translation $(L_g)$ by elements close to $\cin$, we can create a ``mesh" of paths surrounding "\cin" by translating one of these paths along the other. This gives us a local 2-dimensional ``slice" around $\cin$ parameterised by $(s, t)$. We can compute second derivatives of $f\in \cinfn{GL_n(\rR)}$ with respect to the parameters. This allows us to identify the Lie bracket operation. (TODO: insert figure of coordinate patch construction around identity)
+\end{proof}
 
 \end{document}
