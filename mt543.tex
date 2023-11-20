@@ -833,11 +833,11 @@ For $A\in \gun$, $A\bar{A}^T=I$ by 1.2.5(d). So $\det(A\bar{A}^T)=\det(A)\det(\b
 For $A\in \gspn$, $\det A:=\det_{\cC} \psi_n(A)$. By 1.2.6(2) we know that $\psi_{n}(A)\in \guk{2n}$. $\therefore \det \psi_n(A)\ol{\det \psi_n(A)}=\det (\psi_n(A)\ol{ \psi_n(A^T)})=\det I=1$. $\therefore \abs{\det(\psi_n(A))}^2=1$, so $\abs{\det(\psi_n(A))}=1$ and $\therefore \abs{\det(A)}=1$
 \end{proof}
 
-\ul{Remark} For $A\in gon$, $\det A =\pm 1$. 
+\ul{Remark} For $A\in \gon$, $\det A =\pm 1$. 
 
-For $A\in gun$, $\det A \in \{e^{i\theta}\mid \theta \in [0,2\pi]\}.$ (circle in complex plane).
+For $A\in \gun$, $\det A \in \{e^{i\theta}\mid \theta \in [0,2\pi]\}.$ (circle in complex plane).
 
-For $A\in gspn$, it turns out that $\det A=1$. This is not obvious!
+For $A\in \gspn$, it turns out that $\det A=1$. This is not obvious!
 
 \begin{defn}
 ``Special Groups".\\
@@ -1635,7 +1635,7 @@ The collection of all tangent spaces $\bigcup\limits_{p\in M} \tpm^n$ has the st
 
 Alternatively natively consider $\dv{t}\eval{f(p+vt)}_{t=0}$. If $v=\sum \lambda_i e_i$ then this is 
 \begin{align*}
-&sum \pdv{f}{x_i}\lambda_i \quad \text{by the chain rule.}\\
+&\sum \pdv{f}{x_i}\lambda_i \quad \text{by the chain rule.}\\
 &=\left(\sum \lambda_i \pdv{x_i}\right)(f)
 \end{align*}
 So $\sum \lambda_i \pdv{x_i}$ is the tangent vector corresp to $v=\sum \lambda_i e_i$. The correspondence $\tqn{p}{\rR^n}\cong \rR^n$ is precisely $\sum \lambda_i \pdv{x_i} \leftrightarrow \sum \lambda_i e_i$.
@@ -1761,7 +1761,7 @@ There is a bijection between the set of left invariant vector fields (LIVF) and 
 \ul{Remark}: Since the set of LIVFs is a vector space (if $X, Y$ are LIVFs then trivally so is $\lambda X + \mu Y$) this bijection is actually a linear ismorphism.
 
 \begin{proof}
-For any $v\in T_eG$ we can construct a LIVF by "left propagation". ie let $X_g = dL_g(v) \,\, \forall g\in G$. The resulting fiel $X$ is left invariant:
+For any $v\in T_eG$ we can construct a LIVF by "left propagation". ie let $X_g = dL_g(v) \,\, \forall g\in G$. The resulting field $X$ is left invariant:
 \begin{align*}
 dL_g(X_h) &= dL_g \circ dL_h(v) & \\
 &= d(L_g \circ L_h)(v) & \mbox{(by the chain rule)} \\
