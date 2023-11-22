@@ -32,12 +32,15 @@
 \newcommand{\cinfm}{\ensuremath{C^{\infty}(M)\,}}
 \newcommand{\cinfn}[1]{\ensuremath{C^{\infty}(#1)\,}}
 \newcommand{\tpm}{\ensuremath{T_p M}}
+\newcommand{\teg}{\ensuremath{T_e G}} % tangent space of group at identity will probably be common
 \newcommand{\tm}{\ensuremath{T M}}
 \newcommand{\tn}[1]{\ensuremath{T {#1}}}
 \newcommand{\tqn}[2]{\ensuremath{T_{#1} {#2}}}
 \newcommand{\dfp}{\ensuremath{df_p \,}}
 \newcommand{\dfq}[1]{\ensuremath{df_{#1}\,}}
 \newcommand{\df}{\ensuremath{df}}
+\newcommand{\dgq}[2]{\ensuremath{d {#1}_{#2}}}
+\newcommand{\dg}[1]{\ensuremath{d {#1}}}
 
 \newcommand{\mnr}{\ensuremath{M_n(\rR)\,}}
 \newcommand{\mnc}{\ensuremath{M_n(\cC)\,}}
@@ -71,10 +74,14 @@
 
 %lie algebras
 \newcommand{\lglnr}{\ensuremath{\mathfrak{gl}_n(\rR)}}
-\newcommand{\lslnr}{\ensuremath{\mathfrak{sl}_n(\rR)}}
+\newcommand{\lgslnr}{\ensuremath{\mathfrak{sl}_n(\rR)}}
 \newcommand{\lgon}{\ensuremath{\mathfrak{o}_n}}
+\newcommand{\lgson}{\ensuremath{\mathfrak{so}_n}}
 \newcommand{\lgun}{\ensuremath{\mathfrak{u}_n}}
+\newcommand{\lgsun}{\ensuremath{\mathfrak{su}_n}}
 \newcommand{\lgspn}{\ensuremath{\mathfrak{sp}_n}}
+\newcommand{\lalg}{\ensuremath{\mathfrak{g}}}
+\newcommand{\lall}[1]{\ensuremath{\mathfrak{#1}}}
 
 \newcommand{\sph}[1]{\ensuremath{S^{#1}}\,}
 \newcommand{\tor}[1]{\ensuremath{T^{#1}}\,}
@@ -91,6 +98,9 @@
 
 \newcommand{\quot}[2]{\ensuremath{\;^{#1} / _{#2}\;}}
 \newcommand{\ecomm}{\ensuremath{\comm{\cdot}{\cdot}}}
+\newcommand{\commg}[2]{\ensuremath{\comm{#1}{#2}}_{\mathfrak{g}}}
+\newcommand{\comml}[3]{\ensuremath{\comm{#1}{#2}}_{\mathfrak{#3}}}
+\newcommand{\commp}[3]{\ensuremath{\comm{#1}{#2}}_{#3}}
 
 \newcommand{\bij}[1]{\ensuremath{\operatorname{Bij}(#1)}}
 \newcommand{\homeo}[1]{\ensuremath{\operatorname{Homeo}(#1)}}
@@ -2012,4 +2022,97 @@ In symplectic case, we have four real numbers for each entry, but diagonal entri
 $\therefore \dim\lgspn= \frac{4n^2-4n}{2}+\underset{\text{diagonal entries}}{3n}=2n^2-2n+3n=2n^2+n $
 \end{proof}
 
+\section{Lecture 22 22/11/23}
+\ul{Previously}:
+
+\begin{itemize}
+\item Lie bracket of matrix groups is the matrix commutator. $\comm{A}{B}=AB-BA$. So identifying the Lie algebra just requires identifying the tangent space at the identity \teg.
+\item \glnr has Lie algebra $\lglnr=(\mnr, \ecomm)$, $\lgon=\{\text{skew symmetric matrices}, \ecomm\}$, $\lgun=(\{A\in\mnc \mid \bar{A}^T=-A \},\ecomm)$, $\lgspn=\ldots$. This leaves \gsln and \gsun. (As $\gon\underset{\text{topologically}}{\cong} \gson \amalg \gson$, we get $\lgson=\lgon$
+\end{itemize}
+
+For \gsln and \gsun we need a lemma:
+
+\begin{lemma}
+Suppose $A(t)$ is a \cinf path of matrices in \mnf such that $A(0)=I_n$. Then $\dv{t}\eval{\det A(t)}_{t=0}=\tr A'(0)$.
+\end{lemma}
+
+\begin{proof}
+Recall that 
+\[\det A = \sum_{\sigma\in S_n} \operatorname{sign}(\sigma) \prod_{i=1}^n a_{i \sigma(i)} \]
+($S_n=$ symmetric group, i.e. permutations of $\{1,\ldots,n\}$, $A=(a_{ij})$)
+
+Each term of sum, when differentiated gives an expression (product rule)
+\[a'_{1\sigma(1)}a_{2\sigma(2)}\cdots a_{n\sigma(n)}+a_{1\sigma(1)}a'_{2\sigma(2)}\cdots a_{n\sigma(n)}+\ldots +a_{1\sigma(1)}a_{2\sigma(2)}\cdots a'_{n\sigma(n)}\]
+At $I_n$, $a_{ij}=\delta_{ij}$, so this gives 
+\[\dv{t}\eval{\det A(t)}_{t=0}=a'_{11}+a'_{22}+\ldots +a'_{nn} =\tr A'(0) \]
+as all terms $a_{ij}$ with $i\neq j$ vanish. 
+\end{proof}
+
+\begin{thm}
+As vectors spaces 
+\begin{align*}
+\lgslnr & =\{A\in \mnr \mid \tr A=0\}\\
+\lgsun & =\{A\in \lgun \mid \tr A=0\}=\{A\in\mnc \mid \bar{A}^T=-A, \tr A=0\}.
+\end{align*}
+\end{thm}
+
+\begin{proof}
+The condition $\det A=1$ in the definitions of both \gsln and \gsun differentiate at $I_n$ to give $\tr A=0$ (by 2.3.15).
+\end{proof}
+
+A linear map of Lie algebras $f:\mathfrak{g}\to \mathfrak{h}$ is a \ul{Lie algebra homomorphism} if $f(\commg{u}{v})=\comml{f(u)}{f(v)}{h}$, $\forall u,v \in \mathfrak{g}$.
+
+\begin{thm}
+A smooth homomorphism of Lie Groups $\theta:G\to H$ induces a Lie algebra homomorphism $\dgq{\theta}{e}:\mathfrak{g}\to \mathfrak{h}$.
+\end{thm}
+
+\begin{proof}
+Consider $u,v \in \mathfrak{g}$ and corresponding paths $\theta(t)$, $\psi(s)$ s.t. $\phi'(0)=u$, $\psi'(0)=v$. (picture).
+
+Let $f\in \cinfn{H}$, so $f\circ \theta \in \cinfn{G}$. If $U$ and $V$ extend $u,v$ to LIVFs we have 
+\[\dgq{\theta}{e} (V_g) (f) = \dv{s} \eval{f(\theta \circ \L_g \circ \psi(s))}_{s=0}\] 
+by the definition of derivatives (2.2.4).
+
+Then 
+\begin{align*}
+\eval{\dg{\theta}(U) \dg{\theta}(V) (f)}_{e_H}&=\dv{t}\eval{\dgq{\theta}{\phi(t)} (V_{\phi(t)}) (f)}_{t=0}\\
+&=\pdv{}{t}{s}\eval{f(\theta\circ L_{\phi(t)}\circ \psi(s))}_{s=t=0}\\
+&=\pdv{}{t}{s}\eval{f(\theta(\phi(t)\psi(s)))}_{s=t=0}
+\end{align*}
+So 
+\[\commp{\dg{\theta}(U)}{\dg{\theta}(V)}{e_H}(f)=\pdv{}{t}{s}\eval{\left[f\circ\theta(\phi(t)\psi(s))-f\circ\theta(\psi(s)\phi(t))\right]}_{s=t=0}\]
+Compare 
+\[V_g(f\circ\theta)=\dv{s}\eval{f\circ\theta(g\psi(s))}_{s=0}\]
+to 
+\[\eval{UV(f\circ\theta)}_{e_G}=\pdv{}{t}{s}\eval{f\circ\theta(\phi(t)\psi(s))}_{s=t=0}\]
+
+\begin{align*}
+\therefore \eval{\dg{\theta}(\comm{U}{V})(f)}_{e_H} &=\eval{\comm{U}{V}(f\circ\theta)}_{e_H} \\
+&= \eval{UV(f\circ\theta)}_{e_G}-\eval{VU(f\circ\theta)}_{e_G}\\
+&= \pdv{}{t}{s}\eval{\left[f\circ\theta(\phi(t)\psi(s))-f\circ\theta(\psi(s)\phi(t))\right]}_{s=t=0}\\
+&= \commp{\dg{\theta}(U)}{\dg{\theta}(V)}{e_H}(f) \quad \text{from above}
+\end{align*}
+\end{proof}
+
+A \ul{Lie group isomorphism} is an isomorphism of Lie Groups which is a $\cinf$ diffeomorphism. 
+
+\begin{cor}
+A Lie Group isomorphism induces an isomorphism of Lie algebras.
+\end{cor}
+
+\ul{Question}: To what extent is the reverse true, i.e. If $G$ and $H$ have isomorphic Lie algebras, is $G \cong H$?
+(If yes, this would mean we could classify Lie groups via linear algebra)
+\ul{Answer} No!
+
+Simple counter examples 
+\begin{itemize}
+\item $\gon \not \cong \gson$ but $\lgon =\lgson$.
+\item $\gsuk{2}\not \cong \gsok{3}$ but $\mathfrak{su}(2) \cong \mathfrak{so}(3) = \mathfrak{o}(3)$.
+\end{itemize}
+
+But
+
+\begin{thm}
+(Lie - very hard!) Simply - connected Lie groups are $\cong \iff$ their Lie algebras are $\cong$, (Simply - connected: loops can be contracted to a point).
+\end{thm}
 \end{document}
