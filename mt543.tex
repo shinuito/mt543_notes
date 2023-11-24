@@ -18,6 +18,7 @@
 \renewcommand{\abstractname}{Note:} 
 
 %new commands
+\newcommand{\nN}{\ensuremath{\mathbb{N}\,}}
 \newcommand{\zZ}{\ensuremath{\mathbb{Z}\,}}
 \newcommand{\rR}{\ensuremath{\mathbb{R}\,}}
 \newcommand{\cC}{\ensuremath{\mathbb{C}\,}}
@@ -2115,4 +2116,80 @@ But
 \begin{thm}
 (Lie - very hard!) Simply - connected Lie groups are $\cong \iff$ their Lie algebras are $\cong$, (Simply - connected: loops can be contracted to a point).
 \end{thm}
+
+\section{Lecture 23 24/11/23}
+\subsection{One-parameter subgroups and the exponential map}
+\subsubsection{One-parameter subgroups}
+$G$ is always a Lie group.
+
+\begin{defn}
+A one-parameter subgroup (1psg) in $G$ is a smooth homomorphism $f:\rR\to G$.
+\end{defn}
+
+\ul{Remark} The fact that $f$ is a homomorphism means $f(t+s)=f(t)f(s) \forall t,s \in \rR$.
+
+\begin{thm}
+Every LIVF $X$ on $G$ gives rise to a 1psg $\phi$ with the property that $\dgq{\phi}{t}\left(\dv{t}\right)=X_{\phi(t)}$.
+\end{thm}
+(picture showing vector d/dt mapping to tangent vector on G)
+
+\ul{Remarks}
+\begin{enumerate}
+\item Given a vector field $Y$ on a manifold $M$, and a differentiable curve $\gamma:(-\epsilon,\epsilon)\to M$ with the property that $\dgq{\gamma}{t}=Y_{\gamma(t)} \forall t\in (-\epsilon,\epsilon)$, then $\gamma$ is said to be an \ul{integral curve} of $Y$.
+\item A classical ODE result tells us that for any vector field $Y$ on $M$ and any $p\in M$, there is a \ul{unique} integral curve $\gamma:(-\epsilon,\epsilon)\to M$ for some $\gamma>0$ such that $\gamma(0)=p$. (two curves would agree on the intersection) (Picard Lindel\"of theorem transfers to manifold as it's a local result - manifolds are locally euclidean)
+ \end{enumerate}
+\begin{proof}
+By the ODE result above $\exists \epsilon>0$ and a unique integral curve $\gamma:(-\epsilon,\epsilon)\to G$ such that $\gamma(0)=e$ and $\dgq{\gamma}{t}\left(\dv{t}\right)=Y_{\gamma(t)} \forall t \in (-\epsilon,\epsilon)$.
+
+(show homomorphism property) 
+Consider any $s,t \in (-\epsilon,\epsilon)$ such that $s+t\in (-\epsilon,\epsilon)$. Fix $s$ and let $t$ vary subject to $t\in (-\epsilon,\epsilon)$ and $s+t \in (-\epsilon,\epsilon)$.
+
+Let $f_1(t)=\gamma(s+t)$, and $f_2(t)=\gamma(s)\gamma(t)=L_{\gamma(s)}\gamma(t)$.
+
+Differentiating gives the following 
+\[\dgq{f_1}{t}\left(\dv{t}\right)=\dgq{\gamma}{s+t}\left(\dv{t}\right)=X_{\gamma(s+t)}=X_{f_1(t)}\]
+and
+\begin{align*}
+\dgq{f_2}{t}\left(\dv{t}\right)=\dgq{L}{\gamma(s)}\circ\dgq{\gamma}{t}\left(\dv{t}\right)&=\dgq{L}{\gamma(s)}\left(X_{\gamma(t)}\right)\\
+&\underset{X\text{ is LI}}{=}X_{\gamma(s)\gamma(t)}\\
+&= X_{f_2(t)}.
+\end{align*}
+$\therefore$ Both $f_1$ and $f_2$ are integral curves of $X$. Since $f_1(0)=\gamma(s)=f_2(0)$, by uniqueness we see that $f_1(t)=f_2(t)$, i.e. $\gamma(s+t)=\gamma(s)\gamma(t)$. So $\gamma$ behaves like a homomorphism near $0\in (-\epsilon,\epsilon)$.
+\end{proof}
+
+Next, we extend $\gamma$ to a map $\phi:\rR \to G$. For $t\in (-\epsilon,\epsilon)$, set $\phi(t)=\gamma(t)$. More generally, for $t\in \rR$, $\exists N\in \nN$ s.t. $\frac{t}{N}\in (-\epsilon,\epsilon)$. Set $\phi(t)=\phi\left(\frac{t}{N}\right)^N (=\gamma\left(\frac{t}{N}\right)^N)$.
+
+\ul{Claim 1} This $(\phi)$ is well-defined, i.e. $\phi(t)$ is unambiguous in the sense that it does \ul{not} depend on the particular choice of $N$, provided $\frac{t}{N}\in  (-\epsilon,\epsilon)$. We need to check that 
+\[\phi\left(\frac{t}{N}\right)^N=\phi\left(\frac{t}{M}\right)^M\]
+Observe that $\frac{t}{NM}\in (-\epsilon,\epsilon)$
+\begin{align*}
+\phi\left(\frac{t}{NM}\right)^{NM}&=\underbrace{\phi\left(\frac{t}{NM}\right)\cdots \phi\left(\frac{t}{NM}\right)}_{NM \text{ times}}\\
+&=\underbrace{\underbrace{\left[\phi\left(\frac{t}{NM}\right)\cdots \phi\left(\frac{t}{NM}\right)\right]}_{M \text{ terms}}\cdots \left[\phi\left(\frac{t}{NM}\right)\cdots \phi\left(\frac{t}{NM}\right)\right]}_{N \text{ terms}}\\
+&=\left[\phi\left(\underbrace{\frac{t}{NM}+\cdots+\frac{t}{NM}}_{M \text{ terms}}\right)\right]\cdots \left[\phi\left(\frac{t}{NM}+\cdots+\frac{t}{NM}\right)\right] \\
+\shortintertext{\raggedleft by local homom property}
+&=\underbrace{\phi\left(\frac{t}{N}\right)\cdots \phi\left(\frac{t}{N}\right)}_{N \text{ terms}} = \phi\left(\frac{t}{N}\right)^N.
+\end{align*}
+Same argument (breaking original product up in a different way) shows $\phi\left(\frac{t}{NM}\right)^{NM}=\phi\left(\frac{t}{M}\right)^M$. So $\phi\left(\frac{t}{N}\right)^N=\phi\left(\frac{t}{M}\right)^M$ as required.
+
+\ul{Claim 2} $\phi$ is a 1psg, i.e. $\forall s,t \in \rR$, $\phi(s+t)=\phi(s)\phi(t)$. 
+
+Proof of claim: $\exists N, M\in \nN$ s.t. $\frac{t}{N}, \frac{s}{M}\in (-\epsilon,\epsilon)$ and $\frac{t}{NM}, \frac{s}{NM}, \frac{t+s}{NM}\in (-\epsilon,\epsilon)$.
+Then 
+\begin{align*}
+\phi(s+t)&=\phi\left(\frac{s+t}{NM}\right)^{NM}\\
+\phi(t)&=\phi\left(\frac{t}{N}\right)^{N}=\phi\left(\frac{t}{NM}\right)^{NM}\\
+\phi(s)&=\phi\left(\frac{s}{M}\right)^{M}=\phi\left(\frac{s}{NM}\right)^{NM}
+\end{align*}
+
+\begin{align*}
+\therefore \phi(s+t)=\phi\left(\frac{s+t}{NM}\right)^{NM}&=\phi\left(\frac{s}{NM}+\frac{t}{NM}\right)^{NM}\\
+&=\left[\phi\left(\frac{s}{NM}\right)\phi\left(\frac{t}{NM}\right)\right]^{NM}\\
+\shortintertext{\raggedleft by local homom property (*)}
+\end{align*}
+But
+\[\phi\left(\frac{s}{NM}\right)\phi\left(\frac{t}{NM}\right)=\phi\left(\frac{s+t}{NM}\right)=\phi\left(\frac{t+s}{NM}\right)=\phi\left(\frac{t}{NM}\right)\phi\left(\frac{s}{NM}\right)\]
+\begin{align*}
+\therefore \phi(s+t)&\underset{(*)}{=}\phi\left(\frac{s}{NM}\right)^{NM}\phi\left(\frac{t}{NM}\right)^{NM}\\
+&=\phi(s)\phi(t) && \text{as required.}
+\end{align*}
 \end{document}
