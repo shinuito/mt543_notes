@@ -75,6 +75,7 @@
 
 %lie algebras
 \newcommand{\lglnr}{\ensuremath{\mathfrak{gl}_n(\rR)}}
+\newcommand{\lglnf}{\ensuremath{\mathfrak{gl}_n(\fF)}}
 \newcommand{\lgslnr}{\ensuremath{\mathfrak{sl}_n(\rR)}}
 \newcommand{\lgon}{\ensuremath{\mathfrak{o}_n}}
 \newcommand{\lgson}{\ensuremath{\mathfrak{so}_n}}
@@ -2271,7 +2272,103 @@ As \lalg is a Euclidean space, we can identify $\tqn{v}{\lalg}$ with \lalg itsel
 $\therefore \underset{\text{deriv. at } 0 \in\lalg}{\dgq{\exp}{0}}:\tqn{0}{\lalg}\to \underset{\text{since} \exp(0)=e}{\tqn{e}{G}}$.
 $\therefore \dgq{\exp}{0}:\lalg\to \lalg.$
 \begin{lemma}
+$ \dgq{\exp}{0}=id_{\lalg}$. (next time)
+\end{lemma}
+
+\section{Lecture 25 29/11/23}
+%\addtocounter{thm}{-1}
+Previously:
+\begin{itemize}
+\item 1psg: smooth homomorphism $\rR\to G$
+\item 1psgs are in bijection with elements of \lalg, i.e. $v\in \lalg \leftrightarrow \phi^v(t)$ where $\dv{t}\eval{\phi^v(t)}_{t=0}=v$.
+\item $\exp:\lalg\to G$, $\exp(v)=\phi^v(\underset{t=1}{1})$
+\item $\phi^{\lambda v}(t)=\phi^v(\lambda t)$
+\item $\dgq{\exp}{0}:\tqn{0}{\lalg}\to \tqn{e}{G}$, i.e. $\dgq{\exp}{0}:\lalg\to \lalg$
+\end{itemize}
+\addtocounter{thm}{-1}
+\begin{lemma}
 $ \dgq{\exp}{0}=id_{\lalg}$.
 \end{lemma}
+\begin{proof}
+For $v\in \lalg$, consider the path $\gamma(t)=tv$ in \lalg $\gamma(0)=0$, $\gamma'(0)$.
+\begin{align*}
+\therefore \dgq{\exp}{0}(v)&=\dv{t}\eval{\exp(tv)}_{t=0}\\
+&= \dv{t}\eval{\phi^{tv}(1)}_{t=0}\\
+&\underset{3.1.5}{=} \dv{t}\eval{\phi^{v}(t)}_{t=0}=v.
+\end{align*}
+\end{proof}
+
+Recall for a smooth map $f:M\to N$, if at some point $p\in M$ $\dfp:\tpm\to \tqn{f(p)}{N}$ is an isomorphism, then $\exists U\ni p$ and $\exists U\ni f(p)$, open sets in $M$ resp. N such that $\eval{f}_{U}:U\to V$ is a diffeomorphism. This is the "Inverse Function Theorem".
+
+\begin{cor}
+$\exists$ nbhds $U$ of $0$ in \lalg and $V$ of $e$ in $G$ s.t. $\exp:U\to V$ is a diffeomorphism. (picture)
+\end{cor}
+
+\ul{Remark} This tells us that $\exp$ determines a chart about $e\in G$. By left-translation $L_g$ we can similarly obtain a chart about any $g\in G$. i.e. $\exp$ results in an algebraically defined atlas for $G$.
+
+\begin{defn}
+Given a matrix $A\in\mnf$, let 
+\[e^A:=I_n+A+\frac{A^2}{2!}+\frac{A^3}{3!}+\ldots +\frac{A^n}{n!}+\ldots\]
+\end{defn}
+\begin{lemma}
+$e^A$ converges $\forall A\in \mnf$. (here convergence can be taken to mean that the $ij^{th}$ terms $P_{ij}(m)$ of the partial sums $p(m)=I_n+A+\ldots \frac{A^m}{m!}$ converge in the usual $\rR $ sense)
+\end{lemma}
+\begin{proof}
+checking exercise - see moodle.
+\end{proof}
+\begin{lemma}
+For $A,B\in \mnf$ if $AB=BA$ then $e^A e^B=e^(A+B)$.
+\end{lemma}
+\begin{proof}
+\[e^Ae^B=\left(I+A+\frac{A^2}{2!}+\ldots\right)\left(I+B+\frac{B^2}{2!}+\ldots\right)\]
+\begin{align*}
+&\text{The order }0 \text{term is }&& I\\
+&\text{The order }1 \text{term is } &&A+B\\
+&\text{The order }2 \text{term is } &&\frac{A^2}{2!}+AB+\frac{B^2}{2!}\\
+& &&=\frac{1}{2}(A^2+AB+BA+B^2) \text{ if } AB=BA\\
+& &&=\frac{1}{2}(A+B)^2\\
+&\text{The order }n \text{term is } &&\frac{A^n}{n!}+\frac{A^{n-1}B}{(n-1)!}+ \frac{A^{n-2}B^2}{(n-2)!2!}+\ldots + \frac{A^{n-k}B^k}{(n-k)!k!}+\ldots +\frac{B^n}{n!}\\
+& &&\underset{\text{Binomial thm \&} AB=BA}{=} \frac{1}{n!}(A+B)^n\\
+\end{align*}
+Thus 
+\[e^Ae^B=I+(A+B) +\frac{1}{2!}(A+B)^2+\ldots +\frac{1}{n!}(A+B)^n+\ldots =e^{A+B}\]
+\end{proof}
+
+\begin{cor}
+\begin{itemize}
+\item[a)] For every $A\in \mnf$, $e^A\in \glnff$.
+\item[b)] $\phi(t):=\exp(tA)$ is a 1psg of $\glnff$.
+\end{itemize}
+\end{cor}
+\begin{proof}
+\begin{itemize}
+\item[a)] By 3.2.6 $e^A e^{-A}=e^{A-A}=e^0=I_n$. $\therefore e^A$ is invertible, so $e^A\in \glnff$.
+\item[b)] Clearly $\phi(0)=e^0=I$. $\phi(s+t)=e^{(s+t)A}=e^{sA+tA}\underset{3.2.6}{=}e^{sA}e^{tA}=\phi(s)\phi(t)$. 
+
+$\phi(-t)=e^{-tA}\underset{\text{by a)}}{=}\left(e^{tA}\right)^{-1}=\phi(t)^{-1}$
+\end{itemize}
+\end{proof}
+
+\begin{thm}
+On \lglnf, $\exp(A)=e^A$.
+\end{thm}
+\begin{proof}
+By 3.2.7(b), $e^{tA}$ is a 1psg of \glnff.
+\begin{align*}
+\dv{t}\eval{e^{tA}}_{t=0}&=\dv{t}\eval{\left(I+tA+\frac{t^2A^2}{2!}+\ldots\right)}_{t=0}\\
+&=\eval{\left(A+tA^2+\frac{t^2A^3}{2!}\ldots\right)}_{t=0}\\
+&=A.
+\end{align*}
+So for any $A\in \lglnf$, the 1psg $\phi^A(t)$ corresponding to $A$ is $e^{tA}$. $\therefore \exp(A)=\phi^A(1)=\eval{e^{tA}}_{t=1}=e^A$.
+\end{proof}
+\begin{lemma}
+For $A\in\mnf$, $\left(e^A\right)^*=e^{A^*}$, where $^*$ indicates conjugate transpose.
+\end{lemma}
+\ul{Remark} We will need this result to understand the exponential map on orthogonal groups.
+\begin{proof}
+Let $c:\mnf \to \mnf$ be the conjugate transpose map. Clearly this is real-linear and continuous. Let $P_m(A)$ be the partial sums of $e^A$. By \rR - linearity we have $c(P_m(A))=P_m(A^*)$. As $P_m(A)\underset{m\to \infty}{\to} e^A$, by continuity we have $P_m(A^*)\to c(P_m(A))\underset{m\to \infty}{\to} c(e^A) $. But $P_m(A^*)\underset{m\to \infty}{\to} e^{A^*}$. 
+
+$\therefore \underset{=\left(e^{A}\right)^*}{c(e^A)}=e^{A^*}$
+\end{proof}
 
 \end{document}
