@@ -2557,8 +2557,8 @@ If $G$ is abelian, $\exp$ is a homomorphism.
 \underset{G \text{Abelian}}{=}&\left[\exp(\frac{X}{N})\exp(\frac{Y}{N})\right]^N\\
 \shortintertext{If $N$ is big enough:}
 \underset{CBH}{=}& \left[\exp(\frac{X}{N}+\frac{Y}{N}+O(\frac{1}{N^2}))\right]^N\\
-%\underset{1psg}{=}& \left[\exp(N\left(\frac{X}{N}+\frac{Y}{N}+O(\frac{1}{N^2})))\right]\\
-%=& \left[\exp(X+Y+O(\frac{1}{N}))\right]
+\underset{1psg}{=}& \left[\exp(N\left(\frac{X}{N}+\frac{Y}{N}+O(\frac{1}{N^2})\right))\right]\\
+=& \left[\exp(X+Y+O(\frac{1}{N}))\right]
 \end{align*}
 As $N\to \infty$, $O(\frac{1}{N})\to 0$ and RHS$\to\exp(X+Y)$. As LHS is independent of $N$, we obtain $\exp(X)\exp(Y)=\exp(X+Y)$ as required.
 \end{proof}
@@ -2574,5 +2574,60 @@ $\therefore$ by the $1^{st}$ isomorphism theorem for groups
 \[\large G\cong \quot{\lalg}{\lall{k}}\cong \quot{\rR^n}{\{(n_1,\ldots,n_r,0,\ldots,0)\}}\cong \tor{r}\times \rR^{n-r}\].
 \end{proof}
 
+\section{Lecture 29 8/12/23}
+\ul{Question} (From proof of 3.3.3): Why is $\ker(\exp)$ discrete? (in the case where $\exp$ is a homomorphism)?
+
+\ul{Answer} As $\exp$ is a local diffeomorphism, from a nbhd $0\in U\subset \lalg$ to a nbhd $e\in V\subset G$. We see $\exists U\subset \lalg$ as above s.t. $\ker(\exp)\cap U=\{e\}$.
+
+Now let $v\in \ker(\exp), v\neq 0$. Suppose $\not \exists U'\ni v $ s.t. $\ker(\exp)\cap U'=\{v\}$.  Then $\exists$ sequence $\{v_n\}\subset \ker(\exp)$ with $v_n \underset{n\to \infty}{\to}v$. Then $v_n-v\in \ker(\exp) \forall n$. But $v_n-v \underset{n\to \infty}{\to}0$, thus $0$ is not an isolated element of $\ker(\exp)$. Contradiction! Hence the claim.
+
+\begin{thm}
+If $H$ is a closed subgroup of a Lie group $G$, then $H$ is a Lie subgroup.
+\end{thm}
+\ul{Remarks} 
+\begin{enumerate}
+\item A Lie subgroup is a submanifold of a Lie group which is itself a group under the restricted operation.
+\item Recall that a Matrix group is a closed subgroup of \glnff. From 3.3.5 we see all matrix groups are Lie Groups. 
+\end{enumerate}
+
+\begin{proof}
+All we have to do is show $H$ is a submanifold (as the smoothness of the group operations is automatic). First we show that
+\[\lall{h}=\{X\in \lalg\mid \exp(tX)\in H \forall t \in \rR\}\]
+is a vector space (turns out to be a lie subalgebra but we won't show it as it's not needed). As closure under scaling is trivial, we just have to show \lall{h} is closed under addition.
+
+As in proof of 3.3.4, for $X,Y \in \lall{h}$ and any $t\in \rR$ we have
+\[\left(\exp(\frac{tX}{N})\exp(\frac{tY}{N})\right)^N\underset{CBH}{=}\exp(t(X+Y)+O(\frac{1}{N}))\in H\]
+As $N\to \infty$, we see that 
+\[\left(\exp(\frac{tX}{N})\exp(\frac{tY}{N})\right)^N\to \exp(t(X+Y))\]
+As $H$ is closed, the limit of the above sequence $\in H$, i.e. $\exp(t(X+Y))\in H \forall t \in \rR$. 
+$\therefore X+Y\in \lall{h}$ as required.
+
+Next pick any (vector) subspace $\lall{m}\subset \lalg$, s.t. $\lalg=\lall{h}\oplus \lall{m}$.
+
+\ul{Claim} $\exists$ nbhd $U$ of $0$ in $\lall{m}$ s.t. $X\in U\implies \exp(X)\not\in H$.
+
+\ul{Proof of claim}: Suppose otherwise. Then $\exists$ sequence of non-zero vectors $\{X_n\}$ in \lall{m} s.t. $X_n\to 0$ and $\exp(X_n)\in H \forall n$. 
+Given any Euclidean norm (i.e. norm from an inner product) on $\lall{m}$, consider the sequence $\frac{X_n}{\norm{X_n}}$. This sequence lies on the (compact) unit sphere in \lall{m}. 
+
+By compactness this has a convergent subsequence. By relabelling if necessary, call the convergent sequence $\frac{X_n}{\norm{X_n}}$.
+
+Suppose $\lim\limits_{n\to\infty}\frac{X_n}{\norm{X_n}}=:X$. As $\lall{m}$ is closed in \lalg, $X\in \lall{m}$.
+
+Given any $t\in \rR$ $\exists$ sequence $i_n\in \zZ$ s.t. $\lim\limits_{n\to \infty}i_n\norm{X_n}=t$. (To see this, set $i_n=\operatorname{lub}\{m\in \zZ\mid m\norm{X_n}\leq t\}$. Then $t-i_n\norm{X_n}\in \left[0,\norm{X_n}\right]$. But $\norm{X_n}\to 0$ as $n\to \infty$.)
+
+Then 
+\begin{align*}
+exp(tX)&=\exp(\left(\lim\limits_{n\to\infty} i_n\norm{X_n}\right) \left(\lim\limits_{n\to\infty} \frac{X_n}{\norm{X_n}}\right))\\
+&=\exp(\left(\lim\limits_{n\to\infty} \frac{i_n\norm{X_n}X_n}{\norm{X_n}}\right))\\
+&=\exp(\lim_{n\to\infty} i_nX_n)\\
+&=\lim_{n\to\infty} \exp(i_n X_n) \quad \text{by continuity of exp}\\
+&= \lim_{n\to \infty}\left[\exp(X_n)\right]^{i_n}.
+\end{align*}
+By assumption, this is a sequence of elements in $H$, and as $H$ is closed we see the limit $\in H$ also, i.e. $\exp(tX)\in H \forall t\in \rR \implies X\in \lall{h}$ Contradiction!. So claim is true.
+
+To complete the proof, recall the map $\psi:\lalg = \lall{h}\oplus \lall{m}\to G$ in Lemma 3.2.15 given by $\psi(u,v)=\exp(u)\exp(v)$. This was shown to be a local diffeomorphism near $0$. Thus we can choose nbhds $U\subset \lall{h}$, $V\subset \lall{m}$ about $0$ s.t. $\psi:U\times V\to G$ is a local diffeomorphism. If $\psi(u,v)\in H$ then since $\exp(u)\in H$ we must have $v=0$, else $\exp(v)=\exp(-u)\psi(u,v)\in H$ contradicts the claim (assuming $V$ has the property described by the claim)
+
+$\therefore \psi$ maps $U\times \{0\}$ diffeomorphically onto a nbhd of $e\in H$, i.e. $\eval{\psi}_{U\times \{0\}}$ is a chart for $H$. Composing this chart with left-translation in $H$ gives charts around all points of $H$, and hence an atlas. As these charts are restrictions of charts (given by $\psi$ and its translations) on $G$, we conclude that $H$ is a submanifold.
+\end{proof}
 
 \end{document}
