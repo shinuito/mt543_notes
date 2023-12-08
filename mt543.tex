@@ -2514,4 +2514,65 @@ Next, for a test function $f\in \cinfn{G}$, compute a Taylor expansion of $f(\ex
 Full details on Moodle.
 \end{proof}
 
+\section{Lecture 28 6/12/23}
+\ul{Last time:} CBH For $t$ sufficiently small
+\[\exp(tX)\exp(tY)=\exp(t(X+Y)+\frac{1}{2}\comm{X}{Y}t^2+O(t^3))\]
+\ul{Remark} A Lie algebra is said to be \ul{abelian} if $\comm{X}{Y}, \forall X,Y \in \lalg$. As $\ecomm$ is alternating, this is equivalent to $\ecomm \equiv 0$.
+
+\begin{cor}
+If  $G$ is abelian, then so is \lalg
+\end{cor}
+\begin{proof}
+\begin{align*}
+\exp(tX)\exp(tY)&\underset{CBH}{=}\exp(t(X+Y)+\frac{1}{2}\comm{X}{Y}t^2+O(t^3))\\
+\exp(tY)\exp(tX)&\underset{CBH}{=}\exp(t(Y+X)+\frac{1}{2}\comm{Y}{X}t^2+O(t^3)) \qq G \text{abelian}\\
+\end{align*}
+
+As $\exp$ is a diffeomorphism (1-1) close to $O\in \lalg$, for $t$ small we must have
+\[t(X+Y)+\frac{1}{2}\comm{X}{Y}t^2+O(t^3)=t(Y+X)+\frac{1}{2}\comm{Y}{X}t^2+O(t^3)\]
+
+$\therefore \frac{1}{2}t^2\comm{X}{Y}-\frac{1}{2}t^2\comm{Y}{X}+O(t^3)=0$
+Scaling by $\frac{2}{t^2}$ gives $\comm{X}{Y}-\comm{Y}{X}=O(t)$.
+
+Notice that LHS is independent of $t$, RHS $\to 0$ as $t\to 0$ so we must have RHS$=0$, i.e. $\comm{X}{Y}=\comm{Y}{X}$ as required.
+
+[$f(t)=O(t)$ means $\lim\limits_{t\to 0}\frac{f(t)}{t^n}=\text{constant}$. ]
+
+\end{proof}
+\ul{Remark} The converse to 3.3.2 is also true. To prove this we would also need to know that the higher order terms in the CBH formula are iterated Lie brackets. This means that if $\ecomm\equiv 0$, then $\exp(tX)\exp(tY)=\exp(t(X+Y))$ from which it follows that $G$ is abelian.
+
+\begin{thm}
+The only connected abelian Lie groups are $\tor{n}\times \rR^m (n,m\geq 0)$ where $\tor{n}=\underbrace{\sph{1}\times \cdots \times \sph{1}}_{n \text{copies}}$. In particular, a compact connected Lie group is a torus.
+\end{thm}
+
+Before proving this we will need
+
+\begin{lemma}
+If $G$ is abelian, $\exp$ is a homomorphism.
+\end{lemma}
+\begin{proof}
+\begin{align*}
+\exp(X)\exp(Y)=&\exp(\frac{X}{N})^N\exp(\frac{Y}{N})^N\\
+\shortintertext{for some } N\in \nN \shortintertext{ by the 1psg property of } \exp(tX)\\
+\underset{G \text{Abelian}}{=}&\left[\exp(\frac{X}{N})\exp(\frac{Y}{N})\right]^N\\
+\shortintertext{If $N$ is big enough:}
+\underset{CBH}{=}& \left[\exp(\frac{X}{N}+\frac{Y}{N}+O(\frac{1}{N^2}))\right]^N\\
+%\underset{1psg}{=}& \left[\exp(N\left(\frac{X}{N}+\frac{Y}{N}+O(\frac{1}{N^2})))\right]\\
+%=& \left[\exp(X+Y+O(\frac{1}{N}))\right]
+\end{align*}
+As $N\to \infty$, $O(\frac{1}{N})\to 0$ and RHS$\to\exp(X+Y)$. As LHS is independent of $N$, we obtain $\exp(X)\exp(Y)=\exp(X+Y)$ as required.
+\end{proof}
+
+\begin{proof}
+(of 3.3.3) Let $\lall{k}=\ker(\exp)\subset\lalg$. As $\exp$ is a diffeomorphism in a nbhd of $0\in \lalg$, we see that $\lall{k}$ must be discrete (come back to this).
+
+Moreover, since $\exp$ is a homomorphism (3.3.4), $\lall{k}$ must be a subgroup of \lalg. But a discrete subgroup of a vector space is a free abelian group with linearly independent generates $v_1,\ldots, v_r$.
+
+Extend this to a basis $v_1,\ldots, v_n$ for \lalg. Then w.r.t to this basis $\lall{k}=\{(n_1,\ldots, n_r, 0, \ldots, 0)\mid n\in \zZ\}$, i.e. \lall{k} is a lattice in \lalg.
+
+$\therefore$ by the $1^{st}$ isomorphism theorem for groups 
+\[\large G\cong \quot{\lalg}{\lall{k}}\cong \quot{\rR^n}{\{(n_1,\ldots,n_r,0,\ldots,0)\}}\cong \tor{r}\times \rR^{n-r}\].
+\end{proof}
+
+
 \end{document}
