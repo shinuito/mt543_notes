@@ -110,6 +110,12 @@
 \newcommand{\diffeo}[1]{\ensuremath{\operatorname{Diffeo}(#1)}}
 \newcommand{\isom}[1]{\ensuremath{\operatorname{Isom}(#1)}}
 \newcommand{\jac}[1]{\ensuremath{\operatorname{Jac}{#1}}}
+\newcommand{\Ad}{\ensuremath{\operatorname{Ad}}}
+\newcommand{\Adg}{\ensuremath{\operatorname{Ad}_g}}
+\newcommand{\Adh}[1]{\ensuremath{\operatorname{Ad}_{#1}}}
+\newcommand{\ad}{\ensuremath{\operatorname{ad}}}
+\newcommand{\adx}{\ensuremath{\operatorname{ad}_X}}
+\newcommand{\ady}[1]{\ensuremath{\operatorname{ad}_{#1}}}
 
 \newcommand{\genericA}{\ensuremath{\pmqty{a_{11} & \ldots & a_{1n} \\ \vdots & \vdots & \vdots \\ a_{n1} & \ldots & a_{nn}}}}
 
@@ -2630,4 +2636,77 @@ To complete the proof, recall the map $\psi:\lalg = \lall{h}\oplus \lall{m}\to G
 $\therefore \psi$ maps $U\times \{0\}$ diffeomorphically onto a nbhd of $e\in H$, i.e. $\eval{\psi}_{U\times \{0\}}$ is a chart for $H$. Composing this chart with left-translation in $H$ gives charts around all points of $H$, and hence an atlas. As these charts are restrictions of charts (given by $\psi$ and its translations) on $G$, we conclude that $H$ is a submanifold.
 \end{proof}
 
+\section{Lecture 30 11/12/23}
+\ul{Last time}:
+\addtocounter{thm}{-1}
+\begin{thm}
+If $H$ is a closed subgroup of a Lie group $G$, then $H$ is a submanifold of $G$, and hence a Lie group.
+\end{thm}
+
+\ul{Remarks}: (following on from proof of 3.3.5)
+\begin{enumerate}
+\item The vector space 
+\[\lall{h}=\{X\in \lalg\mid \exp(tX)\in H \forall t \in \rR\}\]
+is actually a Lie subalgebra, namely the Lie algebra of $H$.
+\item The proof also works if $\lall{h}=\{0\}$. In this case we deduce $H$ is a discrete group.
+\end{enumerate}
+\begin{cor}
+A zero-dimensional subgroup of a compact Lie group is finite.
+\end{cor}
+\ul{Remark:} It is common to use a wider definition of the term "Lie subgroup" to the one we previously adopted. This wider definition involves "immersed submanifolds" as opposed to submanifolds, in order to get a nice relationship between "Lie subgroups" and Lie subalgebras.
+\subsection{Adjoint Representation}
+A representation of a group $G$ is a homomorphism $G\to \operatorname{Aut}(V)$ where $V$ is a vector space, and the automorphism group $\operatorname{Aut}(V)$ is a group of invertible linear maps $V\to V$.
+
+(familiar ideas $\guk{1}=\{(e^{i\theta})\}$ take $\cC\to \cC$ rotations, $\glnr$ takes $\rR^n\to \rR^n$)
+(If $V$ is finite dimensional, then picking a basis gives us a map $G\to \glnr$)
+
+For a Lie group $G$, if $g\in G$ we can consider conjugation $\sigma:G\to G$, $h\mapsto ghg^{-1}$. This map is \cinf and fixes $e\in G$, so we can differentiate at $e$.
+\begin{defn}
+The \ul{adjoint representation} of $G$ (on \lalg) is 
+\[\Ad:G\to \operatorname{Aut}(\lalg)\]
+given by $\Ad(g)=\left(\dg{\sigma_g}\right)_e$. (We'll often write $\Adg$)
+\end{defn}
+Since \lalg is a finite dimensional vector space, after choosing a basis we have a resulting isomorphism $\operatorname{Aut}(\lalg)\cong \glnff$. Thus $\operatorname{Aut}(\lalg)$ is itself a Lie group. Moreover, \Ad is a (smooth) homomorphism.
+
+(Exercise: show that \Ad is a homomorphism. Hint: write $\sigma_g$ as a composition $L_g \circ R_{g^{-1}}$. Thus $\sigma_{gh}=L_g L_h R_{g^{-1}} R_{h^{-1}}$. Observe that Left and Right actions commute. Now differentiate and use chain rule.)
+
+Note: $\tqn{\mathrm{id}_\lalg}{\operatorname{Aut}(\lalg)}=\operatorname{End}(\lalg)$, space of endomorphisms of \lalg, i.e linear maps $\lalg\to\lalg$ (not necessarily invertible!) $\underset{\text{pick a basis}}{=}\mnf$.
+
+\begin{thm}
+The derivative of \Ad at $e\in G$, $\left(\dg{\Ad}\right)_e:\lalg\to \operatorname{End}(\lalg)$, is given by 
+\[\left(\dg{\Ad}\right)_e(X)=\comm{X}{-}\]
+where $X\in \lalg$, and $\comm{X}{-}:\lalg\to \lalg$ denotes the map $Y\mapsto \comm{X}{Y}$.
+\end{thm}
+
+\begin{defn}
+The \ul{adjoint representation} of $\lalg$ is 
+\[\ad(X)(Y)=\comm{X}{Y}, \quad \forall X,Y\in \lalg\]
+(To simplify notation we'll write \adx instead of $\ad(X)$.)
+\end{defn}
+\begin{proof}(of 4.2)
+Recall by Lemma 3.2.13, for any homomorphism $\alpha:G\to H$ we have a commutative square 
+\begin{center}
+\begin{tikzcd}
+\lalg \arrow{d}{\exp_G} \arrow{r}{\dgq{\alpha}{e}}
+& \lall{h} \arrow{d}{\exp_H} \\
+G \arrow{r}{\alpha} & H
+\end{tikzcd}
+\end{center}
+In the case that $G=H$ and $\alpha=\sigma_{\exp(tX)}$ (for some small $t\in \rR$ and $X\in \lalg$) we obtain
+\begin{center}
+\begin{tikzcd}
+\lalg \arrow{d}{\exp} \arrow{r}{\Adh{\exp(tX)}}
+& \lall{g} \arrow{d}{\exp} \\
+G \arrow{r}{\sigma_{\exp(tX)}} & G
+\end{tikzcd}
+\end{center}
+Suppose we start with $tY$ in upper left corner. Commutativity gives
+\begin{align*}
+\exp(\Adh{\exp(tX)}(tY))&=\sigma_{\exp(tX)}(\exp(tY))\\
+&=\exp(tX)\exp(tY)\underset{\exp(tX)^{-1}}{\exp(-tX)}\\
+&\underset{CBH}{=}? (\text{coming soon!})
+\end{align*}
+\end{proof}
+
+  
 \end{document}
