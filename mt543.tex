@@ -2703,10 +2703,83 @@ G \arrow{r}{\sigma_{\exp(tX)}} & G
 Suppose we start with $tY$ in upper left corner. Commutativity gives
 \begin{align*}
 \exp(\Adh{\exp(tX)}(tY))&=\sigma_{\exp(tX)}(\exp(tY))\\
-&=\exp(tX)\exp(tY)\underset{\exp(tX)^{-1}}{\exp(-tX)}\\
+&=\exp(tX)\exp(tY)\underset{=\exp(tX)^{-1}}{\exp(-tX)}\\
 &\underset{CBH}{=}? (\text{coming soon!})
 \end{align*}
 \end{proof}
+\section{Lecture 31 13/12/23}
+\ul{Last time:}
+\begin{itemize}
+\item Adjoint representation of Lie group $G$. $\Ad:G\to \operatorname{Aut}(\lalg)$, defined by 
+\[\Ad(g)=\qty(\dg{\sigma_g})_e,\]
+where $\sigma_g:h\mapsto ghg^{-1}$, i.e. conjugation by $g\in G$.
+\item Adjoint representation of Lie algebra \lalg, $\ad:\lalg\to \operatorname{End}(\lalg)$ given by 
+\[\adx:\comm{X}{-}.\]
+\end{itemize}
+\addtocounter{thm}{-2}
+\begin{thm}
+\[\qty(\dg{\Ad})_e=\ad\]
+\end{thm}
+\begin{proof}
+Last time we showed that 
+\begin{align*}
+\exp(\Adh{\exp(tX)}(tY))&=\exp(tX)\exp(tY)\exp(-tX)\\
+&\underset{CBH}{=} \exp(t(X+Y)+\frac{1}{2}t^2\comm{X}{Y}+O(t^3))\exp(-tX)\\
+&\underset{CBH}{=} \exp(t(X+Y)+\frac{1}{2}t^2\comm{X}{Y} - tX +\frac{1}{2}t^2\comm{X+Y}{-X}+O(t^3))\\
+&= \exp(tY+\frac{1}{2}t^2\qty(\comm{X}{Y} - \comm{X}{X}-\comm{Y}{X})+O(t^3))\\
+&= \exp(tY+t^2\comm{X}{Y}+O(t^3))
+\end{align*}
+But $\exp$ here is injective for small $t$ so 
+\[\Adh{\exp(tX)}(tY)=tY+t^2\comm{X}{Y}+O(t^3)\]
+By the linearity of $\Adh{\exp(tX)}$ we can scale both sides by $\frac{1}{t}$:
+\[\Adh{\exp(tX)}(Y)=Y+t\comm{X}{Y}+O(t^2) (*)\]
+By Lemma 3.2.13, we have a commutative square
+\begin{center}
+\begin{tikzcd}
+\lalg \arrow{d}{\exp_G} \arrow{r}{\qty(\dg{\Ad})_e}
+& \operatorname{End}(\lalg) \arrow{d}{\exp_{\operatorname{Aut}(\lalg)}} \\
+G \arrow{r}{\Ad} & \operatorname{Aut}(\lalg)
+\end{tikzcd}
+\end{center}
+So
+\[\Adh{\exp(tX)}=\exp_{\operatorname{Aut}(\lalg)}\qty(\dg{\Ad})_e (tX), \quad \text{for any } X\in \lalg.\]
+In particular, 
+\begin{align*}
+\Adh{\exp(tX)}(Y)&=\exp_{\operatorname{Aut}(\lalg)}\qty(\dg{\Ad})_e (tX)(Y)\\
+&\underset{*}{=}Y+t\comm{X}{Y}+O(t^2)
+\end{align*}
+Differentiating w.r.t and evaluating at $t=0$ gives
+\[\dv{t}\eval{\exp_{\operatorname{Aut}(\lalg)}\qty(\dg{\Ad})_e (tX)(Y)}_{t=0}=\comm{X}{Y}\]
+i.e. 
+\[\dv{t}\eval{\exp_{\operatorname{Aut}(\lalg)}\qty(\dg{\Ad})_e (tX)}_{t=0}(Y)=\comm{X}{Y}\]
+Now notice that $\qty(\dg{\Ad})_e (tX)$ is a path in $\operatorname{End}(\lalg)$. The image of this under $\exp_{\operatorname{Aut}(\lalg)}$ is then a 1psg of $\operatorname{Aut}(\lalg)$. The derivative of this 1psg is the 'generating vector', i.e. $\qty(\dg{\Ad})_e(X)$. But equally, this is 
+\[\dv{t}\eval{\exp_{\operatorname{Aut}(\lalg)}\qty(\dg{\Ad})_e (tX)}_{t=0}.\]
+\begin{align*}
+\therefore \qty(\dg{\Ad})_e (X)(Y)&=\comm{X}{Y}\\
+\text{i.e. }  \qty(\dg{\Ad})_e (X)&=\comm{X}{-}\\
+&\underset{\text{defn}}{=}\adx.
+\end{align*}
+True for all $X$, so $\qty(\dg{\Ad})_e=\ad$.
+\end{proof}
+\addtocounter{thm}{1}
+\begin{thm}
+For any matrix group $G$ and any $X\in \lalg$, 
+\[\Adh{e^X}=e^{\adx}\]
+\end{thm}
+\begin{proof}
+$\Ad:G\to \operatorname{Aut}(\lalg)$. Notice that the automorphism group is itself a matrix group (essentially \glnff).
 
-  
+As $G$ is a matrix group, $e^{tX}$ is a 1psg for any $X\in \lalg$.
+
+As $\Ad$ is a smooth homomorphism $\Adh{e^{tX}}$ is a 1psg of $\operatorname{Aut}(\lalg)$. Like all 1psgs, $\Adh{e^{tX}}$ is determined by its derivative at the identity. But
+\begin{align*}
+\dv{t}\eval{\Adh{e^{tX}}}_{t=0}&=\qty(\dg{\Ad})_e (X) \quad \text{(by definition of derivative)}\\
+&\underset{4.2}{=}\adx
+\end{align*}
+$\therefore$ 1psg of $\operatorname{Aut}(\lalg)$ determined by $\adx$, $e^{t\adx}$, is same as 1psg $\Adh{e^{tX}}$, i.e. $\Adh{e^{tX}}=e^{t\adx}$. 
+
+At $t=1$: $\Adh{e^X}=e^{\adx}$.
+\end{proof}
+
+
 \end{document}
