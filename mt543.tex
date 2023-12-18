@@ -72,6 +72,10 @@
 \newcommand{\gsok}[1]{\ensuremath{SO(#1)\,}}
 \newcommand{\gsuk}[1]{\ensuremath{SU(#1)\,}}
 \newcommand{\gslk}[1]{\ensuremath{SL(#1)\,}}
+\newcommand{\zg}{\ensuremath{Z(G)\,}}
+\newcommand{\zh}[1]{\ensuremath{Z\qty(#1)\,}}
+\newcommand{\zlg}{\ensuremath{z(\lalg)\,}}
+\newcommand{\zlh}[1]{\ensuremath{z\qty(\mathfrak{#1})\,}}
 
 %lie algebras
 \newcommand{\lglnr}{\ensuremath{\mathfrak{gl}_n(\rR)}}
@@ -2655,6 +2659,7 @@ A zero-dimensional subgroup of a compact Lie group is finite.
 \end{cor}
 \ul{Remark:} It is common to use a wider definition of the term "Lie subgroup" to the one we previously adopted. This wider definition involves "immersed submanifolds" as opposed to submanifolds, in order to get a nice relationship between "Lie subgroups" and Lie subalgebras.
 \subsection{Adjoint Representation}
+\renewcommand{\thethm}{\arabic{subsection}.\arabic{thm}}
 A representation of a group $G$ is a homomorphism $G\to \operatorname{Aut}(V)$ where $V$ is a vector space, and the automorphism group $\operatorname{Aut}(V)$ is a group of invertible linear maps $V\to V$.
 
 (familiar ideas $\guk{1}=\{(e^{i\theta})\}$ take $\cC\to \cC$ rotations, $\glnr$ takes $\rR^n\to \rR^n$)
@@ -2781,5 +2786,163 @@ $\therefore$ 1psg of $\operatorname{Aut}(\lalg)$ determined by $\adx$, $e^{t\adx
 At $t=1$: $\Adh{e^X}=e^{\adx}$.
 \end{proof}
 
+\section{Lecture 32 15/12/23}
+(Need to parachute some ideas in from elsewhere, without time for proofs in order to look at structure theory - some proofs will show the idea rather than the full proof)
+\begin{thm}
+If $G$ is a \ul{compact} Lie group with Lie algebra \lalg, then \lalg admits an $\Ad$-invariant inner product i.e. $\ipm{-}{-}$ s.t. $\forall g \in G, \forall X,Y \in \lalg$
+\[\ipm{\Adg(X)}{\Adg(Y)}=\ipm{X}{Y}.\]
+\end{thm}
+\begin{proof}
+(idea) Start with any inner product $I(\cdot,\cdot)$ on \lalg. Set $I_g(X,Y)=I(\Adg(X),\Adg(Y))$. This is an inner product $\forall g\in G$.
+
+Now average the $I_g$ by integrating, and set 
+\[\ipm{X}{Y}=\int_{g\in G} I_g(X,Y)\dg{g}.\]
+
+By construction, $\ipm{\cdot}{\cdot}$ is $\Ad$-invariant. Here $\dg{g}$ is the "Haar measure" on $G$. This is a b-invariant measure (i.e. both left and right invariant) which always exists if $G$ is compact.
+\end{proof}
+\begin{cor}
+For a compact Lie group $\Adg$ is an orthogonal transformation (w.r.t an $\Ad$-invariant inner product).
+\end{cor}
+\begin{thm}
+If $G$ is compact, $\exp:\lalg\to G$ is surjective.
+\end{thm}
+\begin{proof}
+(idea) Use the $\Ad$-invariant inner product to create a "Riemannian metric" on $G$ by left translation. (Riemannian metric = smoothly varying choice of inner product on each tangent space), which gives $G$ a geometry). The geodesics in this geometry (analogue of straight lines - shortest paths) starting at $e$ are precisely the 1psgs. By the Hopf-Rinow Theorem, any two points in $G$ can be joined by a geodesic.
+ 
+$\therefore$ any point in $G$ can be joined to $e$ by a 1psg. But 1psg take form $\exp(tX)$. So $\exp$ is surjective.
+\end{proof}
+\begin{lemma}
+If $\ipm{-}{-}$ is an $Ad$-invariant I.P. on $\lalg$, then $\forall X, Y, Z \in \lalg$,
+\[\ipm{\comm{Z}{X}}{Y}+\ipm{X}{\comm{Z}{Y}}=0.\]
+\end{lemma}
+\begin{proof}
+Let $\gamma(t)$ be a path in $G$ s.t. $\gamma'(0)=Z$. Then using the product rule
+\begin{align*}
+\dv{t}\eval{\ipm{\Adh{\gamma(t)}(X)}{\Adh{\gamma(t)}(Y)}}_{t=0}&=\ipm{\dv{t}\eval{\Adh{\gamma(t)}(X)}_{t=0}}{\eval{\Adh{\gamma(t)}(Y)}_{t=0}}\\
+&+\ipm{\eval{\Adh{\gamma(t)}(X)}_{t=0}}{\dv{t}\eval{\Adh{\gamma(t)}(Y)}_{t=0}}\\
+&\underset{4.2}{=}\ipm{\ady{Z}(X)}{Y}+\ipm{X}{\ady{Z}(Y)}\\
+&=\ipm{\comm{Z}{X}}{Y}+\ipm{X}{\comm{Z}{Y}}\\
+\shortintertext{By Ad-invariance of  $\ipm{-}{-}$}\\
+\ipm{\Adh{\gamma(t)}(X)}{\Adh{\gamma(t)}(Y)}&=\ipm{X}{Y}\quad\forall t\\
+\therefore \dv{t}\eval{\ipm{\Adh{\gamma(t)}(X)}{\Adh{\gamma(t)}(Y)}}_{t=0}&=0,
+\end{align*}
+which gives the result.
+\end{proof}
+\begin{defn}
+For a Lie algebra \lalg, a vector subspace $\lall{n}\subset \lalg$ is an \ul{ideal} of  \lalg if $\forall X\in \lall{n}$ and $\forall Y\in \lalg$, $\comm{X}{Y}\in \lall{n}$. Write as $\lall{n} \lhd \lalg$.
+\end{defn}
+\ul{Observation} An ideal of a Lie is trivially a Lie subalgebra.
+\begin{lemma}
+If $\lalg$ is the Lie algebra of a compact group $G$, and $\lall{n}\lhd \lalg$, then the complementary subspace $\lall{n}^{\perp}$ w.r.t any $\Ad$-invariant I.P. on $\lalg$ is also an ideal.
+\end{lemma}
+\begin{proof}
+If $X\in \lall{n}^{\perp}, Y\in \lall{n}$, and $Z\in \lalg$, then by 4.8 we have 
+\[\ipm{\comm{Z}{X}}{Y}=-\ipm{X}{\comm{Z}{Y}}.\]
+As $Y\in \lall{n}$, $\comm{Z}{Y}\in \lall{n}$, and since $X\in \lall{n}^{\perp}$, $\ipm{X}{\comm{Z}{Y}}=0$.
+
+$\therefore \ipm{\comm{Z}{X}}{Y}=0 \forall Y\in \lall{n}$, so $\comm{Z}{X}\in \lall{n}^{\perp}$. But this is true $\forall Z \in \lalg$, $\forall \lall{n}^{\perp}$ is also an ideal.
+\end{proof}
+\begin{defn}
+A Lie algebra $\lalg$ admits a \ul{direct sum decomposition} if 
+\[\lalg=\lalg_1\oplus \lalg_2\oplus \ldots \oplus \lalg_n\]
+as vector spaces, and $\lall{g}_i\lhd \lalg \forall i$.
+\end{defn}
+\begin{lemma}
+In a direct sum decomposition of a Lie algebra 
+\[\lalg=\lalg_1\oplus \lalg_2\oplus \ldots \oplus \lalg_n\]
+$\comm{X}{Y}=0$ whenever $X\in \lalg_i, Y\in \lalg_j$ and $i\neq j$.
+\end{lemma}
+\begin{proof}
+As $\lalg_i, \lalg_j$ are both ideals, then $\comm{X}{Y}\in \lalg_i$ and $\comm{X}{Y}\in \lalg_j$.
+
+$\therefore \comm{X}{Y}\in \lalg_i \cap \lalg_j=\{0\}$ as we have a direct sum decomposition of vector spaces.
+\end{proof}
+\begin{cor}
+For any ideal $\lall{n}\subset \lalg$, where $\lalg$ is the Lie algebra of a compact Lie group, w.r.t an $\Ad$-invariant inner product we have a direct sum decomposition of Lie algebras $\lalg=\lall{n}\oplus \lall{n}^{\perp}$.
+\end{cor}
+
+\section{Lecture 33 18/12/23}
+\ul{Last time}
+\begin{itemize}
+\item Ideal of a Lie algebra $\lall{n}\lhd \lalg$ satisfies $\forall X\in \lall{n}, \forall Y\in \lalg, \comm{X}{Y}\in \lall{n}$.
+\item Direct sum decomposition of $\lalg$: 
+\[\lalg=\lalg_1\oplus \lalg_2\oplus \ldots \oplus \lalg_n \quad\text{as vector space}\]
+where $\lalg_i\lhd \lalg \forall i$.
+\[\implies \comm{X}{Y}=0 \text{ if } X\in \lalg_i, Y\in \lalg_j, i\neq j.\]
+\item If $G$ is compact $\exists$ an Ad-invariant inner product on $\lalg$, i.e. $\ipm{X}{Y}=\ipm{\Adg(X)}{\Adg(Y)}, \forall g\in G$.
+\item If $\ipm{-}{-}$ is an Ad-invariant inner product on $\lalg$, and $\lall{n}\lhd \lalg$, then $\lall{n}^{\perp}$ is also an ideal!
+\end{itemize}
+
+Recall that the center of $G$, $\zg$ is $\{g\in G\mid gh=hg \forall h\in G\}$.
+
+Similarly, the center $\zlg$ of a Lie algebra $\lalg$ is $\zlg=\{X\in \lalg\mid \comm{X}{Y}=0, \forall Y\in \lalg\}$.
+
+Since $\comm{X}{Y}=\comm{Y}{X}\underset{\text{antisymmetry}}{\iff} \comm{X}{Y}=0$.
+
+The following is clear from the definitions:
+\begin{lemma}
+\begin{itemize}
+\item[(i)] $\zg \lhd G$,
+\item[(i)] $\zlg \lhd \lalg$,
+\end{itemize}
+\end{lemma}
+\begin{defn}
+A Lie algebra is \ul{simple} if it is non-abelian and the only ideals are $0$ and $\lalg$.
+\end{defn}
+
+\ul{Remark} Sometimes the above definition is given without the non-abelian condition. The formulation in 4.15 means that $\rR$ is not considered simple.
+
+\begin{thm}
+If $G$ is a compact Lie group, there is a direct sum decomposition of the Lie algebra
+\[\lalg=\zlg\oplus\lalg_1\oplus \ldots \oplus \lalg_n\]
+where $\lalg_i$ are simple $\forall i$.
+\end{thm}
+\begin{proof}
+Follows via 4.14 from repeated applications of 4.13.
+\end{proof}
+\begin{defn}
+A Lie algebra is \ul{semisimple} if it admits a direct sum decomposition into a sum of simple ideals.
+\end{defn}
+\begin{obs}
+If $\lalg$ is semisimple then $\zlg=0$.
+\end{obs}
+\begin{lemma}
+Let $N\lhd G$ be a closed normal subgroup of a Lie group $G$, with Lie algebra $\lall{n}$. Then $\forall g\in G$, $\eval{\Adg}_{\lall{n}}:\lall{n}\to\lall{n}$.
+\end{lemma}
+\begin{proof}
+For any $X\in \lall{n}$ choose a path $\gamma(t)$ in $N$ s.t. $\gamma'(0)=X$. Then by definition, $\Adg(X)=\dv{t}\eval{g\gamma(t)g^{-1}}_{t=0}$. But since $N\lhd G$, $g\gamma(t)g^{-1}$ is a path in $N$, so its derivative $\Adg(X)\in\lall{n}$ also.
+\end{proof}
+\begin{cor}
+For $N\lhd G$ with $G$ Lie and $N$ closed, then $\lall{n}\lhd \lalg$.
+\end{cor}
+\begin{proof}
+For any $X\in \lall{n}$ and any $Y\in \lalg$, choose a path $\mu(t)$ in $G$ with $\mu'(0)=Y$. Then 
+\begin{align*}
+\comm{Y}{X}&=:\ady{Y}(X)\\
+&\underset{4.2}{=}\dv{t}\eval{\Adh{\mu(t)}}_{t=0}(X)\\
+&=\dv{t}\eval{\Adh{\mu(t)}(X)}_{t=0}.
+\end{align*}
+By 4.19, $\Adh{\mu(t)}(X)$ is a path in $\lall{n}$. $\therefore$ its derivative at $t=0$, $\comm{Y}{X}$ also belongs to $\lall{n}$. As this is true $\forall Y\in \lalg$, $\lall{n}\lhd \lalg$.
+\end{proof}
+\begin{defn}
+A connected Lie group is \ul{simple} if it has no proper closed normal subgroups of $dim>0$.
+\end{defn}
+The following is immediate from 4.20:
+\begin{cor}
+Let $G$ be a connected Lie group with Lie algebra $\lalg$. Then $\lalg$ is simple, so is $G$.
+\end{cor}
+\ul{Remark} The converse to 4.22 also holds, but is \ul{much} more difficult!
+\begin{defn}
+A connected Lie group $G$ is \ul{semisimple} if its Lie algebra is semisimple.
+\end{defn}
+\begin{thm}
+The centre of a semisimple Lie group is discrete, and finite if $G$ is compact.
+\end{thm}
+\begin{proof}
+(sketch) By Observation 4.18, $\zlg=0$. It's not difficult to see that $\tqn{e}{\zg}\subset\zlg$, so $\tqn{e}{\zg}=0$. It's also not difficult to see that $\zg$ is closed in $G$, so $\zg$ is itself a Lie group. $\therefore \zg$ has dimension $0$, so it is discrete.
+\end{proof}
+\begin{thm}
+Let $G$ be a compact semisimple Lie group with $\zg=1$. Then $G\cong G_1\times \ldots \times G_n$ with $G_i$ simple Lie groups $\forall i$, and $G_i\lhd G$.
+\end{thm}
 
 \end{document}
