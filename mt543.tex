@@ -2945,4 +2945,79 @@ The centre of a semisimple Lie group is discrete, and finite if $G$ is compact.
 Let $G$ be a compact semisimple Lie group with $\zg=1$. Then $G\cong G_1\times \ldots \times G_n$ with $G_i$ simple Lie groups $\forall i$, and $G_i\lhd G$.
 \end{thm}
 
+\section{Lecture 34 20/12/23}
+Last time:
+\begin{itemize}
+\item $\lalg$ is simple if it is non-abelian and only ideals are $0$ and $\lalg$.
+\item $\lalg$ is semisimple if $\lalg=\lalg_1\oplus \lalg_2\oplus \ldots \oplus \lalg_n$ is a direct sum decomposition with each $\lalg_i$ being simple.
+\item A connected Lie group is simple if it has no non-proper closed normal subgroups of dim $>0$.
+\item A connected Lie group is semisimple if $g$ is semisimple.
+\item 4.25 $G$ compact, connected semisimple Lie group. If $\zg=1$, then $G\cong G_1\times \ldots \times G_n$ with $G_i$ simple, $G_i\lhd G$.
+\end{itemize}
+\begin{proof}
+(idea) Use the decomposition of the Lie algebra $\lalg=\lalg_1\oplus \lalg_2\oplus \ldots \oplus \lalg_n$. Use $\exp$ on each $\lalg_i$ to obtain $G_i$. Show that $G_i$ and $G_j$ commute if $i\neq j$ (Uses CBH), it follows that $G_i \lhd G$, and $\exp(X)=\exp(X_1)\cdots \exp(X_n)$ where $X\in \lalg$, and $X_i$ is component of $X$ in $\lalg_i$.
+
+Isomorphim is 
+\begin{align*}
+G_1\times\ldots \times G_n&\to G\\
+(h_1,\ldots,h_n)&\mapsto h_1\cdots h_n.
+\end{align*}
+The injectivity of this requires $\zg=1$.
+\end{proof}
+\begin{cor}
+If $G$ is compact, connected, semisimple Lie group, then $G$ has a finite quotient which splits as a product of simple Lie groups.
+\end{cor}
+\begin{proof}
+(idea) $\zg$ is finite, and $\zh{^{G}/_{\zg}}=1$, so previous result applies to the finite quotient ${^{G}/_{\zg}}$.
+\end{proof}
+\ul{Examples}
+\begin{itemize}
+\item The following groups are simple \gson, \gsun, \gspn (for $n\neq 2$).
+\item \gun is neither simple nor semisimple $\zh{\gun}\cong \sph{1}$.
+\item In the non-compact case, $SL_n(\rR)$, $SL_n(\cC)$, are simple if $n\geq 3$.
+\item But \glnff is neither simple nor semisimple.
+\end{itemize}
+\ul{Final perspectives}
+
+With some algebraic topology we can extend previous results to
+\begin{thm}
+Every compact, simply-connected Lie group is $\cong$ to a product of compact, simple, simply-connected Lie groups.
+\end{thm}
+\begin{thm}
+A compact, simple, simply-connected Lie group either belongs to one of the families 
+\begin{itemize}
+\item \gsun , $n\geq 2$,
+\item \gspn, $n\geq 2$,
+\item $\operatorname{Spin}(n)$, $n\geq 3$,
+\item or is an `exceptional' Lie group: $G_2$, $F_4$, $E_6$, $E_7$, $E_8$.
+\end{itemize}
+\end{thm}
+
+\ul{Remarks}
+\begin{enumerate}
+\item $\operatorname{Spin}(n)$ is closely related to $\gson$. $\operatorname{Spin}(n)$ is the "universal covering group" of $\gson$. There is a smooth 2-to-1 homomorphism $\operatorname{Spin}(n)\to \gson$.
+\item The above classification follows from the classification of simple Lie algebras.
+\end{enumerate}
+More generally:
+\begin{thm}
+Every connected compact Lie group is a finite quotient of a Lie group $H\times \tor{n}$, where $H$ is a connected compact, simply-connected group and $\tor{n}=\sph{1}\times \ldots \times \sph{1}$.
+\end{thm}
+
+\subsection{Matrix Groups vs Lie groups}
+\begin{thm}
+(Ado's Theorem) Every finite dimensional Lie algebra admits a faithful representation into a matrix algebra.
+\end{thm}
+This means: Every finite dimensional Lie algebra is (Lie algebra) isomorphic to a matrix algebra! (vector space and Lie bracket preserving)
+\begin{thm}
+Every \ul{compact} Lie group is $\cong$ matrix group.
+\end{thm}
+In the non-compact case this is not always the case. 
+
+\ul{Example} The Heisenberg group is a non-compact Lie group which is not a matrix group. 
+
+Let $N=\qty{\pmqty{1 & 0 & n \\ 0 & 1 & 0 \\ 0 & 0 & 1}\Bigg| n\in \zZ}\subset \operatorname{SUT}_3(\rR)=\qty{\pmqty{1 & x & y \\ 0 & 1 & z \\ 0 & 0 & 1}\Bigg| x,y,z \in \rR}$
+
+$N\lhd \operatorname{SUT}_3(\rR)$, and Heisenberg group $H:=^{\operatorname{SUT}_3(\rR)}/_{N}$.
+
+The failure of $H$ to be a matrix group can be seen by studying Fourier Series!
 \end{document}
